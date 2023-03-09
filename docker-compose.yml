@@ -1,0 +1,38 @@
+version: "3"
+
+volumes:
+  mongo-data:
+    driver: local
+
+services:
+
+  mongo:
+    image: mongo:4.1.8-xenial
+    volumes:
+      - mongo-data:/data/db
+
+  flexy-guard-admin:
+    build:
+      context: ./services/flexy-guard-admin
+      dockerfile: Dockerfile
+    image: flexy-guard-admin:latest
+    command: python3 app.py
+    depends_on:
+      - mongo
+ #     - redis
+    volumes:
+      - ./services/flexy-guard-admin:/flexy-guard
+    stdin_open: true
+    tty: true
+    environment:
+      SERVER_HOST: '0.0.0.0'
+      SERVER_PORT: '5000'
+      SERVER_DEBUG: 'true'
+      BASIC_AUTH_USERNAME: 'admin@admin.admin'
+      BASIC_AUTH_PASSWORD: 'admin@admin.admin'
+      DB_HOST: mongo
+      DB_PORT: 27017
+#       REDIS_URL: 'redis://redis:6379/0'
+    ports:
+      - "7081:5000"
+

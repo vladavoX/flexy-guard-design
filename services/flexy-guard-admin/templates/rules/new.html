@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">New rule</h3>
+      </div>
+
+      <div class="box-body">
+        <div class="mb-3">
+          <h3 class="box-title">Create new rule by preset</h3>
+          <div class="row">
+            <div class="col-sm-5">
+              <select name="preset" class="form-select">
+                <option value="" selected>Approved-Turnover-per-Gateway</option>
+              </select>
+            </div>
+            <div class="col-sm-7">
+              <button class="btn btn-secondary">Load preset</button>
+            </div>
+        </div>
+
+        <hr>
+        <div class="m-3">
+          <form action="{{ url_for('create_rule') }}" method="POST">
+            <fieldset>
+              <h5>General settings</h5>
+
+              <div class="row mb-3">
+                <label class="col-form-label col-form-label-sm col-sm-1" for="comment">Name</label>
+                <div class="col-sm-11">
+                  <input name="source" class="form-control form-control-sm" id="comment" placeholder="">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label col-form-label-sm col-sm-1" for="operation">Operation</label>
+                <div class="col-sm-11">
+                  <input name="operation" class="form-control" id="operation" list="operations" placeholder="PayinRequest">
+                  <datalist id="operations">
+                    <option>PayinRequest</option>
+                    <option>PayoutRequest</option>
+                    <option>RefundRequest</option>
+                    <option>DisputeRequest</option>
+                  </datalist>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label col-form-label-sm col-sm-1" for="currency">Currency</label>
+                <div class="col-sm-11">
+                  <input name="currency" class="form-control" id="currency" list="currencies" placeholder="">
+                  <datalist id="currencies">
+                    <option>USD</option>
+                    <option>EUR</option>
+                    <option>GBP</option>
+                    <option>RUB</option>
+                  </datalist>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label col-form-label-sm col-sm-1" for="source">Gateway</label>
+                <div class="col-sm-11">
+                  <input name="source" class="form-control form-control-sm" id="source" placeholder="">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-form-label col-form-label-sm col-sm-1" for="to_profile">Merchant&nbsp;ID</label>
+                <div class="col-sm-11">
+                  <input name="source" class="form-control form-control-sm" id="to_profile" placeholder="">
+                </div>
+              </div>
+            </fieldset>
+            <hr>
+
+            <fieldset>
+              <h5>Transaction settings</h5>
+
+              <div class="row mb-3">
+                <label class="col-form-label col-form-label-sm col-sm-1" for="status">Status</label>
+                <div class="col-sm-11">
+                  <select type="multiple" id="status" class="form-control">
+                    <option>Approved</option>
+                    <option>Pending</option>
+                    <option>Declined</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <h6>Single transation amount limits</h6>
+                <div class="col-sm-6">
+                  <label for="amount-sum-value-min" class="form-label">Min</label>
+                  <input type="text" id="amount-sum-value-min" class="form-control">
+                </div>
+
+                <div class="col-sm-6">
+                  <label for="amount-sum-value-max" class="form-label">Max</label>
+                  <input type="text" id="amount-sum-value-max" class="form-control">
+                </div>
+              </div>
+            </fieldset>
+            <hr>
+
+            <fieldset>
+              <h5>Card settings</h5>
+
+              <div class="mb-3">
+                <h6>Count limits</h6>
+                <div class="row mb-3">
+                  <div class="col-sm-4">
+                    <label for="count-1" class="form-label">Daily</label>
+                    <input type="text" id="count-1" class="form-control">
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="count-7" class="form-label">Weekly</label>
+                    <input type="text" id="count-7" class="form-control">
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="count-30" class="form-label">Monthly</label>
+                    <input type="text" id="count-30" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <i class="fa fa-plus">&nbsp;Customize</i>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <h6>Amount limits</h6>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <label for="amount-sum-1" class="form-label">Daily</label>
+                    <input type="text" id="amount-sum-1" class="form-control">
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="amount-sum-7" class="form-label">Weekly</label>
+                    <input type="text" id="amount-sum-7" class="form-control">
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="amount-sum-30" class="form-label">Monthly</label>
+                    <input type="text" id="amount-sum-30" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-sm-6">
+                    <label for="amount-card-min" class="form-label">Min</label>
+                    <input type="text" id="amount-card-min" class="form-control">
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="amount-card-max" class="form-label">Max</label>
+                    <input type="text" id="amount-card-max" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <i class="fa fa-plus">&nbsp;Customize</i>
+                </div>
+              </div>
+            </fieldset>
+
+            <hr>
+            <fieldset>
+              <h5>Bin settings</h5>
+              <div class="row">
+                <div class="col-sm-6">
+                  <label class="form-label">In country</label>
+                  <div class="row">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="US" id="us"><label class="form-check-label" for="us">USA</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="US" id="ca"><label class="form-check-label" for="ca">Canada</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Not in country</label>
+                  <div class="row">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="US" id="not-us"><label class="form-check-label" for="not-us">USA</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="US" id="not-ca"><label class="form-check-label" for="not-ca">Canada</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <hr>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success">Add</button>
+              <a href="/list" class="btn btn-primary">Cancel</a>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $('#self').on('change', function() {
+      var value = $(this).val();
+
+      if (value == 'fee') {
+        $('#self-fee-group').show();
+        $('#self-min-group').hide();
+        $('#self-min').val('');
+      } else {
+        $('#self-fee-group').hide();
+        $('#self-min-group').show();
+        $('#self-fee').val('');
+      }
+    })
+
+    $('#provider').on('change', function() {
+      var value = $(this).val();
+
+      if (value == 'fee') {
+        $('#provider-fee-group').show();
+        $('#provider-min-group').hide();
+        $('#provider-min').val('');
+      } else {
+        $('#provider-fee-group').hide();
+        $('#provider-min-group').show();
+        $('#provider-fee').val('');
+      }
+    })
+  </script>
+{% endblock %}
