@@ -16,12 +16,14 @@ services:
       context: ./services/flexy-guard-admin
       dockerfile: Dockerfile
     image: flexy-guard-admin:latest
-    command: python3 app.py
+    command: python3 app.py runserver
     depends_on:
       - mongo
  #     - redis
     volumes:
-      - ./services/flexy-guard-admin:/flexy-guard
+      - type: bind
+        source: ./services/flexy-guard-admin
+        target: /flexy-guard-admin
     stdin_open: true
     tty: true
     environment:
