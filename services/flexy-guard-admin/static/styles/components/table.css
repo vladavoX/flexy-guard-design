@@ -1,0 +1,30 @@
+@import '../../styles/globals/variables.css';
+@import '../../styles/globals/typography.css';
+@import '../../styles/components/buttons.css';
+
+.table-striped > tbody > tr:nth-of-type(odd):not(:first-child) {
+  background-color: var(--color-white-purple) !important;
+}
+
+.table td {
+  vertical-align: middle !important;
+  color: var(--color-purple-heading) !important;
+}
+
+.table thead th {
+  vertical-align: bottom !important;
+}
+
+.thead {
+  background-color: var(--color-white-3) !important;
+  color: var(--color-grey-dark) !important;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: none;
+}

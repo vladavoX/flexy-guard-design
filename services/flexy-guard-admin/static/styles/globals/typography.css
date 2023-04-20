@@ -1,72 +1,57 @@
 .heading-largest {
-  font-family: Barlow, sans-serif;
   font-size: 40px;
   font-weight: 600;
   line-height: 62px;
-  letter-spacing: 0em;
 }
 
 .heading-large {
-  font-family: Barlow;
   font-size: 32px;
   font-weight: 600;
   line-height: 40px;
-  letter-spacing: 0em;
 }
 
 .heading-medium {
-  font-family: Barlow;
   font-size: 32px;
   font-weight: 400;
   line-height: 40px;
-  letter-spacing: 0em;
 }
 
 .heading-small {
-  font-family: Barlow;
   font-size: 24px;
   font-weight: 600;
   line-height: 30px;
-  letter-spacing: 0em;
 }
 
 .heading-smaller {
-  font-family: Barlow;
   font-size: 20px;
   font-weight: 600;
   line-height: 25px;
-  letter-spacing: 0em;
-  text-align: left;
 }
 
 .heading-smallest {
-  font-family: Barlow;
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
-  letter-spacing: 0em;
 }
 
 .body-medium {
-  font-family: Barlow;
   font-size: 16px;
   font-weight: 500;
   line-height: 30px;
-  letter-spacing: 0em;
 }
 
 .body-regular {
-  font-family: Barlow;
   font-size: 16px;
   font-weight: 400;
   line-height: 30px;
-  letter-spacing: 0em;
 }
 
 .label-regular {
-  font-family: Barlow;
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
-  letter-spacing: 0em;
+}
+
+body {
+  font-family: Barlow, sans-serif;
 }
