@@ -1,0 +1,36 @@
+.logo {
+  background-color: #7257CB !important;
+  min-height: 60px !important;
+}
+
+.navbar {
+  background-color: #FAFAFA !important;
+  min-height: 60px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.navbar .user-panel {
+  position: static !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
+.navbar .user-panel .image {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.navbar .user-panel .info {
+  color: black !important;
+  position: inherit !important;
+}
+
+.navbar .user-panel .info p {
+  margin: 0 !important;
+  color: #7257CB !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+}
