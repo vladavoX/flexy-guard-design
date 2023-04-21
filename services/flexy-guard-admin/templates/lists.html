@@ -2,10 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
+
     <meta
       http-equiv="X-UA-Compatible"
       content="IE=edge"
     />
+
     <title>Flexy Guard Rule Builer | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta
@@ -62,6 +64,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
     />
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles/lists.css') }}"
@@ -97,6 +100,7 @@
               <span>FlexyGuard</span>
             </span>
           </div>
+
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -206,7 +210,7 @@
       var options = {};
       var editor = new JSONEditor(container, options);
 
-
+ 
       // set json
       {% if definition is not none %}
       var json = JSON.parse('{{ definition | safe}}')

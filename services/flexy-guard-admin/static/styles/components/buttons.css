@@ -1,0 +1,12 @@
+@import '../globals/variables.css';
+@import '../globals/typography.css';
+
+.btn-delete {
+  background-color: transparent;
+  padding-top: 10px;
+}
+
+.btn-primary {
+  background-image: var(--linear-gradient-purple) !important;
+  border: none !important;
+}

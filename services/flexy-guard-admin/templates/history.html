@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+
     <meta
       http-equiv="X-UA-Compatible"
       content="IE=edge"
@@ -50,6 +51,7 @@
       type="text/css"
     />
 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -62,15 +64,18 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
     />
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles/history.css') }}"
     />
+
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
+
         <a
           href="#"
           data-toggle="push-menu"
@@ -94,10 +99,12 @@
               <span>FlexyGuard</span>
             </span>
           </div>
+
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
+
           <div class="user-panel">
             <div class="image">
               <img
@@ -125,6 +132,7 @@
           </h1>
         </section>
 
+
         <!-- Main content -->
         <section class="content">
           <!-- Info boxes -->
@@ -139,12 +147,12 @@
                 <table class="table table-bordered table-striped table-hover">
                   <colgroup>
                     <col width="20%" />
+                    <col width="30%" />
                     <col width="20%" />
                     <col width="20%" />
-                    <col width="20%" />
-                    <col width="20%" />
+                    <col width="10%" />
                   </colgroup>
-                  <tr>
+                  <tr class="thead body-medium">
                     <th>Name</th>
                     <th>Description</th>
                     <th>CreatedAt/CreatedBy</th>
@@ -152,7 +160,7 @@
                     <th></th>
                   </tr>
                   {% for item in rlist %}
-                  <tr>
+                  <tr class="trow body-regular">
                     <td>{{ item['Comment'] }}</td>
                     <td>{{ item['HashDescr'] }}</td>
                     <td>{{ item['CreatedAt'] }} / {{ item['CreatedBy'] }}</td>
@@ -173,6 +181,7 @@
       <!-- /.content-wrapper -->
     </div>
     <!-- ./wrapper -->
+
 
     <!-- jQuery 3 -->
     <script src="{{ url_for('static', filename='adminlte/bower_components/jquery/dist/jquery.min.js') }}"></script>
