@@ -4,16 +4,22 @@
   background-color: var(--color-purple-light) !important;
   min-height: 60px !important;
   width: 300px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.logo-lg {
+  color: var(--color-white-3);
 }
 
 @media (min-width: 768px) {
   .sidebar-collapse .wrapper .main-header .logo {
-    width: 50px !important;
+    width: 72px !important;
   }
 }
 
 @media (max-width: 768px) {
-
   .main-header .logo,
   .main-header .navbar {
     width: 100% !important;
