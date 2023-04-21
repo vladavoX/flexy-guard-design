@@ -15,6 +15,10 @@
   vertical-align: bottom !important;
 }
 
+.body-medium td {
+  font-weight: 500;
+}
+
 .thead {
   background-color: var(--color-white-3) !important;
   color: var(--color-grey-dark) !important;

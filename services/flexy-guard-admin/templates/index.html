@@ -47,13 +47,10 @@
       type="text/css"
     />
 
-    {% block styles %}
     <link
       rel="stylesheet"
-      type="text/css"
-      href="{{url_for('static', filename='styles/index.css') }}"
+      href="{{ url_for('static', filename='styles/index.css') }}"
     />
-    {% endblock %}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,9 +60,11 @@
     <![endif]-->
 
     <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
     />
   </head>
   <body class="hold-transition skin-blue sidebar-mini">

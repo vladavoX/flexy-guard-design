@@ -1,55 +1,55 @@
 .heading-largest {
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 62px;
+  font-size: 40px !important;
+  font-weight: 600 !important;
+  line-height: 62px !important;
 }
 
 .heading-large {
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 40px;
+  font-size: 32px !important;
+  font-weight: 600 !important;
+  line-height: 40px !important;
 }
 
 .heading-medium {
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 40px;
+  font-size: 32px !important;
+  font-weight: 400 !important;
+  line-height: 40px !important;
 }
 
 .heading-small {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 30px;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  line-height: 30px !important;
 }
 
 .heading-smaller {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 25px;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 25px !important;
 }
 
 .heading-smallest {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 20px;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 20px !important;
 }
 
 .body-medium {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 30px;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 30px !important;
 }
 
 .body-regular {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 30px;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 30px !important;
 }
 
 .label-regular {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 14px !important;
 }
 
 body {
