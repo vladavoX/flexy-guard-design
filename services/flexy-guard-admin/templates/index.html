@@ -2,7 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+
     <title>Flexy Guard Rule Builer | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta
@@ -47,11 +52,6 @@
       type="text/css"
     />
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styles/index.css') }}"
-    />
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -66,29 +66,60 @@
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/index.css') }}"
+    />
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper" style="height: auto; min-height: 100%">
+    <div
+      class="wrapper"
+      style="height: auto; min-height: 100%"
+    >
       <header class="main-header">
         <!-- Logo -->
-        <a href="/" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>F</b>GD</span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Flexy</b>Guard</span>
+        <a
+          href="#"
+          data-toggle="push-menu"
+          role="button"
+        >
+          <div class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini">
+              <img
+                src="{{ url_for('static', filename='assets/icons/Union.svg') }}"
+              />
+            </span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">
+              <img
+                src="{{ url_for('static', filename='assets/icons/Union.svg') }}"
+              />
+              <img
+                src="{{ url_for('static', filename='assets/icons/reactivepay.svg') }}"
+              />
+              <span>FlexyGuard</span>
+            </span>
+          </div>
+
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
-          <!-- Sidebar toggle button-->
-          <a
-            href="#"
-            class="sidebar-toggle"
-            data-toggle="push-menu"
-            role="button"
-          >
-            <span class="sr-only">Toggle navigation</span>
-          </a>
+
+          <div class="user-panel">
+            <div class="image">
+              <img
+                src="{{ url_for('static', filename='adminlte/img/user2-160x160.jpg') }}"
+                class="img-circle"
+                alt="User Image"
+              />
+            </div>
+            <div class="info">
+              <p>Flexy guard admin</p>
+            </div>
+          </div>
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
@@ -117,7 +148,12 @@
               <div class="box-body">
                 <div class="form-group mb-3 row">
                   <div class="col-sm-3">
-                    <select class="form-control col-sm-2" id="rules">
+
+                    <select
+                      class="form-control col-sm-2"
+                      id="rules"
+                    >
+
                       {% for item in tlist %}
                       <option value="{{ item['Hash'] }}">
                         {{ item['Comment'] }}
@@ -125,7 +161,12 @@
                       {% endfor %}
                     </select>
                   </div>
-                  <button id="add-rule" class="btn btn-secondary">
+
+                  <button
+                    id="add-rule"
+                    class="btn btn-secondary"
+                  >
+
                     Add rule
                   </button>
                 </div>
@@ -135,10 +176,12 @@
                     <col width="20%" />
                     <col width="20%" />
                     <col width="20%" />
+
                     <col width="30%" />
                     <col width="10%" />
                   </colgroup>
                   <tr class="thead body-medium">
+
                     <th>Name</th>
                     <th>CreatedAt</th>
                     <th>Description</th>
@@ -146,7 +189,9 @@
                     <th>Action</th>
                   </tr>
                   {% for item in rlist %}
+
                   <tr class="trow body-regular">
+
                     <td>{{item['Comment']}}</td>
                     <td>{{item['CreatedAt']}}</td>
                     <td>{{item['HashDescr']}}</td>

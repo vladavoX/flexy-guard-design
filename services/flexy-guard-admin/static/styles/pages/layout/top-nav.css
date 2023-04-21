@@ -1,0 +1,60 @@
+@import '../../globals/variables.css';
+
+.main-header .logo {
+  background-color: var(--color-purple-light) !important;
+  min-height: 60px !important;
+  width: 300px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.logo-lg {
+  color: var(--color-white-3);
+}
+
+@media (min-width: 768px) {
+  .sidebar-collapse .wrapper .main-header .logo {
+    width: 72px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-header .logo,
+  .main-header .navbar {
+    width: 100% !important;
+    float: none !important;
+  }
+}
+
+.navbar {
+  background-color: var(--color-navbar) !important;
+  min-height: 60px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.navbar .user-panel {
+  position: static !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
+.navbar .user-panel .image {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.navbar .user-panel .info {
+  color: black !important;
+  position: inherit !important;
+}
+
+.navbar .user-panel .info p {
+  margin: 0 !important;
+  color: var(--color-purple-light) !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+}

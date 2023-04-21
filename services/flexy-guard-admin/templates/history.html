@@ -2,7 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
     <title>Flexy Guard Rule Builder | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta
@@ -47,10 +51,7 @@
       type="text/css"
     />
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styles/history.css') }}"
-    />
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -63,29 +64,59 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
     />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/history.css') }}"
+    />
+
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
-        <a href="/" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>F</b>GD</span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Flexy</b>Guard</span>
+
+        <a
+          href="#"
+          data-toggle="push-menu"
+          role="button"
+        >
+          <div class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini">
+              <img
+                src="{{ url_for('static', filename='assets/icons/Union.svg') }}"
+              />
+            </span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">
+              <img
+                src="{{ url_for('static', filename='assets/icons/Union.svg') }}"
+              />
+              <img
+                src="{{ url_for('static', filename='assets/icons/reactivepay.svg') }}"
+              />
+              <span>FlexyGuard</span>
+            </span>
+          </div>
+
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
-          <!-- Sidebar toggle button-->
-          <a
-            href="#"
-            class="sidebar-toggle"
-            data-toggle="push-menu"
-            role="button"
-          >
-            <span class="sr-only">Toggle navigation</span>
-          </a>
+
+          <div class="user-panel">
+            <div class="image">
+              <img
+                src="{{ url_for('static', filename='adminlte/img/user2-160x160.jpg') }}"
+                class="img-circle"
+                alt="User Image"
+              />
+            </div>
+            <div class="info">
+              <p>Flexy guard admin</p>
+            </div>
+          </div>
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
@@ -100,6 +131,7 @@
             <small>Version 1.0</small>
           </h1>
         </section>
+
 
         <!-- Main content -->
         <section class="content">
@@ -149,6 +181,7 @@
       <!-- /.content-wrapper -->
     </div>
     <!-- ./wrapper -->
+
 
     <!-- jQuery 3 -->
     <script src="{{ url_for('static', filename='adminlte/bower_components/jquery/dist/jquery.min.js') }}"></script>
