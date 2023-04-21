@@ -7,12 +7,14 @@
   --color-navbar: #fafafa;
   --color-white-1: #fcfbff;
   --color-white-2: #f3f3f3;
+  --color-white-3: #fefefe;
   --color-white-purple: #f8f6ff;
 
   --color-grey-lighter: #e6e6e6;
   --color-grey-light: #c0c0c0;
   --color-grey: #bbbbbb;
   --color-grey-dark: #393a3d;
+  --color-grey-darker: #706a82;
 
   --color-lilac: #e8e1ff;
 
@@ -22,6 +24,8 @@
   --color-purple: #583bb9;
   --color-purple-heading: #4c4563;
   --color-purple-dark: #352e4a;
+  --color-purple-rgba: rgba(114, 87, 203, 0.5);
+  --color-purple-rgba-1: rgba(114, 87, 203, 0.75);
 
   --color-red: #fd4e35;
 
