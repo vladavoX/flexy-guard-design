@@ -51,9 +51,6 @@
       type="text/css"
     />
 
-
-   
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -71,7 +68,6 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='styles/constants.css') }}"
     />
-
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -155,7 +151,6 @@
                   />
                 </div>
 
-
                 <table class="table table-bordered table-striped table-hover">
                   <colgroup>
                     <col width="50%" />
@@ -163,14 +158,12 @@
                   </colgroup>
 
                   <tr class="thead body-medium">
-
                     <th>Value</th>
                     <th>Action</th>
                   </tr>
                   {% for item in list %}
 
                   <tr class="trow body-regular">
-
                     <td>{{item['Value']}}</td>
                     <td>
                       <a
@@ -179,7 +172,6 @@
                         >Edit</a
                       >
                       <button
-
                         data-id="{{ item['Hash'] }}"
                         class="btn btn-delete"
                       >

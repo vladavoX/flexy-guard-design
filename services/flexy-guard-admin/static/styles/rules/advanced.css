@@ -1,2 +1,12 @@
 @import "../pages/layout/top-nav.css";
 @import "../pages/layout/side-nav.css";
+
+.content-wrapper {
+  margin-left: 300px !important;
+}
+
+@media (min-width: 768px) {
+  .sidebar-mini.sidebar-collapse .content-wrapper {
+    margin-left: 72px !important;
+  }
+}

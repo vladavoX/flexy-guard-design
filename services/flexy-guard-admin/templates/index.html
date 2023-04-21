@@ -60,8 +60,15 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -102,12 +109,10 @@
               <span>FlexyGuard</span>
             </span>
           </div>
-
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
-
           <div class="user-panel">
             <div class="image">
               <img
@@ -148,12 +153,10 @@
               <div class="box-body">
                 <div class="form-group mb-3 row">
                   <div class="col-sm-3">
-
                     <select
                       class="form-control col-sm-2"
                       id="rules"
                     >
-
                       {% for item in tlist %}
                       <option value="{{ item['Hash'] }}">
                         {{ item['Comment'] }}
@@ -166,7 +169,6 @@
                     id="add-rule"
                     class="btn btn-secondary"
                   >
-
                     Add rule
                   </button>
                 </div>
@@ -181,7 +183,6 @@
                     <col width="10%" />
                   </colgroup>
                   <tr class="thead body-medium">
-
                     <th>Name</th>
                     <th>CreatedAt</th>
                     <th>Description</th>
@@ -191,7 +192,6 @@
                   {% for item in rlist %}
 
                   <tr class="trow body-regular">
-
                     <td>{{item['Comment']}}</td>
                     <td>{{item['CreatedAt']}}</td>
                     <td>{{item['HashDescr']}}</td>
