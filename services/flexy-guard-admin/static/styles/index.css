@@ -1,6 +1,6 @@
 @import '../styles/components/table.css';
-@import "./pages/layout/top-nav.css";
-@import "./pages/layout/side-nav.css";
+@import './pages/layout/top-nav.css';
+@import './pages/layout/side-nav.css';
 
 .content-wrapper {
   margin-left: 300px !important;
@@ -10,4 +10,20 @@
   .sidebar-mini.sidebar-collapse .content-wrapper {
     margin-left: 72px !important;
   }
+}
+
+.custom-row .custom-col {
+  display: flex;
+  height: 50px;
+  width: 100%;
+}
+
+.custom-select {
+  height: 50px;
+  border-radius: 5px;
+  /* width: 100% !important; */
+}
+
+.custom-button {
+  height: 50px;
 }

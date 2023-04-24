@@ -3,10 +3,7 @@
   <head>
     <meta charset="utf-8" />
 
-    <meta
-      http-equiv="X-UA-Compatible"
-      content="IE=edge"
-    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>Flexy Guard Rule Builder | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -52,7 +49,6 @@
       type="text/css"
     />
 
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -61,28 +57,24 @@
     <![endif]-->
 
     <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
     />
-
 
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles/rlist.css') }}"
     />
-
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
 
-        <a
-          href="#"
-          data-toggle="push-menu"
-          role="button"
-        >
+        <a href="#" data-toggle="push-menu" role="button">
           <div class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
@@ -126,10 +118,7 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-            Flexy Guard Rules
-            <small>Version 1.0</small>
-          </h1>
+          <h1 class="heading-largest">Rules</h1>
         </section>
 
         <!-- Main content -->
@@ -137,40 +126,45 @@
           <!-- Info boxes -->
           <div class="row">
             <div class="container-fluid box">
-              <div class="box-header with-border">
-                <h3 class="box-title">Rules</h3>
+              <div class="box-header">
               </div>
 
               <!-- /.box-header -->
               <div class="box-body">
-                <div class="form-group mb-3 row">
-                  <div class="col-sm-3">
-                    <select
-                      class="form-control col-sm-2"
-                      id="rules"
-                    >
-                      {% for item in tlist %}
-                      <option value="{{ item['Hash'] }}">
-                        {{ item['Comment'] }}
-                      </option>
-                      {% endfor %}
-                    </select>
+                <div class="box-body">
+                  <div class="form-group mb-3 row pull-right custom-row">
+                    <div class="col-sm-9 custom-col">
+                      <div class="col-sm-6 col-xs-12 custom-col pull-right">
+                        <select
+                          class="form-control custom-select"
+                          id="rules"
+                          placeholder="Select a Template"
+                        >
+                          {% for item in tlist %}
+                          <option value="{{ item['Hash'] }}">
+                            {{ item['Comment'] }}
+                          </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <div class="col-sm-6 col-xs-12 custom-col pull-right">
+                        <button
+                          id="add-rule"
+                          class="btn btn-primary custom-button"
+                        >
+                          Add rule
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <button
-                    id="add-rule"
-                    class="btn btn-secondary"
-                  >
-                    Add rule
-                  </button>
-                </div>
 
                 <table class="table table-bordered table-striped table-hover">
                   <colgroup>
                     <col width="20%" />
                     <col width="20%" />
                     <col width="20%" />
-                    <col width="20%" />
-                    <col width="20%" />
+                    <col width="30%" />
+                    <col width="10%" />
                   </colgroup>
                   <tr class="thead body-medium">
                     <th>Name</th>

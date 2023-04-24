@@ -1,13 +1,37 @@
 @import '../styles/components/table.css';
-@import "./pages/layout/top-nav.css";
-@import "./pages/layout/side-nav.css";
+@import './pages/layout/top-nav.css';
+@import './pages/layout/side-nav.css';
 
 .content-wrapper {
   margin-left: 300px !important;
+  padding: 30px !important;
+  background-image: var(--linear-gradient-background);
+}
+
+.content {
+  border-radius: 5px;
 }
 
 @media (min-width: 768px) {
   .sidebar-mini.sidebar-collapse .content-wrapper {
     margin-left: 72px !important;
   }
+}
+
+.custom-button {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  transform: translateY(10px);
+}
+
+.custom-heading {
+  color: var(--color-purple-heading);
+}
+
+.box-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
 }

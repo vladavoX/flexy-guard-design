@@ -3,10 +3,7 @@
   <head>
     <meta charset="utf-8" />
 
-    <meta
-      http-equiv="X-UA-Compatible"
-      content="IE=edge"
-    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>Flexy Guard Rule Builer | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -60,9 +57,11 @@
     <![endif]-->
 
     <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
     />
 
     <link
@@ -71,17 +70,10 @@
     />
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
-    <div
-      class="wrapper"
-      style="height: auto; min-height: 100%"
-    >
+    <div class="wrapper" style="height: auto; min-height: 100%">
       <header class="main-header">
         <!-- Logo -->
-        <a
-          href="#"
-          data-toggle="push-menu"
-          role="button"
-        >
+        <a href="#" data-toggle="push-menu" role="button">
           <div class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
@@ -100,7 +92,6 @@
               <span>FlexyGuard</span>
             </span>
           </div>
-
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -126,50 +117,46 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-            Flexy Guard Rules
-            <small>Version 1.0</small>
-          </h1>
+          <h1 class="heading-largest">Block Lists</h1>
         </section>
 
         <!-- Main content -->
         <section class="content">
-          <div class="row">
-            <section class="content-header">
-              <h3>Upload lists</h3>
-            </section>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="box-body">
-                <form
-                  action="/lists"
-                  method="POST"
-                  enctype="multipart/form-data"
-                >
-                  <div class="form-group">
-                    <label for="exampleInputFile">IP/Country list</label>
-                    <input
-                      type="file"
-                      name="ip_countries"
-                      id="ip_countries"
-                    />
-                    <label for="exampleInputFile">BIN/Country list</label>
-                    <input
-                      type="file"
-                      name="bin_countries"
-                      id="bin_countries"
-                    />
-                  </div>
-                  <div>
-                    <button
-                      type="submit"
-                      class="btn btn-primary"
-                    >
-                      Update lists
-                    </button>
-                  </div>
-                </form>
+          <div class="container-fluid box">
+            <div class="row">
+              <section class="content-header">
+                <h3>Upload lists</h3>
+              </section>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box-body">
+                  <form
+                    action="/lists"
+                    method="POST"
+                    enctype="multipart/form-data"
+                  >
+                    <div class="form-group">
+                      <label for="exampleInputFile">IP/Country list</label>
+                      <input
+                        type="file"
+                        name="ip_countries"
+                        id="ip_countries"
+                      />
+                      <label for="exampleInputFile">BIN/Country list</label>
+                      <input
+                        type="file"
+                        name="bin_countries"
+                        id="bin_countries"
+                      />
+                    </div>
+                    <div>
+                      <button type="submit" class="btn btn-primary">
+                        Update lists
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -210,7 +197,7 @@
       var options = {};
       var editor = new JSONEditor(container, options);
 
- 
+
       // set json
       {% if definition is not none %}
       var json = JSON.parse('{{ definition | safe}}')

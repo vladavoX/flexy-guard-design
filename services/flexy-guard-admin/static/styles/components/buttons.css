@@ -9,4 +9,5 @@
 .btn-primary {
   background-image: var(--linear-gradient-purple) !important;
   border: none !important;
+  border-radius: 5px;
 }

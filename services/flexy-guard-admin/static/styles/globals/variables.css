@@ -39,4 +39,9 @@
   --linear-gradient-yellow: linear-gradient(90deg, #fcc931 0%, #fcd454 100%);
   --linear-gradient-blue: linear-gradient(90deg, #43c7fc 0%, #7dd7fd 100%);
   --linear-gradient-grey: linear-gradient(90deg, #e6e6e6 0%, #eeeeee 100%);
+  --linear-gradient-background: linear-gradient(
+    107.56deg,
+    rgba(248, 246, 255, 0.8) 0%,
+    #fff6fe 100%
+  );
 }
