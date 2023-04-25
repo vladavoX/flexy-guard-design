@@ -12,6 +12,10 @@
   border-radius: 5px;
 }
 
+.box {
+  border-top: none;
+  padding: 20px;
+}
 @media (min-width: 768px) {
   .sidebar-mini.sidebar-collapse .content-wrapper {
     margin-left: 72px !important;

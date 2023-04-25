@@ -8,6 +8,11 @@
   background-image: var(--linear-gradient-background);
 }
 
+.box {
+  border-top: none;
+  padding: 20px;
+}
+
 .content {
   border-radius: 5px;
 }

@@ -3,10 +3,7 @@
   <head>
     <meta charset="utf-8" />
 
-    <meta
-      http-equiv="X-UA-Compatible"
-      content="IE=edge"
-    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Flexy Guard Rule Builer | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta
@@ -59,9 +56,11 @@
     <![endif]-->
 
     <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
     />
 
     <link
@@ -70,17 +69,10 @@
     />
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
-    <div
-      class="wrapper"
-      style="height: auto; min-height: 100%"
-    >
+    <div class="wrapper" style="height: auto; min-height: 100%">
       <header class="main-header">
         <!-- Logo -->
-        <a
-          href="#"
-          data-toggle="push-menu"
-          role="button"
-        >
+        <a href="#" data-toggle="push-menu" role="button">
           <div class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
@@ -124,19 +116,11 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-            Flexy Guard Rules
-            <small>Version 1.0</small>
-          </h1>
+          <h1 class="heading-largest">Definitions</h1>
         </section>
 
         <!-- Main content -->
         <section class="content">
-          <div class="row">
-            <section class="content-header">
-              <h3>Edit definitions</h3>
-            </section>
-          </div>
           <div class="row">
             <div class="col-md-12">
               <div class="box">
@@ -145,21 +129,23 @@
                   method="POST"
                   onsubmit="submit_json()"
                 >
-                  <div
-                    id="jsoneditor"
-                    style="height: 800px"
-                  ></div>
-                  <div class="box-footer">
-                    <input
-                      type="hidden"
-                      id="rule_json"
-                      name="rule_json"
-                    />
+                  <div class="box-header">
+                    <input type="hidden" id="rule_json" name="rule_json" />
                     <button
                       type="submit"
-                      class="btn btn-block btn-primary"
+                      class="btn btn-primary custom-button pull-right"
                     >
-                      Update definitions
+                      Update Definitions
+                    </button>
+                  </div>
+                  <div id="jsoneditor" style="height: 800px"></div>
+                  <div class="box-footer">
+                    <input type="hidden" id="rule_json" name="rule_json" />
+                    <button
+                      type="submit"
+                      class="btn btn-primary custom-button pull-right"
+                    >
+                      Update Definitions
                     </button>
                   </div>
                 </form>

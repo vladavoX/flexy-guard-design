@@ -1,9 +1,21 @@
 @import '../styles/components/table.css';
-@import "./pages/layout/top-nav.css";
-@import "./pages/layout/side-nav.css";
+@import './pages/layout/top-nav.css';
+@import './pages/layout/side-nav.css';
 
 .content-wrapper {
   margin-left: 300px !important;
+  padding: 20px !important;
+  background-image: var(--linear-gradient-background);
+}
+
+.content {
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.box {
+  border-top: none;
+  padding: 20px;
 }
 
 @media (min-width: 768px) {

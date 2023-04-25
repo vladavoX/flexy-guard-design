@@ -1,11 +1,21 @@
-@import '../styles/components/table.css';
-@import "./pages/layout/top-nav.css";
-@import "./pages/layout/side-nav.css";
+@import '../components/table.css';
+@import '../pages/layout/top-nav.css';
+@import '../pages/layout/side-nav.css';
 
 .content-wrapper {
   margin-left: 300px !important;
+  padding: 30px !important;
+  background-image: var(--linear-gradient-background);
 }
 
+.content {
+  border-radius: 5px;
+}
+
+.box {
+  border-top: none;
+  padding: 20px;
+}
 @media (min-width: 768px) {
   .sidebar-mini.sidebar-collapse .content-wrapper {
     margin-left: 72px !important;

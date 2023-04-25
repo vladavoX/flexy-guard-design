@@ -2,6 +2,7 @@
   font-size: 40px !important;
   font-weight: 600 !important;
   line-height: 62px !important;
+  color: var(--color-purple-heading);
 }
 
 .heading-large {
