@@ -23,3 +23,33 @@
     margin-left: 72px !important;
   }
 }
+
+.custom-textarea {
+  min-width: 300px !important;
+  min-height: 100px !important;
+  border-radius: 5px;
+}
+
+.box-header {
+  padding: 0;
+  width: 100% !important;
+}
+
+.box-header > h3 {
+  vertical-align: bottom !important;
+  width: 50%;
+}
+.form-body {
+  display: flex !important;
+  justify-content: space-between;
+  /* flex-wrap: wrap; */
+}
+
+.custom-heading {
+  margin-top: 20px;
+}
+
+.js-gw-item:not(:first-child),
+.js-route-row:not(:first-child) {
+  margin-top: 20px;
+}

@@ -23,7 +23,23 @@
   font-size: 16px !important;
   outline: none !important;
   width: 250px !important;
-  padding: 0px !important;
+  padding: 15px 15px !important;
+  color: var(--color-purple);
+  background-color: var(--color-white-1);
+  height: 50px !important;
+}
+
+.form-control > select {
+  padding: 5px 20px;
+}
+
+.form-control > textarea {
+  min-height: 100px !important;
+  min-width: 300px !important;
+}
+
+.form-control:read-only {
+  color: var(--color-purple-heading);
 }
 
 .skin-blue .sidebar-form input[type='text'] {
