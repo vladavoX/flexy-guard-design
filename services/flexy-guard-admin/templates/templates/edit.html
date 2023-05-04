@@ -102,6 +102,7 @@
           {% else %}
             <h3 >Add template</h3>
           {% endif %}
+
         </section>
       </div>
 
@@ -118,7 +119,6 @@
               <form id="form" action="/templates" method="POST">
             {% endif %}
                 <div class="box-body">
-                  <a href="/templates" class="btn btn-primary pull-right custom-button">Return to templates list</a>
                   <div class="form-group">
                     {% if edit is defined %}
                       <input readonly type="hidden" class="form-control" value="{{ edit['Hash'] }}" name="hash" id="hash" placeholder="Rule hash">
@@ -126,12 +126,14 @@
                       <input readonly type="hidden" class="form-control" name="hash" id="hash" placeholder="Rule hash">
                     {% endif %}
                   </div>
-                  <div class="form-group">
+                  <div class="form-group custom-form-group">
                     {% if edit %}
                       <input type="text" class="form-control" name="comment" id="comment" value="{{ edit['Comment'] }}" placeholder="Comment">
                     {% else %}
                       <input type="text" class="form-control" name="comment" id="comment" placeholder="Comment">
                     {% endif %}
+                      <a href="/templates" class="btn btn-primary pull-right custom-button">Return to templates list</a>
+
                   </div>
                 </div>
                 <!-- /.box-body -->

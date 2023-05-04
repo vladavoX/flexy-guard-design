@@ -10,11 +10,11 @@
   background-image: var(--linear-gradient-purple) !important;
   border: none !important;
   border-radius: 5px;
-  height: 50px !important;
-  display: flex;
+  /* height: 50px !important; */
+  /* display: flex; */
   align-items: center;
   justify-content: center;
-  min-width: 100px;
+  min-width: 50px;
   max-width: fit-content;
   font-size: 16px;
   font-weight: 400;
@@ -28,7 +28,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 100px;
+  min-width: 50px;
   max-width: fit-content;
   font-size: 16px;
   font-weight: 400;
@@ -42,7 +42,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 100px;
+  min-width: 50px;
+  max-width: fit-content;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.btn-advanced {
+  background-color: var(--color-lilac) !important;
+  color: var(--color-purple-light);
+  border: none !important;
+  border-radius: 5px;
+  height: 50px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  max-width: fit-content;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.btn-neutral {
+  background-image: var(--linear-gradient-grey) !important;
+  color: var(--color-grey-dark);
+  border: none !important;
+  border-radius: 5px;
+  height: 50px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
   max-width: fit-content;
   font-size: 16px;
   font-weight: 400;

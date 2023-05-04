@@ -28,3 +28,8 @@
   display: flex;
   align-items: center;
 }
+
+.custom-form-group {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,9 +1,12 @@
 {% extends 'base.html' %} {% block content %}
+
 <div class="row">
   <div class="box">
     <div class="box-header">
       <h3>Edit rule "{{ rule.Comment }}"</h3>
-      <button class="btn btn-primary js-item-save pull-right">Save</button>
+      <button class="btn btn-primary custom-button js-item-save pull-right">
+        Save Changes
+      </button>
     </div>
 
     <div class="box-body">
@@ -40,6 +43,7 @@
               </div>
             </div> -->
             <div class="left">
+              <h2 class="heading-medium">Body</h2>
               <h3 class="heading-small">Card Settings</h3>
 
               <div class="form-group">
@@ -309,7 +313,7 @@
               {% endif %} {% endif %}
             </div>
             <div class="right">
-              <h3 class="box-title">Header settings</h3>
+              <h3 class="box-title heading-medium">Header</h3>
 
               {% if rule.Header.mid %}
               <div class="row form-group">
@@ -412,51 +416,50 @@
                   </datalist>
                 </div>
               </div>
-            </div>
-            {% endif %}
+              {% endif %}
 
-            <!-- div class="row form-group">
+              <!-- div class="row form-group">
               <label class="col-form-label col-form-label-sm col-sm-1" for="description">Description</label>
               <div class="col-sm-4">
                 <textarea name="description" class="form-control form-control-sm" id="description" placeholder="">{{ rule.Header.description }}</textarea>
               </div>
             </div -->
 
-            <h3 class="box-title">Routing settings</h3>
-            {% for route_item in available_routing %}
-            <div class="row js-route-row">
-              <div class="col-sm-6">
-                <input
-                  type="text"
-                  value="{{ route_item }}"
-                  class="form-control js-route-item"
-                  readonly
-                />
+              <h3 class="box-title heading-medium">Router</h3>
+              {% for route_item in available_routing %}
+              <div class="row js-route-row">
+                <div class="col-sm-6">
+                  <input
+                    type="text"
+                    value="{{ route_item }}"
+                    class="form-control js-route-item"
+                    readonly
+                  />
+                </div>
+                <div class="col-sm-6">
+                  <select class="form-control js-gw-item">
+                    <option value="">Select Gateway Alias</option>
+                    {% for gw_item in gateways %} {% if routing[route_item] ==
+                    gw_item['Value'] %}
+                    <option value="{{ gw_item['Value'] }}" selected>
+                      {{ gw_item['Value'] }}
+                    </option>
+                    {% else %}
+                    <option value="{{ gw_item['Value'] }}">
+                      {{ gw_item['Value'] }}
+                    </option>
+                    {% endif %} {% endfor %}
+                  </select>
+                </div>
               </div>
-              <div class="col-sm-6">
-                <select class="form-control js-gw-item">
-                  <option value="">Select gateway alias</option>
-                  {% for gw_item in gateways %} {% if routing[route_item] ==
-                  gw_item['Value'] %}
-                  <option value="{{ gw_item['Value'] }}" selected>
-                    {{ gw_item['Value'] }}
-                  </option>
-                  {% else %}
-                  <option value="{{ gw_item['Value'] }}">
-                    {{ gw_item['Value'] }}
-                  </option>
-                  {% endif %} {% endfor %}
-                </select>
-              </div>
+              {% endfor %}
             </div>
-            {% endfor %}
-
-            <div class="form-group">
-              <button class="btn btn-success js-item-save">Save</button>
-              <a href="/rules/advanced/{{ rule.Hash }}" class="btn btn-warning"
-                >Advanced</a
+            <div class="form-group custom-form-group pull-right">
+              <button
+                class="btn btn-primary custom-button js-item-save pull-right"
               >
-              <a href="/list" class="btn btn-primary">Return to list</a>
+                Save Changes
+              </button>
             </div>
           </form>
         </div>
