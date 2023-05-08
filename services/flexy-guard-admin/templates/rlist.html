@@ -187,7 +187,8 @@
                       >
                       <button
                         data-id="{{ item['Hash'] }}"
-                        class="btn btn-delete js-item-delete"
+                        data-name="{{ item['Comment'] }}"
+                        class="btn btn-delete js-open-modal"
                       >
                         <svg
                           width="16"
@@ -216,6 +217,20 @@
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->
+      <div id="delete-modal">
+        <div class="can_wrapper">
+          <img
+            src="{{ url_for('static', filename='assets/icons/trash_icon_red.svg') }}"
+          />
+        </div>
+        <p>Are you sure you want to delete rule:</p>
+        <p id="delete-modal__name"></p>
+        <div class="delete-modal__buttons">
+          <button class="btn btn-danger js-item-delete">Delete</button>
+          <button class="btn btn-custom js-close-modal">Close</button>
+        </div>
+      </div>
+      <!-- modal -->
     </div>
     <!-- ./wrapper -->
 
