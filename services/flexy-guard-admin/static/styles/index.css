@@ -55,8 +55,20 @@
   font-weight: 400;
 }
 
+.can_wrapper {
+  height: 96px;
+  width: 96px;
+  border-radius: 50%;
+  border: 3px solid #BBBBBB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
 #delete-modal__name {
   font-weight: 500;
+  margin-bottom: 60px;
 }
 
 #delete-modal__buttons {

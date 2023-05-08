@@ -87,6 +87,8 @@ function init() {
     }).done(function () {
       item.parents('tr').remove()
     })
+
+    $('#delete-modal').css('display', 'none')
   })
 
   $('.js-close-modal').on('click', function () {
