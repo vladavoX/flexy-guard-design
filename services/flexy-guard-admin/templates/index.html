@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
 
     <title>Flexy Guard Rule Builer | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -57,8 +60,15 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -70,10 +80,17 @@
     />
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper" style="height: auto; min-height: 100%">
+    <div
+      class="wrapper"
+      style="height: auto; min-height: 100%"
+    >
       <header class="main-header">
         <!-- Logo -->
-        <a href="#" data-toggle="push-menu" role="button">
+        <a
+          href="#"
+          data-toggle="push-menu"
+          role="button"
+        >
           <div class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
@@ -190,7 +207,8 @@
                       >
                       <button
                         data-id="{{ item['Hash'] }}"
-                        class="btn btn-delete js-item-delete"
+                        data-name="{{ item['Comment'] }}"
+                        class="btn btn-delete js-open-modal"
                       >
                         <svg
                           width="16"
@@ -219,6 +237,14 @@
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->
+      <div id="delete-modal">
+        <p>Are you sure you want to delete rule:</p>
+        <p id="delete-modal__name"></p>
+        <div class="delete-modal__buttons">
+          <button class="btn btn-danger js-item-delete">Delete</button>
+          <button class="btn btn-custom js-close-modal">Close</button>
+        </div>
+      </div>
     </div>
     <!-- ./wrapper -->
 
