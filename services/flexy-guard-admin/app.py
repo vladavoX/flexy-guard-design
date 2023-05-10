@@ -374,6 +374,10 @@ def history(text=''):
 def history_search():
     return redirect('/history/%s' % request.form['text'], code=302)
 
+@app.route("/dashboard", methods=['GET'])
+def dashboard():
+    return render_template('dashboard.html', dashboard=dashboard)
+
 def process_bin_countries(f):
         model.clear_bins()
         line_count = 0
