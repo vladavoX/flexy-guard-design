@@ -46,7 +46,7 @@ function createGraph() {
 
 createGraph()
 
-function createPie() {
+function createCircle() {
   const data = [11372, 2564]
   const total = data.reduce((a, b) => a + b, 0)
 
@@ -64,7 +64,7 @@ function createPie() {
   })
 }
 
-createPie()
+createCircle()
 
 function createResourceLines() {
   const data = [74.2, 28.8, 54.7]
@@ -86,3 +86,33 @@ function createResourceLines() {
 }
 
 createResourceLines()
+
+function createPie() {
+  const data = [65.4, 12.1, 8.9, 13.6]
+  const total = data.reduce((a, b) => a + b, 0)
+  const percentages = data.map((value) => (value / total) * 100)
+  // single pie circle with four values
+  const pie = document.querySelector('.progress-pie')
+  const pieStyle = `
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background: conic-gradient(
+      #583BB9 0% ${percentages[0]}%,
+      #7257CB ${percentages[0]}% ${percentages[0] + percentages[1]}%,
+      #9881E6 ${percentages[0] + percentages[1]}% ${
+    percentages[0] + percentages[1] + percentages[2]
+  }%,
+      #D5CDF0 ${percentages[0] + percentages[1] + percentages[2]}% ${
+    percentages[0] + percentages[1] + percentages[2] + percentages[3]
+  }%,
+      transparent ${
+        percentages[0] + percentages[1] + percentages[2] + percentages[3]
+      }% 100%
+    );
+  `
+
+  pie.style = pieStyle
+}
+
+createPie()
