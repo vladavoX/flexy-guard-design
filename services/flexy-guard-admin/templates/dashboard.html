@@ -144,42 +144,54 @@
         <section class="content">
           <div class="content-top">
             <div class="content-top-box">
-              <img src="{{ url_for('static', filename='assets/icons/rules_purple.svg') }}" />
+              <img
+                src="{{ url_for('static', filename='assets/icons/rules_purple.svg') }}"
+              />
               <div class="content-top-box-data">
                 <p class="content-top-box-data-type">Rules</p>
                 <p class="content-top-box-data-value">73</p>
               </div>
             </div>
             <div class="content-top-box">
-              <img src="{{ url_for('static', filename='assets/icons/dict_purple.svg') }}" />
+              <img
+                src="{{ url_for('static', filename='assets/icons/dict_purple.svg') }}"
+              />
               <div class="content-top-box-data">
                 <p class="content-top-box-data-type">Dictionaries</p>
                 <p class="content-top-box-data-value">73</p>
               </div>
             </div>
             <div class="content-top-box">
-              <img src="{{ url_for('static', filename='assets/icons/person_purple.svg') }}" />
+              <img
+                src="{{ url_for('static', filename='assets/icons/person_purple.svg') }}"
+              />
               <div class="content-top-box-data">
                 <p class="content-top-box-data-type">Users</p>
                 <p class="content-top-box-data-value">20073</p>
               </div>
             </div>
             <div class="content-top-box">
-              <img src="{{ url_for('static', filename='assets/icons/group_purple.svg') }}" />
+              <img
+                src="{{ url_for('static', filename='assets/icons/group_purple.svg') }}"
+              />
               <div class="content-top-box-data">
                 <p class="content-top-box-data-type">Groups</p>
                 <p class="content-top-box-data-value">21</p>
               </div>
             </div>
             <div class="content-top-box">
-              <img src="{{ url_for('static', filename='assets/icons/order_purple.svg') }}" />
+              <img
+                src="{{ url_for('static', filename='assets/icons/order_purple.svg') }}"
+              />
               <div class="content-top-box-data">
                 <p class="content-top-box-data-type">Orders</p>
                 <p class="content-top-box-data-value">100124</p>
               </div>
             </div>
             <div class="content-top-box">
-              <img src="{{ url_for('static', filename='assets/icons/money_purple.svg') }}" />
+              <img
+                src="{{ url_for('static', filename='assets/icons/money_purple.svg') }}"
+              />
               <div class="content-top-box-data">
                 <p class="content-top-box-data-type">Revenue</p>
                 <p class="content-top-box-data-value">2419552 $</p>
@@ -188,10 +200,47 @@
           </div>
           <div class="content-center">
             <div class="content-center-graph">
-
+              <div class="content-center-insights-top">
+                <h2 class="content-center-insights-top-title">Purchases</h2>
+                <h3 class="content-center-graph-subtitle"></h3>
+              </div>
             </div>
             <div class="content-center-insights">
-              <canvas id="myChart" width="400" height="100"></canvas>
+              <div class="content-center-insights-top">
+                <h2 class="content-center-insights-top-title">Insights</h2>
+                <div class="content-center-insights-top-labels">
+                  <div class="content-center-insights-top-labels-label"
+                    ><div class="label-circle facebook"></div>Facebook</div
+                  >
+                  <div class="content-center-insights-top-labels-label"
+                    ><div class="label-circle instagram"></div>Instagram</div
+                  >
+                  <div class="content-center-insights-top-labels-label"
+                    ><div class="label-circle youtube"></div>Youtube</div
+                  >
+                  <div class="content-center-insights-top-labels-label"
+                    ><div class="label-circle discord"></div>Discrod</div
+                  >
+                </div>
+              </div>
+              <div class="content-center-insights-bars">
+                <div class="content-center-insights-bars-bar">
+                  <label class="bars-label"></label>
+                  <div class="bars-bar facebook"></div>
+                </div>
+                <div class="content-center-insights-bars-bar">
+                  <label class="bars-label"></label>
+                  <div class="bars-bar instagram"></div>
+                </div>
+                <div class="content-center-insights-bars-bar">
+                  <label class="bars-label"></label>
+                  <div class="bars-bar youtube"></div>
+                </div>
+                <div class="content-center-insights-bars-bar">
+                  <label class="bars-label"></label>
+                  <div class="bars-bar discord"></div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
