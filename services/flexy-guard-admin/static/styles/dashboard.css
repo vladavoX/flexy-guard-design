@@ -147,3 +147,58 @@
 #myCanvas {
   width: 100%;
 }
+
+.content-bottom {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.content-bottom-box {
+  padding: 20px;
+  background-color: var(--color-white-3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0px 4px 20px rgba(76, 69, 99, 0.06);
+  border-radius: 5px;
+}
+
+.content-bottom-box-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--color-purple-heading);
+}
+
+.content-bottom-box-bottom {
+  display: flex;
+  gap: 20px;
+}
+
+/* .progress-bar {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, #FEFEFE 60%, transparent 60% 100%),
+    conic-gradient(#6145C0 90%, #9881E6 0);
+} */
+
+.content-bottom-box-bottom-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-purple-heading);
+}
+
+.content-bottom-box-data-value {
+  display: flex;
+  align-items: center;
+}
+
+.used { background: #6145C0 }
+.remaining { background: #9881E6 }

@@ -45,3 +45,23 @@ function createGraph() {
 }
 
 createGraph()
+
+function createPie() {
+  const data = [11372, 2564]
+  const total = data.reduce((a, b) => a + b, 0)
+
+  const style = `
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background: 
+      radial-gradient(closest-side, #FEFEFE 60%, transparent 60% 100%),
+      conic-gradient(#6145C0 ${(data[0] / total) * 100}%, #9881E6 0)
+  `
+  document.querySelector('.progress-bar').style = style
+  document.querySelectorAll('.value-number').forEach((el, index) => {
+    el.innerHTML = `${data[index]} &nbsp;`
+  })
+}
+
+createPie()
