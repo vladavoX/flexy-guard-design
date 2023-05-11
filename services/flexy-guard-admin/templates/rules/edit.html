@@ -5,6 +5,32 @@ rel="stylesheet"
 href="{{ url_for('static', filename='styles/rules/edit.css') }}"
 />
 
+<div id="parent-header-modal" class="parent-header-modal">
+  <div id="header-modal">
+    <p class="close-icon js-close-modal" class="fa">
+      <img src="{{ url_for('static', filename='assets/icons/close.svg') }}"/>
+    </p>
+    <h2 class="heading-medium add-heading">Add Header Field</h2>
+    <div class="row header-box">
+      <div class="col-sm-6 field-box">
+        <label class="label-field" for="header-name">Type</label>
+        <select id="select" class="form-control">
+          <option value="">Select Type</option>
+        </select>
+      </div>
+      <div class="col-sm-6 field-box">
+        <label class="label-field" for="header-name">Name</label>
+        <input
+          type="text"
+          id="header-name"
+          class="form-control js-card-status-count-min"
+        />
+      </div>
+    </div>
+    <button class="btn btn-primary btn-dialog ">Add Field</button>
+  </div>
+</div>
+
 <div class="row">
   <div class="box">
     <div class="box-header">
@@ -49,7 +75,7 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
             </div> -->
             <div class="left">
               <h2 class="heading-medium">Body
-                <button id="add-field-btn" class="btn btn-primary">Add Field</button>
+                <button id="add-field-btn" type="button" class="btn btn-primary">Add Field</button>
               </h2>
               <h3 class="heading-small">Card Settings
                 <img id="cog" src="{{ url_for('static', filename='assets/icons/cog.svg') }}"/>
@@ -336,7 +362,7 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
             </div>
             <div class="right">
               <h3 class="box-title heading-medium">Header 
-                <button id="add-field-btn" class="btn btn-primary">Add Field</button>
+                <button id="add-field-btn" type="button" class="btn btn-primary js-open-modal">Add Field</button>
               </h3>
 
               {% if rule.Header.mid %}
@@ -493,4 +519,5 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
     </div>
   </div>
 </div>
+<script src="{{ url_for('static', filename='default/js/edit.js') }}"></script>
 {% endblock %}

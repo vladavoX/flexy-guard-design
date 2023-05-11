@@ -1,4 +1,16 @@
 function init() {
+
+    $('.js-open-modal').on('click', function () {
+        $('#parent-header-modal').css('display', 'flex')
+        $('#header-modal').css('display', 'flex')
+    })
+
+    $('.js-close-modal').on('click', function () {
+        $('#header-modal').css('display', 'none')
+        $('#parent-header-modal').css('display', 'none')
+    })
+    
+
     $('.js-item-save').on('click', function (e) {
         e.preventDefault();
 
