@@ -269,15 +269,46 @@
             </div>
             <div class="content-bottom-box">
               <h3 class="content-bottom-box-title">Resources</h3>
-              <div class="content-bottom-box-data">
-                <div class="content-bottom-box-data-value"
-                  ><div class="label-circle used"></div
-                  ><span class="value-number"></span> GB used</div
-                >
-                <div class="content-bottom-box-data-value"
-                  ><div class="label-circle remaining"></div
-                  ><span class="value-number"></span> GB remaining</div
-                >
+              <div class="content-bottom-box-bottom resources">
+                <div>
+                  <div class="res-text">
+                    <label>RAM</label>
+                    <label class="res-data"></label>
+                  </div>
+                  <div class="progress-line">
+                    <progress
+                      min="0"
+                      max="100"
+                      style="visibility: hidden; height: 0; width: 0"
+                    ></progress>
+                  </div>
+                </div>
+                <div>
+                  <div class="res-text">
+                    <label>Storage</label>
+                    <label class="res-data"></label>
+                  </div>
+                  <div class="progress-line">
+                    <progress
+                      min="0"
+                      max="100"
+                      style="visibility: hidden; height: 0; width: 0"
+                    ></progress>
+                  </div>
+                </div>
+                <div>
+                  <div class="res-text">
+                    <label>CPUs</label>
+                    <label class="res-data"></label>
+                  </div>
+                  <div class="progress-line">
+                    <progress
+                      min="0"
+                      max="100"
+                      style="visibility: hidden; height: 0; width: 0"
+                    ></progress>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="content-bottom-box">

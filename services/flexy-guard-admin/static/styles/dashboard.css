@@ -176,15 +176,6 @@
   gap: 20px;
 }
 
-/* .progress-bar {
-  width: 125px;
-  height: 125px;
-  border-radius: 50%;
-  background:
-    radial-gradient(closest-side, #FEFEFE 60%, transparent 60% 100%),
-    conic-gradient(#6145C0 90%, #9881E6 0);
-} */
-
 .content-bottom-box-bottom-data {
   display: flex;
   flex-direction: column;
@@ -202,3 +193,15 @@
 
 .used { background: #6145C0 }
 .remaining { background: #9881E6 }
+
+.resources {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  gap: 10px;
+}
+
+.res-text {
+  display: flex;
+  justify-content: space-between;
+}

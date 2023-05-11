@@ -65,3 +65,24 @@ function createPie() {
 }
 
 createPie()
+
+function createResourceLines() {
+  const data = [74.2, 28.8, 54.7]
+  document.querySelectorAll('.res-data').forEach((el, index) => {
+    el.innerHTML = `${data[index]}%`
+  })
+  document.querySelectorAll('.progress-line').forEach((line, index) => {
+    line.style = `
+      height: 12px;
+      width: 100%;
+      border-radius: 6px;
+      background: 
+        linear-gradient(to right, #6145C0 ${
+          (data[index] / 100) * 100
+        }%, #9881E6 0),
+        conic-gradient(#6145C0 ${(data[index] / 100) * 100}%, #9881E6 0);
+    `
+  })
+}
+
+createResourceLines()
