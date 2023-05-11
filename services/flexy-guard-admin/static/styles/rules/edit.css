@@ -1,3 +1,24 @@
 @import '../components/table.css';
 @import '../pages/layout/top-nav.css';
 @import '../pages/layout/side-nav.css';
+
+#cog {
+    padding-left: 5px !important;
+}
+
+.add-field-btn {
+    width: 89px;
+    height: 32px;
+    padding: 0px 12px;
+    margin-left: 10px;
+}
+
+.heading-with-icon {
+    display: flex;
+    flex-direction: row;
+}
+
+#pen {
+    padding: 17px 0px 10px;
+    width: 35px;
+}

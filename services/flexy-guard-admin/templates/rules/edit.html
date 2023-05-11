@@ -1,9 +1,14 @@
 {% extends 'base.html' %} {% block content %}
 
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='styles/rules/edit.css') }}"
+/>
+
 <div class="row">
   <div class="box">
     <div class="box-header">
-      <h3>Edit rule "{{ rule.Comment }}"</h3>
+      <h2 class="heading-medium">{{ rule.Comment }}</h2>
       <button class="btn btn-primary custom-button js-item-save pull-right">
         Save Changes
       </button>
@@ -43,8 +48,12 @@
               </div>
             </div> -->
             <div class="left">
-              <h2 class="heading-medium">Body</h2>
-              <h3 class="heading-small">Card Settings</h3>
+              <h2 class="heading-medium">Body
+                <button id="add-field-btn" class="btn btn-primary">Add Field</button>
+              </h2>
+              <h3 class="heading-small">Card Settings
+                <img id="cog" src="{{ url_for('static', filename='assets/icons/cog.svg') }}"/>
+              </h3>
 
               <div class="form-group">
                 {% if card['status'][0] is not none and card['status'][1] is not
@@ -74,7 +83,10 @@
                 </div>
                 {% endif %} {% if card['count'][0] is not none and
                 card['count'][1] is not none %}
-                <h6 class="body-large custom-heading">Card count limits</h6>
+                <div class="heading-with-icon">
+                  <h6 class="body-large custom-heading">Card Count Limit</h6>
+                  <img id="pen" src="{{ url_for('static', filename='assets/icons/pencil.svg') }}"/>
+                </div>
                 <div class="row">
                   <div class="col-sm-6">
                     <label for="card-count-min">Min</label>
@@ -96,9 +108,12 @@
                   </div>
                 </div>
                 {% endif %} {% if card['is_sum'] is not none %}
-                <h6 class="body-large custom-heading">
-                  Card turn-over, Card transaction amount
-                </h6>
+                <div class="heading-with-icon">
+                  <h6 class="body-large custom-heading">
+                    Card turn-over, Card Transaction Amount
+                  </h6>
+                  <img id="pen" src="{{ url_for('static', filename='assets/icons/pencil.svg') }}"/>
+                </div>
                 {% endif %} {% if card['daily'][0] is not none and
                 card['daily'][1] is not none %}
                 <h6 class="heading-smallest">Daily Limit</h6>
@@ -259,11 +274,18 @@
                 </div>
               </div>
               {% endif %} {% if rule.Body.bin %}
-              <h6>Bin</h6>
+              <h3 class="heading-small" style="margin: 40px 0px 0px;">Bin
+                <img id="cog" src="{{ url_for('static', filename='assets/icons/cog.svg') }}"/>
+              </h3>
               {% if rule.Body.bin.not_in_country %}
               <div class="row">
                 <div class="col-sm-6">
-                  <label for="bin-not-in-country">Not in country</label>
+                  <div class="heading-with-icon">
+                    <h6 class="body-large custom-heading">
+                      Not In Country
+                    </h6>
+                    <img id="pen" src="{{ url_for('static', filename='assets/icons/pencil.svg') }}"/>
+                  </div>
                   <textarea
                     id="bin-not-in-country"
                     class="form-control custom-textarea"
@@ -313,7 +335,9 @@
               {% endif %} {% endif %}
             </div>
             <div class="right">
-              <h3 class="box-title heading-medium">Header</h3>
+              <h3 class="box-title heading-medium">Header 
+                <button id="add-field-btn" class="btn btn-primary">Add Field</button>
+              </h3>
 
               {% if rule.Header.mid %}
               <div class="row form-group">
@@ -425,7 +449,9 @@
               </div>
             </div -->
 
-              <h3 class="box-title heading-medium">Router</h3>
+              <h3 class="box-title heading-medium">Router
+                <button id="add-field-btn" class="btn btn-primary">Add Field</button>
+              </h3>
               {% for route_item in available_routing %}
               <div class="row js-route-row">
                 <div class="col-sm-6">
