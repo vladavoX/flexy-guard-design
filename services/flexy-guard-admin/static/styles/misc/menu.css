@@ -115,7 +115,7 @@
     filter: invert(61%) sepia(53%) saturate(138%) hue-rotate(214deg) brightness(100%) contrast(85%);
   }
 
-  .sidebar-mini.sidebar-collapse .treeview>a>div {
+  .sidebar-mini.sidebar-collapse .treeview>a>div, .sidebar-mini.sidebar-collapse li>a>div {
     margin-right: 0px !important;
   }
 
