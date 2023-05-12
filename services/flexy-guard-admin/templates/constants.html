@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
     <title>Flexy Guard Rule Builder | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta
@@ -56,8 +59,15 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -72,7 +82,11 @@
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
-        <a href="#" data-toggle="push-menu" role="button">
+        <a
+          href="#"
+          data-toggle="push-menu"
+          role="button"
+        >
           <div class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
@@ -129,7 +143,11 @@
               <!-- /.box-header -->
               <div class="box-body">
                 <div class="box-head">
-                  <h3 class="heading-medium custom-heading">Merchant ID</h3>
+                  <h3
+                    id="dict-type-name"
+                    class="heading-medium custom-heading"
+                  >
+                  </h3>
 
                   <div class="form-group mb-3">
                     <a
@@ -137,7 +155,11 @@
                       class="btn btn-primary pull-right custom-button"
                       >Add New</a
                     >
-                    <input type="hidden" value="{{ type }}" class="js-type" />
+                    <input
+                      type="hidden"
+                      value="{{ type }}"
+                      class="js-type"
+                    />
                   </div>
                 </div>
 
@@ -156,10 +178,12 @@
                   <tr class="trow body-regular">
                     <td>{{item['Value']}}</td>
                     <td>
-                      <a
-                        href="/constants/{{ type }}/{{ item['Hash'] }}"
-                        class="btn btn-primary"
-                        >Edit</a
+                      <button
+                        data-type="{{ type }}"
+                        data-id="{{ item['Hash'] }}"
+                        data-value="{{ item['Value'] }}"
+                        class="btn btn-primary js-open-modal"
+                        >Edit</button
                       >
                       <button
                         data-id="{{ item['Hash'] }}"
@@ -191,6 +215,60 @@
         </section>
         <!-- /.content -->
       </div>
+      <div id="parent-constants-modal">
+        <div id="constants-modal">
+          <p
+            class="close_icon js-close-modal"
+            class="fa"
+            >X</p
+          >
+          <div class="can_wrapper">
+            <img
+              src="{{ url_for('static', filename='assets/icons/dict_purple.svg') }}"
+            />
+          </div>
+          <p>Edit</p>
+          <form
+            method="PATCH"
+            enctype="multipart/form-data"
+            id="edit-constant-form"
+          >
+            <div class="form-group">
+              <input
+                type="hidden"
+                readonly
+                class="form-control"
+                value="{{ type }}"
+              />
+              <input
+                type="hidden"
+                value="{{ type }}"
+                id="constant-type"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="value"
+                id="constant-value"
+                value="{{ value }}"
+                placeholder="Value"
+              />
+              <input
+                type="hidden"
+                id="constant-hash"
+              />
+            </div>
+            <button
+              type="button"
+              class="edit-constant"
+              >Edit</button
+            >
+          </form>
+        </div>
+      </div>
+      <!-- modal -->
       <!-- /.content-wrapper -->
     </div>
     <!-- ./wrapper -->
