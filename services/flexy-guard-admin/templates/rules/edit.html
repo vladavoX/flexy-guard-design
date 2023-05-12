@@ -1,4 +1,36 @@
 {% extends 'base.html' %} {% block content %}
+
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='styles/rules/edit.css') }}"
+/>
+
+<div id="parent-header-modal" class="parent-header-modal">
+  <div id="header-modal">
+    <p class="close-icon js-close-modal" class="fa">
+      <img src="{{ url_for('static', filename='assets/icons/close.svg') }}"/>
+    </p>
+    <h2 class="heading-medium header-heading">Add Header Field</h2>
+    <div class="row header-row">
+      <div class="col-sm-6 header-field-box">
+        <label class="header-label" for="header-name">Type</label>
+        <select id="header-field" class="form-control">
+          <option value="">Select Type</option>
+        </select>
+      </div>
+      <div class="col-sm-6 header-field-box">
+        <label class="header-label" for="header-name">Name</label>
+        <input
+          type="text"
+          id="header-field"
+          class="form-control js-card-status-count-min"
+        />
+      </div>
+    </div>
+    <button class="btn btn-primary btn-dialog ">Add Field</button>
+  </div>
+</div>
+
 <div class="row">
   <div class="box">
     <div class="box-body">
@@ -38,8 +70,12 @@
             </div>
             <div class="content-left-right">
               <div class="left">
-                <h2 class="heading-medium">Body</h2>
-                <h3 class="heading-small">Card Settings</h3>
+                <h2 class="heading-medium">Body
+                  <button id="add-field-btn" type="button" class="btn btn-primary">Add Field</button>
+                </h2>
+                <h3 class="heading-small">Card Settings
+                  <img id="cog" src="{{ url_for('static', filename='assets/icons/cog.svg') }}"/>
+                </h3>
 
                 <div class="form-group">
                   {% if card['status'][0] is not none and card['status'][1] is
@@ -69,7 +105,10 @@
                   </div>
                   {% endif %} {% if card['count'][0] is not none and
                   card['count'][1] is not none %}
-                  <h6 class="body-large custom-heading">Card count limits</h6>
+                  <div class="btn-with-heading">
+                    <h6 class="body-large custom-heading">Card Count Limit</h6>
+                    <img id="pen" src="{{ url_for('static', filename='assets/icons/pen.svg') }}"/>
+                  </div>
                   <div class="row">
                     <div>
                       <label for="card-count-min">Min</label>
@@ -91,9 +130,10 @@
                     </div>
                   </div>
                   {% endif %} {% if card['is_sum'] is not none %}
-                  <h6 class="body-large custom-heading">
-                    Card turn-over, Card transaction amount
-                  </h6>
+                  <div class="btn-with-heading">
+                    <h6 class="body-large custom-heading">Card Amount Limit</h6>
+                    <img id="pen" src="{{ url_for('static', filename='assets/icons/pen.svg') }}"/>
+                  </div>
                   {% endif %} {% if card['daily'][0] is not none and
                   card['daily'][1] is not none %}
                   <h6 class="heading-smallest">Daily Limit</h6>
@@ -248,11 +288,18 @@
                   </div>
                 </div>
                 {% endif %} {% if rule.Body.bin %}
-                <h6 class="heading-smallest">Bin</h6>
+                <h3 class="heading-small" style="margin: 40px 0px 0px; ">Bin
+                  <img id="cog" src="{{ url_for('static', filename='assets/icons/cog.svg') }}"/>
+                </h3>
                 {% if rule.Body.bin.not_in_country %}
                 <div class="row">
                   <div>
-                    <label for="bin-not-in-country">Not in country</label>
+                    <div class="btn-with-heading">
+                      <h6 class="body-large custom-heading">
+                        Not In Country
+                      </h6>
+                      <img id="pen" src="{{ url_for('static', filename='assets/icons/pen.svg') }}"/>
+                    </div>
                     <textarea
                       id="bin-not-in-country"
                       class="form-control custom-textarea"
@@ -302,8 +349,9 @@
                 {% endif %} {% endif %}
               </div>
               <div class="right">
-                <h3 class="box-title heading-medium">Header</h3>
-
+                <h3 class="box-title heading-medium">Header
+                  <button id="add-field-btn" type="button" class="btn btn-primary js-open-modal">Add Field</button>
+                </h3>
                 {% if rule.Header.mid %}
                 <div class="row form-group">
                   <div>
@@ -407,7 +455,9 @@
                 </div>
                 {% endif %}
 
-                <h3 class="box-title heading-medium">Router</h3>
+                <h3 class="box-title heading-medium">Router
+                  <button id="add-field-btn" type="button" class="btn btn-primary">Add Field</button>
+                </h3>
                 {% for route_item in available_routing %}
                 <div class="row js-route-row">
                   <div>

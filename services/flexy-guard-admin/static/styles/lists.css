@@ -50,6 +50,18 @@
   display: block;
 }
 
+#parent-block-list-modal{
+  display: none;
+  position: fixed;
+  z-index: 1100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(14, 9, 33, 0.15);
+  backdrop-filter: blur(2px);
+}
+
 #block-list-modal {
   display: none;
   flex-direction: column;
@@ -158,3 +170,4 @@ input[type="file"] {
   margin: 0;
   padding-left: 10px;
 }
+
