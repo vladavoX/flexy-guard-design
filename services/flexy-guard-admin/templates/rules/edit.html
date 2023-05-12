@@ -4,7 +4,109 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='styles/rules/edit.css') }}"
 />
+<!-- EDITING MODAL -->
+<div
+  id="parent-edit-modal"
+  class="parent-edit-modal"
+>
+  <div id="edit-modal">
+    <p
+      class="close-icon js-close-edit-modal"
+      class="fa"
+    >
+      <img src="{{ url_for('static', filename='assets/icons/close.svg') }}" />
+    </p>
+    <h2 class="heading-medium header-heading">Editing</h2>
+    <div class="row header-row" id="editing-type">
+      <div class="col-sm-6 header-field-box">
+        <label class="header-label" for="header-name">Type</label>
+        <select id="header-field" class="form-control js-gw-item select-item">
+          <option value="">Group</option>
+        </select>
+      </div>
+      <div class="col-sm-6 header-field-box">
+        <label
+          class="header-label"
+          for="header-name"
+          >Name</label
+        >
+        <input
+          type="text"
+          id="header-field"
+          class="form-control js-card-status-count-min"
+          value="Card Settings"
+        />
+      </div>
+    </div>
+    <div class="subfields">
+      <h6 class="body-large custom-heading">Subfields</h6>
+      <button id="subfield-btn" type="button" class="btn btn-advanced">Add Field</button>
+    </div>
+    <div class="subfield-row">
+      <div>
+        <label class="header-label">Type</label>
+        <select id="header-field" class="form-control js-gw-item select-item">
+          <option value="">Subgroup</option>
+        </select>
+      </div>
+      <div>
+        <label class="header-label">Name</label>
+        <div class="header-input-row">
+          <input type="text" id="header-field" class="form-control form-control-sm" value="Daily Limit"/>
+          <div class="js-header-delete">
+            <img
+              src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="subfield-row">
+      <div>
+        <label class="header-label">Type</label>
+        <select id="header-field" class="form-control js-gw-item select-item">
+          <option value="">Subgroup</option>
+        </select>
+      </div>
+      <div>
+        <label class="header-label">Name</label>
+        <div class="header-input-row">
+          <input type="text" id="header-field" class="form-control form-control-sm" value="Monthly Limit"/>
+          <div class="js-header-delete">
+            <img
+              src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="subfield-row">
+      <div>
+        <label class="header-label">Type</label>
+        <select id="header-field" class="form-control js-gw-item select-item">
+          <option value="">Subgroup</option>
+        </select>
+      </div>
+      <div>
+        <label class="header-label">Name</label>
+        <div class="header-input-row">
+          <input type="text" id="header-field" class="form-control form-control-sm" value="Value Limit"/>
+          <div class="js-header-delete">
+            <img
+              src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="edit-action-btns">
+      <button class="btn btn-red">Delete</button>
+      <button class="btn btn-primary">Apply Changes</button>
+    </div>
+  </div>
+</div>
 
+<!-- HEADER MODAL -->
 <div
   id="parent-header-modal"
   class="parent-header-modal"
@@ -100,6 +202,7 @@
                   >Card Settings
                   <img
                     id="cog"
+                    class="js-open-edit-modal"
                     src="{{ url_for('static', filename='assets/icons/cog.svg') }}"
                   />
                 </h3>
