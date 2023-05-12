@@ -1,25 +1,42 @@
 {% extends 'base.html' %} {% block content %}
 
 <link
-rel="stylesheet"
-href="{{ url_for('static', filename='styles/rules/edit.css') }}"
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styles/rules/edit.css') }}"
 />
 
-<div id="parent-header-modal" class="parent-header-modal">
+<div
+  id="parent-header-modal"
+  class="parent-header-modal"
+>
   <div id="header-modal">
-    <p class="close-icon js-close-modal" class="fa">
-      <img src="{{ url_for('static', filename='assets/icons/close.svg') }}"/>
+    <p
+      class="close-icon js-close-modal"
+      class="fa"
+    >
+      <img src="{{ url_for('static', filename='assets/icons/close.svg') }}" />
     </p>
     <h2 class="heading-medium header-heading">Add Header Field</h2>
     <div class="row header-row">
       <div class="col-sm-6 header-field-box">
-        <label class="header-label" for="header-name">Type</label>
-        <select id="header-field" class="form-control">
+        <label
+          class="header-label"
+          for="header-name"
+          >Type</label
+        >
+        <select
+          id="header-field"
+          class="form-control"
+        >
           <option value="">Select Type</option>
         </select>
       </div>
       <div class="col-sm-6 header-field-box">
-        <label class="header-label" for="header-name">Name</label>
+        <label
+          class="header-label"
+          for="header-name"
+          >Name</label
+        >
         <input
           type="text"
           id="header-field"
@@ -27,7 +44,7 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
         />
       </div>
     </div>
-    <button class="btn btn-primary btn-dialog ">Add Field</button>
+    <button class="btn btn-primary btn-dialog">Add Field</button>
   </div>
 </div>
 
@@ -70,11 +87,21 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
             </div>
             <div class="content-left-right">
               <div class="left">
-                <h2 class="heading-medium">Body
-                  <button id="add-field-btn" type="button" class="btn btn-primary">Add Field</button>
+                <h2 class="heading-medium"
+                  >Body
+                  <button
+                    id="add-field-btn"
+                    type="button"
+                    class="btn btn-primary"
+                    >Add Field</button
+                  >
                 </h2>
-                <h3 class="heading-small">Card Settings
-                  <img id="cog" src="{{ url_for('static', filename='assets/icons/cog.svg') }}"/>
+                <h3 class="heading-small"
+                  >Card Settings
+                  <img
+                    id="cog"
+                    src="{{ url_for('static', filename='assets/icons/cog.svg') }}"
+                  />
                 </h3>
 
                 <div class="form-group">
@@ -107,7 +134,10 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
                   card['count'][1] is not none %}
                   <div class="btn-with-heading">
                     <h6 class="body-large custom-heading">Card Count Limit</h6>
-                    <img id="pen" src="{{ url_for('static', filename='assets/icons/pen.svg') }}"/>
+                    <img
+                      id="pen"
+                      src="{{ url_for('static', filename='assets/icons/pen.svg') }}"
+                    />
                   </div>
                   <div class="row">
                     <div>
@@ -132,7 +162,10 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
                   {% endif %} {% if card['is_sum'] is not none %}
                   <div class="btn-with-heading">
                     <h6 class="body-large custom-heading">Card Amount Limit</h6>
-                    <img id="pen" src="{{ url_for('static', filename='assets/icons/pen.svg') }}"/>
+                    <img
+                      id="pen"
+                      src="{{ url_for('static', filename='assets/icons/pen.svg') }}"
+                    />
                   </div>
                   {% endif %} {% if card['daily'][0] is not none and
                   card['daily'][1] is not none %}
@@ -288,8 +321,14 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
                   </div>
                 </div>
                 {% endif %} {% if rule.Body.bin %}
-                <h3 class="heading-small" style="margin: 40px 0px 0px; ">Bin
-                  <img id="cog" src="{{ url_for('static', filename='assets/icons/cog.svg') }}"/>
+                <h3
+                  class="heading-small"
+                  style="margin: 40px 0px 0px"
+                  >Bin
+                  <img
+                    id="cog"
+                    src="{{ url_for('static', filename='assets/icons/cog.svg') }}"
+                  />
                 </h3>
                 {% if rule.Body.bin.not_in_country %}
                 <div class="row">
@@ -298,7 +337,10 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
                       <h6 class="body-large custom-heading">
                         Not In Country
                       </h6>
-                      <img id="pen" src="{{ url_for('static', filename='assets/icons/pen.svg') }}"/>
+                      <img
+                        id="pen"
+                        src="{{ url_for('static', filename='assets/icons/pen.svg') }}"
+                      />
                     </div>
                     <textarea
                       id="bin-not-in-country"
@@ -349,21 +391,34 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
                 {% endif %} {% endif %}
               </div>
               <div class="right">
-                <h3 class="box-title heading-medium">Header
-                  <button id="add-field-btn" type="button" class="btn btn-primary js-open-modal">Add Field</button>
+                <h3 class="box-title heading-medium"
+                  >Header
+                  <button
+                    id="add-field-btn"
+                    type="button"
+                    class="btn btn-primary js-open-modal"
+                    >Add Field</button
+                  >
                 </h3>
                 {% if rule.Header.mid %}
                 <div class="row form-group">
                   <div>
                     <label for="mid">Merchant&nbsp;ID</label>
-                    <input
-                      name="mid"
-                      list="mid_list"
-                      class="form-control form-control-sm"
-                      id="mid"
-                      placeholder=""
-                      value="{{ mid_list[rule.Header.mid] }}"
-                    />
+                    <div class="header-input-row">
+                      <input
+                        name="mid"
+                        list="mid_list"
+                        class="form-control form-control-sm"
+                        id="mid"
+                        placeholder=""
+                        value="{{ mid_list[rule.Header.mid] }}"
+                      />
+                      <div class="js-header-delete">
+                        <img
+                          src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+                        />
+                      </div>
+                    </div>
                     <datalist id="mid_list">
                       {% for item in const_list['mid'] %}
                       <option value="{{ item }}">{{ item }}</option>
@@ -375,40 +430,61 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
                 <div class="row form-group">
                   <div>
                     <label for="acq-alias">Acquirer alias</label>
-                    <input
-                      name="acq_alias"
-                      class="form-control form-control-sm"
-                      id="acq-alias"
-                      placeholder=""
-                      value="{{ rule.Header.acq_alias }}"
-                    />
+                    <div class="header-input-row">
+                      <input
+                        name="acq_alias"
+                        class="form-control form-control-sm"
+                        id="acq-alias"
+                        placeholder=""
+                        value="{{ rule.Header.acq_alias }}"
+                      />
+                      <div class="js-header-delete">
+                        <img
+                          src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 {% endif %} {% if rule.Header.acq_id %}
                 <div class="row form-group">
                   <div>
                     <label for="acq-alias">Acquirer ID</label>
-                    <input
-                      name="acq_alias"
-                      class="form-control form-control-sm"
-                      id="acq-id"
-                      placeholder=""
-                      value="{{ rule.Header.acq_id }}"
-                    />
+                    <div class="header-input-row">
+                      <input
+                        name="acq_alias"
+                        class="form-control form-control-sm"
+                        id="acq-id"
+                        placeholder=""
+                        value="{{ rule.Header.acq_id }}"
+                      />
+                      <div class="js-header-delete">
+                        <img
+                          src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 {% endif %} {% if rule.Header.gateway_currency %}
                 <div class="row form-group">
                   <div>
                     <label for="gateway-currency">Currency</label>
-                    <input
-                      name="gateway_currency"
-                      list="gw_currencies"
-                      class="form-control form-control-sm"
-                      id="gateway-currency"
-                      placeholder=""
-                      value="{{ rule.Header.gateway_currency }}"
-                    />
+                    <div class="header-input-row">
+                      <input
+                        name="gateway_currency"
+                        list="gw_currencies"
+                        class="form-control form-control-sm"
+                        id="gateway-currency"
+                        placeholder=""
+                        value="{{ rule.Header.gateway_currency }}"
+                      />
+                      <div class="js-header-delete">
+                        <img
+                          src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+                        />
+                      </div>
+                    </div>
                     <datalist id="gw_currencies">
                       {% for item in const_list['currency'] %}
                       <option value="{{ item }}">{{ item }}</option>
@@ -420,14 +496,21 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
                 <div class="row form-group">
                   <div>
                     <label for="gateway-currency">Currency</label>
-                    <input
-                      name="gateway_currency"
-                      list="currencies"
-                      class="form-control form-control-sm"
-                      id="currency"
-                      placeholder=""
-                      value="{{ rule.Header.currency }}"
-                    />
+                    <div class="header-input-row">
+                      <input
+                        name="gateway_currency"
+                        list="currencies"
+                        class="form-control form-control-sm"
+                        id="currency"
+                        placeholder=""
+                        value="{{ rule.Header.currency }}"
+                      />
+                      <div class="js-header-delete">
+                        <img
+                          src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+                        />
+                      </div>
+                    </div>
                     <datalist id="currencies">
                       {% for item in const_list['currency'] %}
                       <option value="{{ item }}">{{ item }}</option>
@@ -437,16 +520,23 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
                 </div>
                 {% endif %} {% if rule.Header.card_brand %}
                 <div class="row form-group">
-                  <div class="col-sm-4">
+                  <div>
                     <label for="card-brand">Card Brand</label>
-                    <input
-                      name="card_brand"
-                      list="card_brands"
-                      class="form-control form-control-sm"
-                      id="card-brand"
-                      placeholder=""
-                      value="{{ rule.Header.card_brand }}"
-                    />
+                    <div class="header-input-row">
+                      <input
+                        name="card_brand"
+                        list="card_brands"
+                        class="form-control form-control-sm"
+                        id="card-brand"
+                        placeholder=""
+                        value="{{ rule.Header.card_brand }}"
+                      />
+                      <div class="js-header-delete">
+                        <img
+                          src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+                        />
+                      </div>
+                    </div>
                     <datalist id="card_brands">
                       <option>MasterCard</option>
                       <option>VISA</option>
@@ -455,11 +545,17 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
                 </div>
                 {% endif %}
 
-                <h3 class="box-title heading-medium">Router
-                  <button id="add-field-btn" type="button" class="btn btn-primary">Add Field</button>
+                <h3 class="box-title heading-medium"
+                  >Router
+                  <button
+                    id="add-field-btn"
+                    type="button"
+                    class="btn btn-primary"
+                    >Add Field</button
+                  >
                 </h3>
                 {% for route_item in available_routing %}
-                <div class="row js-route-row">
+                <div class="row js-route-row row-item">
                   <div>
                     <input
                       type="text"
@@ -485,6 +581,11 @@ href="{{ url_for('static', filename='styles/rules/edit.css') }}"
                       </option>
                       {% endif %} {% endfor %}
                     </select>
+                  </div>
+                  <div class="js-item-delete">
+                    <img
+                      src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+                    />
                   </div>
                 </div>
                 {% endfor %}

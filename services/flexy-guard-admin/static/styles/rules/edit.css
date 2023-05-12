@@ -108,3 +108,9 @@
 #cog {
     padding-left: 5px !important;
 }
+
+.header-input-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
