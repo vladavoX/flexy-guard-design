@@ -157,28 +157,30 @@
           <p id="message">File upload successfully.</p>
         </div>
       </div>
-      <div id="block-list-modal">
-        <p class="close_icon js-close-modal" class="fa">X</p>
-        <div class="can_wrapper">
-          <img
-            src="{{ url_for('static', filename='assets/icons/upload_purple.svg') }}"
-          />
-        </div>
-        <p>Select a file to replace existing list</p>
-        <p class="current-list">Current list: </p>
-        <form action="/lists" method="POST" enctype="multipart/form-data">
-          <div class="block-list-modal__buttons">
-            <label class="custom-file-upload" id="ip">
-              <input type="file" name="ip_countries" id="ip_countries"/>
-              <span id="ip_file_name">Choose file</span>
-            </label>
-            <label class="custom-file-upload" id="bin">
-              <input type="file" name="bin_countries" id="bin_countries"/>
-              <span id="bin_file_name">Choose file</span>
-            </label>
-            <button type="submit" class="btn btn-custom">Upload</button>
+      <div id="parent-block-list-modal">
+        <div id="block-list-modal">
+          <p class="close_icon js-close-modal" class="fa">X</p>
+          <div class="can_wrapper">
+            <img
+              src="{{ url_for('static', filename='assets/icons/upload_purple.svg') }}"
+            />
           </div>
-        </form>
+          <p>Select a file to replace existing list</p>
+          <p class="current-list">Current list: </p>
+          <form action="/lists" method="POST" enctype="multipart/form-data">
+            <div class="block-list-modal__buttons">
+              <label class="custom-file-upload" id="ip">
+                <input type="file" name="ip_countries" id="ip_countries"/>
+                <span id="ip_file_name">Choose file</span>
+              </label>
+              <label class="custom-file-upload" id="bin">
+                <input type="file" name="bin_countries" id="bin_countries"/>
+                <span id="bin_file_name">Choose file</span>
+              </label>
+              <button type="submit" class="btn btn-custom">Upload</button>
+            </div>
+          </form>
+        </div>
       </div>
       </div>
     </div>
