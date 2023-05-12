@@ -28,7 +28,13 @@
           id="header-field"
           class="form-control"
         >
-          <option value="">Select Type</option>
+          <option value="">Select type</option>
+          <option value="acq_alias">Acquirer Alias</option>
+          <option value="acq_id">Acquirer ID</option>
+          <option value="mid">Merchant ID</option>
+          <option value="gateway_currency">Gateway Currency</option>
+          <option value="currency">Currency</option>
+          <option value="card_brand">Card Brand</option>
         </select>
       </div>
       <div class="col-sm-6 header-field-box">
@@ -39,12 +45,13 @@
         >
         <input
           type="text"
-          id="header-field"
+          id="header-name"
           class="form-control js-card-status-count-min"
+          value=""
         />
       </div>
     </div>
-    <button class="btn btn-primary btn-dialog">Add Field</button>
+    <button class="btn btn-primary btn-dialog js-add-header">Add Field</button>
   </div>
 </div>
 
