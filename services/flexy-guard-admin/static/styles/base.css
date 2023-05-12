@@ -151,3 +151,11 @@
   outline: none;
   border: none;
 }
+
+.row-item {
+  align-items: center;
+}
+
+.js-item-delete {
+  cursor: pointer;
+}

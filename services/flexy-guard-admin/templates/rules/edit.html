@@ -372,6 +372,7 @@
                 <div class="row form-group">
                   <div>
                     <label for="gateway-currency">Currency</label>
+                    <div> </div>
                     <input
                       name="gateway_currency"
                       list="currencies"
@@ -380,6 +381,7 @@
                       placeholder=""
                       value="{{ rule.Header.currency }}"
                     />
+                    <button class="js-header-delete">Delete</button>
                     <datalist id="currencies">
                       {% for item in const_list['currency'] %}
                       <option value="{{ item }}">{{ item }}</option>
@@ -409,7 +411,7 @@
 
                 <h3 class="box-title heading-medium">Router</h3>
                 {% for route_item in available_routing %}
-                <div class="row js-route-row">
+                <div class="row js-route-row row-item">
                   <div>
                     <input
                       type="text"
@@ -435,6 +437,11 @@
                       </option>
                       {% endif %} {% endfor %}
                     </select>
+                  </div>
+                  <div class="js-item-delete">
+                    <img
+                      src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
+                    />
                   </div>
                 </div>
                 {% endfor %}
