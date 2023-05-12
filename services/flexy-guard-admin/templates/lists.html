@@ -124,38 +124,25 @@
         <section class="content">
           <div class="container-fluid box">
             <div class="row">
-              <section class="content-header">
-                <h3>Upload lists</h3>
-              </section>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <div class="box-body">
-                  <form
-                    action="/lists"
-                    method="POST"
-                    enctype="multipart/form-data"
-                  >
                     <div class="form-group">
-                      <label for="exampleInputFile">IP/Country list</label>
-                      <input
-                        type="file"
-                        name="ip_countries"
-                        id="ip_countries"
-                      />
-                      <label for="exampleInputFile">BIN/Country list</label>
-                      <input
-                        type="file"
-                        name="bin_countries"
-                        id="bin_countries"
-                      />
+                      <div class="block-list">
+                        <h2 class="heading-medium">IP/Country list</h2>
+                        <button class="btn btn-primary js-open-modal" id="btn1">
+                          Upload New List
+                        </button>
+                      </div>
+
+                      <div class="block-list">
+                        <h2 class="heading-medium">BIN/Country list</h2>
+                        <button type="submit" class="btn btn-primary js-open-modal" id="btn2">
+                          Upload New List
+                        </button>
+                      </div>
                     </div>
-                    <div>
-                      <button type="submit" class="btn btn-primary">
-                        Update lists
-                      </button>
-                    </div>
-                  </form>
                 </div>
               </div>
             </div>
@@ -164,6 +151,36 @@
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->
+      <div id="success-message">
+        <div class="img-group">
+          <img src="{{ url_for('static', filename='assets/icons/success.svg') }}"/>
+          <p id="message">File upload successfully.</p>
+        </div>
+      </div>
+      <div id="block-list-modal">
+        <p class="close_icon js-close-modal" class="fa">X</p>
+        <div class="can_wrapper">
+          <img
+            src="{{ url_for('static', filename='assets/icons/upload_purple.svg') }}"
+          />
+        </div>
+        <p>Select a file to replace existing list</p>
+        <p class="current-list">Current list: </p>
+        <form action="/lists" method="POST" enctype="multipart/form-data">
+          <div class="block-list-modal__buttons">
+            <label class="custom-file-upload" id="ip">
+              <input type="file" name="ip_countries" id="ip_countries"/>
+              <span id="ip_file_name">Choose file</span>
+            </label>
+            <label class="custom-file-upload" id="bin">
+              <input type="file" name="bin_countries" id="bin_countries"/>
+              <span id="bin_file_name">Choose file</span>
+            </label>
+            <button type="submit" class="btn btn-custom">Upload</button>
+          </div>
+        </form>
+      </div>
+      </div>
     </div>
     <!-- ./wrapper -->
 
@@ -188,6 +205,7 @@
     <!--<script src="{{ url_for('static', filename='js/pages/dashboard2.js') }}"></script>-->
     <!-- AdminLTE for demo purposes -->
     <script src="{{ url_for('static', filename='adminlte/js/demo.js') }}"></script>
+    <script src="{{ url_for('static', filename='default/js/lists.js') }}"></script>
 
     <script src="{{ url_for('static', filename='jsoneditor/dist/jsoneditor.min.js') }}"></script>
 
