@@ -9,6 +9,16 @@ function init() {
     $('#parent-header-modal').css('display', 'none')
   })
 
+  $('.js-open-edit-modal').on('click', function () {
+    $('#parent-edit-modal').css('display', 'flex')
+    $('#edit-modal').css('display', 'flex')
+  })
+
+  $('.js-close-edit-modal').on('click', function () {
+    $('#edit-modal').css('display', 'none')
+    $('#parent-edit-modal').css('display', 'none')
+  })
+
   $('.js-header-delete').on('click', function () {
     $(this).closest('.row').remove()
   })
