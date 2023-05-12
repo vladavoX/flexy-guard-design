@@ -1,4 +1,14 @@
 function init() {
+  $('.js-open-modal').on('click', function () {
+    $('#parent-header-modal').css('display', 'flex')
+    $('#header-modal').css('display', 'flex')
+  })
+
+  $('.js-close-modal').on('click', function () {
+    $('#header-modal').css('display', 'none')
+    $('#parent-header-modal').css('display', 'none')
+  })
+
   $('.js-header-delete').on('click', function () {
     $(this).closest('.row').remove()
   })

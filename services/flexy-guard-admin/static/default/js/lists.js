@@ -24,10 +24,12 @@ function init() {
             $("#ip").hide();
         }
         $('#block-list-modal').css('display', 'flex')
+        $('#parent-block-list-modal').css('display', 'flex')
     })
 
     $('.js-close-modal').on('click', function () {
         $('#block-list-modal').css('display', 'none')
+        $('#parent-block-list-modal').css('display', 'none')
     })
 
 
@@ -44,6 +46,7 @@ function init() {
           success: function (response) {
             $('#success-message').text(response.message).fadeIn();
             $('#block-list-modal').css('display', 'none');
+            $('#parent-block-list-modal').css('display', 'none')
             fileInputLabelIp.find('span').text('Choose file');
             fileInputLabelBin.find('span').text('Choose file');
             setTimeout(function () {
