@@ -2,9 +2,16 @@
   <!-- search form -->
   <!-- /.search form -->
   <!-- sidebar menu: : style can be found in sidebar.less -->
-  <ul class="sidebar-menu" data-widget="tree">
+  <ul
+    class="sidebar-menu"
+    data-widget="tree"
+  >
     <li class="treeview">
-      <form action="{{ url_for('search') }}" method="post" class="sidebar-form">
+      <form
+        action="{{ url_for('search') }}"
+        method="post"
+        class="sidebar-form"
+      >
         <div class="input-group">
           <input
             type="text"
@@ -29,7 +36,10 @@
     </li>
     <li class="treeview">
       <a href="#">
-        <div class="icon-wrapper" data-toggle="push-menu">
+        <div
+          class="icon-wrapper"
+          data-toggle="push-menu"
+        >
           <img
             src="{{ url_for('static', filename='assets/icons/rules.svg') }}"
           />
@@ -68,7 +78,10 @@
     </li>
     <li class="treeview">
       <a href="#">
-        <div class="icon-wrapper" data-toggle="push-menu">
+        <div
+          class="icon-wrapper"
+          data-toggle="push-menu"
+        >
           <img
             src="{{ url_for('static', filename='assets/icons/upload.svg') }}"
           />
@@ -91,7 +104,10 @@
     </li>
     <li class="treeview">
       <a href="#">
-        <div class="icon-wrapper" data-toggle="push-menu">
+        <div
+          class="icon-wrapper"
+          data-toggle="push-menu"
+        >
           <img
             src="{{ url_for('static', filename='assets/icons/book.svg') }}"
           />
@@ -138,7 +154,10 @@
     </li>
     <li class="treeview">
       <a href="#">
-        <div class="icon-wrapper" data-toggle="push-menu">
+        <div
+          class="icon-wrapper"
+          data-toggle="push-menu"
+        >
           <img
             src="{{ url_for('static', filename='assets/icons/advanced.svg') }}"
           />
@@ -166,6 +185,20 @@
           >
         </li>
       </ul>
+    </li>
+    <li>
+      <a href="/dashboard">
+        <div
+          class="icon-wrapper"
+          data-toggle="push-menu"
+        >
+          <img
+            src="{{ url_for('static', filename='assets/icons/dashboard.svg') }}"
+          />
+        </div>
+        <span>Dashobard</span>
+        <span class="pull-right-container"> </span>
+      </a>
     </li>
   </ul>
 </section>

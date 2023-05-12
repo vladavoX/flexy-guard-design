@@ -29,11 +29,11 @@
   height: 50px !important;
 }
 
-.form-control > select {
+.form-control>select {
   padding: 5px 20px;
 }
 
-.form-control > textarea {
+.form-control>textarea {
   min-height: 100px !important;
   min-width: 300px !important;
 }
@@ -66,23 +66,17 @@
   .sidebar-mini.sidebar-collapse .sidebar-form {
     display: flex !important;
   }
+
   .sidebar-mini.sidebar-collapse .custom-form-control {
     display: none !important;
   }
 
-  .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse
-    .sidebar-menu
-    > li:hover
-    > a
-    > span:not(.pull-right),
-  .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse
-    .sidebar-menu
-    > li:hover
-    > .treeview-menu {
+  .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu>li:hover>a>span:not(.pull-right),
+  .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu>li:hover>.treeview-menu {
     display: none !important;
   }
 
-  .skin-blue .sidebar-menu > li > a {
+  .skin-blue .sidebar-menu>li>a {
     border-left: 0px !important;
     padding: 8px !important;
     margin-left: 10px !important;
@@ -98,12 +92,12 @@
     justify-content: center !important;
   }
 
-  .sidebar-mini.sidebar-collapse .treeview > a {
+  .sidebar-mini.sidebar-collapse .treeview>a {
     margin: 0px !important;
     text-align: center !important;
   }
 
-  .treeview.menu-open > a {
+  .treeview.menu-open>a {
     background-color: var(--color-purple-rgba) !important;
   }
 
@@ -118,20 +112,19 @@
   .icon-wrapper img {
     height: 30px !important;
     width: 33px !important;
-    filter: invert(61%) sepia(53%) saturate(138%) hue-rotate(214deg)
-      brightness(100%) contrast(85%);
+    filter: invert(61%) sepia(53%) saturate(138%) hue-rotate(214deg) brightness(100%) contrast(85%);
   }
 
-  .sidebar-mini.sidebar-collapse .treeview > a > div {
+  .sidebar-mini.sidebar-collapse .treeview>a>div, .sidebar-mini.sidebar-collapse li>a>div {
     margin-right: 0px !important;
   }
 
-  .skin-blue .sidebar-menu > li > a:hover {
+  .skin-blue .sidebar-menu>li>a:hover {
     background-color: var(--color-purple-rgba) !important;
     color: var(--color-white-3) !important;
   }
 
-  .treeview.menu-open > a > div > img {
+  .treeview.menu-open>a>div>img {
     filter: brightness(0) saturate(100%) invert(100%);
   }
 
