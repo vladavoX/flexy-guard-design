@@ -20,24 +20,20 @@ function createGraph() {
     .join('')
 
   const values = [160, 260, 153, 112, 148, 560]
-  const canvasHeight = 236 // Desired height of the canvas
+  const canvasHeight = 236
 
   var c = document.getElementById('myCanvas')
   var ctx = c.getContext('2d')
 
-  // Calculate the scaling factor based on the maximum value and the canvas height
   var maxValue = Math.max(...values)
-  var scalingFactor = canvasHeight / (maxValue * 1.2) // Adjust the scaling factor to leave some space above the highest value
+  var scalingFactor = canvasHeight / (maxValue * 1.2)
 
-  // Set the canvas size based on the scaling factor
   c.width = c.parentElement.clientWidth
   c.height = canvasHeight
 
-  // Clear the canvas
   ctx.clearRect(0, 0, c.width, c.height)
 
-  // Add horizontal lines
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)' // Set the color for horizontal lines
+  ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)'
   for (var i = 1; i <= 5; i++) {
     var lineY = canvasHeight - (canvasHeight / 5) * i
     ctx.beginPath()
@@ -46,8 +42,7 @@ function createGraph() {
     ctx.stroke()
   }
 
-  // Add vertical lines
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)' // Set the color for vertical lines
+  ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)'
   for (var i = 0; i < values.length; i++) {
     var lineX = (c.width / (values.length - 1)) * i
     ctx.beginPath()
@@ -56,39 +51,30 @@ function createGraph() {
     ctx.stroke()
   }
 
-  // Set the line color and width
   ctx.strokeStyle = '#7257CB'
   ctx.lineWidth = 2
 
-  // Move to the starting point
   ctx.beginPath()
   ctx.moveTo(0, canvasHeight - values[0] * scalingFactor)
 
-  // Plot the line graph
   for (var i = 1; i < values.length; i++) {
     var x = (c.width / (values.length - 1)) * i
     var y = canvasHeight - values[i] * scalingFactor
     ctx.lineTo(x, y)
   }
 
-  // Close the path to create a filled area under the line graph
   ctx.lineTo(c.width, canvasHeight)
   ctx.lineTo(0, canvasHeight)
   ctx.closePath()
 
-  // Set the background color
-  ctx.fillStyle = 'rgba(152, 129, 230, 0.5)' // Change the color and opacity as desired
-
-  // Fill the area under the line graph with the background color
+  ctx.fillStyle = 'rgba(152, 129, 230, 0.5)'
   ctx.fill()
 
-  // Draw the line graph
   ctx.stroke()
 
   let yLabels = [0]
   maxValue = Math.ceil(maxValue / 100) * 100
 
-  // now push values to yLabels like this [0, 150, 300, 450, maxValue]
   for (let i = 1; i <= 5; i++) {
     yLabels.push((maxValue / 5) * i)
   }
