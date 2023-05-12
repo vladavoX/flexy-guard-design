@@ -299,7 +299,14 @@ def new_constant(type, id = None):
 def get_constants(type):
     list = model.get_constants(type)
 
-    return render_template('constants.html', list=list, type=type)
+    types_list = {
+        'mid': 'Merchant ID',
+        'currency': 'Gateway Currency',
+        'gw_alias': 'Gateway Alias',
+        'gw_type': 'Gateway Type'
+    }
+
+    return render_template('constants.html', list=list, type=type, types_list=types_list)
 
 @app.route("/constants/<type>", methods=['POST'])
 def add_constant(type):

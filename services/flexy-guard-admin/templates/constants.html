@@ -3,10 +3,7 @@
   <head>
     <meta charset="utf-8" />
 
-    <meta
-      http-equiv="X-UA-Compatible"
-      content="IE=edge"
-    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Flexy Guard Rule Builder | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta
@@ -59,15 +56,8 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -82,11 +72,7 @@
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
-        <a
-          href="#"
-          data-toggle="push-menu"
-          role="button"
-        >
+        <a href="#" data-toggle="push-menu" role="button">
           <div class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
@@ -146,20 +132,15 @@
                   <h3
                     id="dict-type-name"
                     class="heading-medium custom-heading"
-                  >
-                  </h3>
+                  ></h3>
 
                   <div class="form-group mb-3">
-                    <a
-                      href="/constants/{{ type }}/new"
-                      class="btn btn-primary pull-right custom-button"
-                      >Add New</a
+                    <button
+                      class="btn btn-primary pull-right custom-button js-open-modal-new"
                     >
-                    <input
-                      type="hidden"
-                      value="{{ type }}"
-                      class="js-type"
-                    />
+                      Add New
+                    </button>
+                    <input type="hidden" value="{{ type }}" class="js-type" />
                   </div>
                 </div>
 
@@ -183,8 +164,9 @@
                         data-id="{{ item['Hash'] }}"
                         data-value="{{ item['Value'] }}"
                         class="btn btn-primary js-open-modal"
-                        >Edit</button
                       >
+                        Edit
+                      </button>
                       <button
                         data-id="{{ item['Hash'] }}"
                         class="btn btn-delete js-item-delete"
@@ -217,17 +199,13 @@
       </div>
       <div id="parent-constants-modal">
         <div id="constants-modal">
-          <p
-            class="close_icon js-close-modal"
-            class="fa"
-            >X</p
-          >
+          <p class="close_icon js-close-modal" class="fa">&times;</p>
           <div class="can_wrapper">
             <img
-              src="{{ url_for('static', filename='assets/icons/dict_purple.svg') }}"
+              src="{{ url_for('static', filename='assets/icons/dict_purple_edit.svg') }}"
             />
           </div>
-          <p>Edit</p>
+          <p>Edit {{types_list[type]}}</p>
           <form
             method="PATCH"
             enctype="multipart/form-data"
@@ -240,13 +218,9 @@
                 class="form-control"
                 value="{{ type }}"
               />
-              <input
-                type="hidden"
-                value="{{ type }}"
-                id="constant-type"
-              />
+              <input type="hidden" value="{{ type }}" id="constant-type" />
             </div>
-            <div class="form-group">
+            <div class="custom-form-group">
               <input
                 type="text"
                 class="form-control"
@@ -255,16 +229,58 @@
                 value="{{ value }}"
                 placeholder="Value"
               />
-              <input
-                type="hidden"
-                id="constant-hash"
-              />
+              <input type="hidden" id="constant-hash" />
             </div>
             <button
               type="button"
-              class="edit-constant"
-              >Edit</button
+              class="edit-constant btn-primary custom-button"
             >
+              Edit
+            </button>
+          </form>
+        </div>
+      </div>
+      <div id="parent-constants-modal-new">
+        <div id="add-new-modal">
+          <p class="close_icon js-close-modal-new" class="fa">&times;</p>
+          <div class="can_wrapper">
+            <img
+              src="{{ url_for('static', filename='assets/icons/dict_purple_add.svg') }}"
+            />
+          </div>
+          <p>Add New {{types_list[type]}}</p>
+          <form
+            method="POST"
+            enctype="multipart/form-data"
+            id="add-constant-form"
+          >
+            <div class="form-group">
+              <input
+                type="hidden"
+                readonly
+                class="form-control"
+                value="{{ type }}"
+                data-type="{{ type }}"
+              />
+              <input type="hidden" value="{{ type }}" id="constant-type-new" />
+            </div>
+            <div class="custom-form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="value"
+                id="constant-value-new"
+                value="{{ value }}"
+                placeholder="Value"
+                data-id="{{ value }}"
+              />
+              <button
+                type="button"
+                class="add-constant btn-primary custom-button"
+              >
+                Add
+              </button>
+            </div>
           </form>
         </div>
       </div>
