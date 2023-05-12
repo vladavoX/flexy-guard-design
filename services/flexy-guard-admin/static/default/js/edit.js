@@ -9,6 +9,54 @@ function init() {
     $('#parent-header-modal').css('display', 'none')
   })
 
+  $('.js-add-header').on('click', function () {
+    let selectedHeader = $('#header-field').find(':selected').val()
+    let fieldName = $('#header-name').val()
+    $('.right')
+      .children()
+      .first()
+      .after(
+        `
+          <div class="row form-group">
+            <div>
+              <label for=${selectedHeader}>
+              ${
+                selectedHeader === 'acq_alias'
+                  ? 'Acquirer Alias'
+                  : selectedHeader === 'acq_id'
+                  ? 'Acquirer ID'
+                  : selectedHeader === 'mid'
+                  ? 'MID'
+                  : selectedHeader === 'gateway_currency'
+                  ? 'Gateway Currency'
+                  : selectedHeader === 'currency'
+                  ? 'Currency'
+                  : 'Card Brand'
+              }
+              </label>
+              <div class="header-input-row">
+                <input
+                  name="acq_alias"
+                  class="form-control form-control-sm"
+                  id=${selectedHeader}
+                  placeholder=""
+                  value="${fieldName}"
+                />
+                <div class="js-header-delete">
+                  Delete
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      )
+
+    $('#header-modal').css('display', 'none')
+    $('#parent-header-modal').css('display', 'none')
+
+    $(document).ready(init)
+  })
+
   $('.js-open-edit-modal').on('click', function () {
     $('#parent-edit-modal').css('display', 'flex')
     $('#edit-modal').css('display', 'flex')
