@@ -1,7 +1,9 @@
 function init() {
+
   let body = rule.body
   let card_array = Object.entries(body.card)
 
+  // CARD-SETTINGS
   $('.card-subgroups').append(`
   ${card_array
       .filter((card) => card[0] === 'count' || card[0] === 'amount')
@@ -109,6 +111,7 @@ function init() {
       .join('')}
 `);
 
+  // BIN
   let bin_array = Object.entries(body.bin)
   $('.bin-subgroups').append(
     `
@@ -159,6 +162,45 @@ function init() {
 
     `
   )
+
+  // HEADER
+  let header = rule.header
+  let header_array = Object.entries(header)
+  $('.header-group').append(`
+        ${header_array.map(([key, value]) => {
+          return `
+            <div>
+              <label for=${key}>${
+                key === 'acq_alias'
+                  ? 'Acquirer Alias'
+                  : key === 'acq_id'
+                  ? 'Acquirer ID'
+                  : key === 'mid'
+                  ? 'MID'
+                  : key === 'gateway_currency'
+                  ? 'Gateway Currency'
+                  : key === 'currency'
+                  ? 'Currency'
+                  : 'Card Brand'
+              }</label>
+              <div class="header-input-row">
+                <input
+                  class="form-control form-control-sm"
+                  placeholder=""
+                  id=${key}
+                  name="${key}" value="${value}"
+                />
+              <div class="js-header-delete">
+                <img
+                  src="../../assets/icons/delete_purple.svg"
+                />
+              </div>
+            </div>
+          `
+        }).filter((block) => block)
+        .join('')}
+  `)
+
 
   $('.js-open-modal-router').on('click', function () {
     $('#parent-router-modal').css('display', 'flex')
@@ -214,7 +256,7 @@ function init() {
                   value="${fieldName}"
                 />
                 <div class="js-header-delete">
-                  src=(require('assets/icons/delete_purple.svg))
+                src="../../assets/icons/delete_purple.svg"
                 </div>
               </div>
             </div>
