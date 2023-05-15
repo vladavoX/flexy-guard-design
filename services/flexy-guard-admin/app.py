@@ -152,8 +152,16 @@ def edit_rule(id):
 
         const_list[const.Type].append(const.Value)
 
+
+    json = {
+        'header': header,
+        'body': body,
+        'routing': routing
+    }
+
     return render_template(
         'rules/edit.html',
+        json=json,
         rule=rule,
         card=card,
         routing=routing,
