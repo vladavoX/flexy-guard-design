@@ -169,7 +169,8 @@
                       </button>
                       <button
                         data-id="{{ item['Hash'] }}"
-                        class="btn btn-delete js-item-delete"
+                        data-value="{{ item['Value'] }}"
+                        class="btn btn-delete js-open-modal-delete"
                       >
                         <svg
                           width="16"
@@ -286,6 +287,24 @@
       </div>
       <!-- modal -->
       <!-- /.content-wrapper -->
+      <div id="parent-delete-modal">
+        <div id="delete-modal">
+          <div class="can_wrapper">
+            <img
+              src="{{ url_for('static', filename='assets/icons/dict_orange_delete.svg') }}"
+            />
+          </div>
+          <p>Are you sure you want to delete</p>
+          <div class="delete-box-value">
+            <p id="delete-modal__name"></p>
+            <p id="delete-modal__value"></p>
+          </div>
+          <div class="delete-modal__buttons">
+            <button class="btn btn-danger js-item-delete">Delete</button>
+            <button class="btn btn-custom js-close-modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- ./wrapper -->
 
