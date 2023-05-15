@@ -133,26 +133,30 @@
               <div class="box-body">
                 <table class="table table-bordered table-striped table-hover">
                   <colgroup>
+                    <col width="20%" />
                     <col width="15%" />
                     <col width="25%" />
                     <col width="20%" />
-                    <col width="25%" />
-                    <col width="10%" />
+                    <col width="20%" />
                   </colgroup>
                   <tr class="thead body-medium">
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>CreatedAt/CreatedBy</th>
-                    <th>UpdatedAt/UpdatedBy</th>
+                    <th>Rule</th>
                     <th>Status</th>
+                    <th>Description</th>
+                    <th>CreatedAt</th>
+                    <th>UpdatedAt</th>
                   </tr>
                   {% for item in rlist %}
                   <tr class="trow body-regular">
                     <td>{{ item['Comment'] }}</td>
+                    <td>{% if item['IsDeleted'] %}
+                      <span style="color: #FD4E35">Deleted</span>
+                      {% else %}
+                      <span style="color: #FCC931">Updated</span>
+                      {% endif %}</td>
                     <td>{{ item['HashDescr'] }}</td>
-                    <td>{{ item['CreatedAt'] }} / {{ item['CreatedBy'] }}</td>
-                    <td>{{ item['UpdatedAt'] }} / {{ item['UpdatedBy'] }}</td>
-                    <td>{% if item['IsDeleted'] %}Deleted{% endif %}</td>
+                    <td>{{ item['CreatedAt'] }}</td>
+                    <td>{{ item['UpdatedAt'] }}</td>
                   </tr>
                   {% endfor %}
                 </table>
