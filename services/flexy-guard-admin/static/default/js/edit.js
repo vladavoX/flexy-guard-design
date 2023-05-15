@@ -1,4 +1,69 @@
 function init() {
+  let body = rule.body
+  let card_array = Object.entries(body.card)
+
+  $('.card-settings').append(
+    `
+
+    `
+  )
+
+  let bin_array = Object.entries(body.bin)
+  $('.bin-subgroups').append(
+    `
+      ${bin_array
+        .map((bin) => {
+          if (
+            bin[0] === 'in_country' ||
+            bin[0] === 'not_in_country' ||
+            bin[0] === 'not_in_ip_country' ||
+            bin[0] === 'in_ip_country'
+          ) {
+            return `
+      <div class="row">
+        <div>
+          <div class="btn-with-heading">
+            <h6 class="body-large custom-heading">
+              ${
+                bin[0] === 'in_country'
+                  ? 'In Country'
+                  : bin[0] === 'not_in_country'
+                  ? 'Not In Country'
+                  : bin[0] === 'not_in_ip_country'
+                  ? 'Not In IP Country'
+                  : 'In IP Country'
+              }
+            </h6>
+            <img
+              id="pen"
+              src="../../assets/icons/pen.svg"
+            />
+          </div>
+          <textarea
+            id="bin-not-in-country"
+            class="form-control custom-textarea"
+          >
+            ${bin[1]
+              .map((country) => country)
+              .filter((c) => c)
+              .join('\n')}
+          </textarea>
+        </div>
+      </div>
+    `
+          }
+        })
+        .filter((block) => block)
+        .join('')}
+
+    `
+  )
+
+  $('.js-open-modal-router').on('click', function () {
+    $('#parent-router-modal').css('display', 'flex')
+    $('#router-modal').css('display', 'flex')
+  })
+
   $('.js-open-modal').on('click', function () {
     $('#parent-header-modal').css('display', 'flex')
     $('#header-modal').css('display', 'flex')
@@ -7,6 +72,11 @@ function init() {
   $('.js-close-modal').on('click', function () {
     $('#header-modal').css('display', 'none')
     $('#parent-header-modal').css('display', 'none')
+  })
+
+  $('.js-close-router-modal').on('click', function () {
+    $('#router-modal').css('display', 'none')
+    $('#parent-router-modal').css('display', 'none')
   })
 
   $('.js-add-header').on('click', function () {
@@ -43,7 +113,7 @@ function init() {
                   value="${fieldName}"
                 />
                 <div class="js-header-delete">
-                  Delete
+                  src=(require('assets/icons/delete_purple.svg))
                 </div>
               </div>
             </div>
@@ -54,7 +124,12 @@ function init() {
     $('#header-modal').css('display', 'none')
     $('#parent-header-modal').css('display', 'none')
 
-    $(document).ready(init)
+    $('#header-field').val('')
+    $('#header-name').val('')
+  })
+
+  $('.js-add-router').on('click', function () {
+    let fieldName = $('#router-name').val()
   })
 
   $('.js-open-edit-modal').on('click', function () {
@@ -379,3 +454,4 @@ function valuesIsNotEmpty(min, max) {
 }
 
 $(document).ready(init)
+;('{"header":{"acq_id":"1234","currency":"USD"},"body":{"card":{"count":{"1":[10,710]},"amount":{"sum":{"1":[0,300000],"30":[0,500000]},"value":[10,10000]}},"bin":{"not_in_country":["                  US","CA"]}},"routing":{}}')
