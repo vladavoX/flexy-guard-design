@@ -71,6 +71,7 @@ function init() {
     id = item.data('id')
     name = item.data('name')
     $('#delete-modal').css('display', 'flex')
+    $('#parent-delete-modal').css('display', 'flex')
     $('#delete-modal__name').text(`'${name}'`)
   })
 
@@ -89,10 +90,12 @@ function init() {
     })
 
     $('#delete-modal').css('display', 'none')
+    $('#parent-delete-modal').css('display', 'none')
   })
 
   $('.js-close-modal').on('click', function () {
     $('#delete-modal').css('display', 'none')
+    $('#parent-delete-modal').css('display', 'none')
   })
 
   $('#add-rule').on('click', function () {

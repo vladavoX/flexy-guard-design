@@ -217,17 +217,19 @@
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->
-      <div id="delete-modal">
-        <div class="can_wrapper">
-          <img
-            src="{{ url_for('static', filename='assets/icons/trash_icon_red.svg') }}"
-          />
-        </div>
-        <p>Are you sure you want to delete rule:</p>
-        <p id="delete-modal__name"></p>
-        <div class="delete-modal__buttons">
-          <button class="btn btn-danger js-item-delete">Delete</button>
-          <button class="btn btn-custom js-close-modal">Close</button>
+      <div id="parent-delete-modal">
+        <div id="delete-modal">
+          <div class="can_wrapper">
+            <img
+              src="{{ url_for('static', filename='assets/icons/trash_icon_red.svg') }}"
+            />
+          </div>
+          <p>Are you sure you want to delete rule:</p>
+          <p id="delete-modal__name"></p>
+          <div class="delete-modal__buttons">
+            <button class="btn btn-danger js-item-delete">Delete</button>
+            <button class="btn btn-custom js-close-modal">Cancel</button>
+          </div>
         </div>
       </div>
       <!-- modal -->

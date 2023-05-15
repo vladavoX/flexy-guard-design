@@ -1,6 +1,33 @@
 function init() {
+
+  $('.js-open-modal-delete').on('click', function () {
+    item = $(this)
+    id = item.data('id')
+    dictTypeName = $('#dict-type-name').text();
+    value = item.data('value');
+
+    $('#parent-delete-modal').css('display', 'flex');
+    $('#delete-modal').css('display', 'flex')
+    $('#delete-modal__name').text(`${dictTypeName}:`) 
+    $('#delete-modal__value').text(`'${value}'`)
+
+    $('.js-item-delete').on('click', function () {
+      let type = $('.js-type').val();
+   
+      $.ajax({
+        type: 'DELETE',
+        url: '/constants/' + type + '/' + id,
+      }).done(function () {
+        item.parents('tr').remove()
+      })
+  
+      $('#parent-delete-modal').css('display', 'none');
+      $('#delete-modal').css('display', 'none')
+    })
+  })
+
+
   setTitle();
-  bindRemove();
 
   $('.js-open-modal').on('click', function () {
     $('#parent-constants-modal').css('display', 'flex');
@@ -31,6 +58,8 @@ function init() {
   $('.js-close-modal').on('click', function () {
     $('#constants-modal').css('display', 'none');
     $('#parent-constants-modal').css('display', 'none');
+    $('#delete-modal').css('display', 'none');
+    $('#parent-delete-modal').css('display', 'none');
   });
 
   $('.js-open-modal-new').on('click', function () {
@@ -72,22 +101,6 @@ function setTitle() {
   if (path[2] === 'mid') return $('#dict-type-name').text('Merchant ID');
   if (path[2] === 'gw_alias') return $('#dict-type-name').text('Gateway Alias');
   if (path[2] === 'gw_type') return $('#dict-type-name').text('Gateway Type');
-}
-
-function bindRemove() {
-  $('.js-item-delete').on('click', function () {
-    let _this = $(this);
-    let type = $('.js-type').val();
-
-    if (confirm('Are you sure you want to delete this item?') === true) {
-      $.ajax({
-        type: 'DELETE',
-        url: '/constants/' + type + '/' + _this.data('id'),
-      }).done(function () {
-        _this.parents('tr').remove();
-      });
-    }
-  });
 }
 
 $(document).ready(init);
