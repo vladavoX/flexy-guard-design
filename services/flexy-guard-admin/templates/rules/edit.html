@@ -17,10 +17,20 @@
       <img src="{{ url_for('static', filename='assets/icons/close.svg') }}" />
     </p>
     <h2 class="heading-medium header-heading">Editing</h2>
-    <div class="row header-row" id="editing-type">
+    <div
+      class="row header-row"
+      id="editing-type"
+    >
       <div class="col-sm-6 header-field-box">
-        <label class="header-label" for="header-name">Type</label>
-        <select id="header-field" class="form-control js-gw-item select-item">
+        <label
+          class="header-label"
+          for="header-name"
+          >Type</label
+        >
+        <select
+          id="header-field"
+          class="form-control js-gw-item select-item"
+        >
           <option value="">Group</option>
         </select>
       </div>
@@ -40,19 +50,32 @@
     </div>
     <div class="subfields">
       <h6 class="body-large custom-heading">Subfields</h6>
-      <button id="subfield-btn" type="button" class="btn btn-advanced">Add Field</button>
+      <button
+        id="subfield-btn"
+        type="button"
+        class="btn btn-advanced"
+        >Add Field</button
+      >
     </div>
     <div class="subfield-row">
       <div>
         <label class="header-label">Type</label>
-        <select id="header-field" class="form-control js-gw-item select-item">
+        <select
+          id="header-field"
+          class="form-control js-gw-item select-item"
+        >
           <option value="">Subgroup</option>
         </select>
       </div>
       <div>
         <label class="header-label">Name</label>
         <div class="header-input-row">
-          <input type="text" id="header-field" class="form-control form-control-sm" value="Daily Limit"/>
+          <input
+            type="text"
+            id="header-field"
+            class="form-control form-control-sm"
+            value="Daily Limit"
+          />
           <div class="js-header-delete">
             <img
               src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
@@ -64,14 +87,22 @@
     <div class="subfield-row">
       <div>
         <label class="header-label">Type</label>
-        <select id="header-field" class="form-control js-gw-item select-item">
+        <select
+          id="header-field"
+          class="form-control js-gw-item select-item"
+        >
           <option value="">Subgroup</option>
         </select>
       </div>
       <div>
         <label class="header-label">Name</label>
         <div class="header-input-row">
-          <input type="text" id="header-field" class="form-control form-control-sm" value="Monthly Limit"/>
+          <input
+            type="text"
+            id="header-field"
+            class="form-control form-control-sm"
+            value="Monthly Limit"
+          />
           <div class="js-header-delete">
             <img
               src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
@@ -83,14 +114,22 @@
     <div class="subfield-row">
       <div>
         <label class="header-label">Type</label>
-        <select id="header-field" class="form-control js-gw-item select-item">
+        <select
+          id="header-field"
+          class="form-control js-gw-item select-item"
+        >
           <option value="">Subgroup</option>
         </select>
       </div>
       <div>
         <label class="header-label">Name</label>
         <div class="header-input-row">
-          <input type="text" id="header-field" class="form-control form-control-sm" value="Value Limit"/>
+          <input
+            type="text"
+            id="header-field"
+            class="form-control form-control-sm"
+            value="Value Limit"
+          />
           <div class="js-header-delete">
             <img
               src="{{ url_for('static', filename='assets/icons/delete_purple.svg') }}"
@@ -119,6 +158,57 @@
       <img src="{{ url_for('static', filename='assets/icons/close.svg') }}" />
     </p>
     <h2 class="heading-medium header-heading">Add Header Field</h2>
+    <div class="row header-row">
+      <div class="col-sm-6 header-field-box">
+        <label
+          class="header-label"
+          for="header-name"
+          >Type</label
+        >
+        <select
+          id="header-field"
+          class="form-control"
+        >
+          <option value="">Select type</option>
+          <option value="acq_alias">Acquirer Alias</option>
+          <option value="acq_id">Acquirer ID</option>
+          <option value="mid">Merchant ID</option>
+          <option value="gateway_currency">Gateway Currency</option>
+          <option value="currency">Currency</option>
+          <option value="card_brand">Card Brand</option>
+        </select>
+      </div>
+      <div class="col-sm-6 header-field-box">
+        <label
+          class="header-label"
+          for="header-name"
+          >Name</label
+        >
+        <input
+          type="text"
+          id="header-name"
+          class="form-control js-card-status-count-min"
+          value=""
+        />
+      </div>
+    </div>
+    <button class="btn btn-primary btn-dialog js-add-header">Add Field</button>
+  </div>
+</div>
+
+<!-- ROUTER MODAL -->
+<div
+  id="parent-router-modal"
+  class="parent-router-modal"
+>
+  <div id="router-modal">
+    <p
+      class="close-icon js-close-router-modal"
+      class="fa"
+    >
+      <img src="{{ url_for('static', filename='assets/icons/close.svg') }}" />
+    </p>
+    <h2 class="heading-medium header-heading">Add Router Field</h2>
     <div class="row header-row">
       <div class="col-sm-6 header-field-box">
         <label
@@ -660,7 +750,7 @@
                   <button
                     id="add-field-btn"
                     type="button"
-                    class="btn btn-primary"
+                    class="btn btn-primary js-open-modal-router"
                     >Add Field</button
                   >
                 </h3>

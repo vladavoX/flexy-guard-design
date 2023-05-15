@@ -1,4 +1,9 @@
 function init() {
+  $('.js-open-modal-router').on('click', function () {
+    $('#parent-router-modal').css('display', 'flex')
+    $('#router-modal').css('display', 'flex')
+  })
+
   $('.js-open-modal').on('click', function () {
     $('#parent-header-modal').css('display', 'flex')
     $('#header-modal').css('display', 'flex')
@@ -7,6 +12,11 @@ function init() {
   $('.js-close-modal').on('click', function () {
     $('#header-modal').css('display', 'none')
     $('#parent-header-modal').css('display', 'none')
+  })
+
+  $('.js-close-router-modal').on('click', function () {
+    $('#router-modal').css('display', 'none')
+    $('#parent-router-modal').css('display', 'none')
   })
 
   $('.js-add-header').on('click', function () {
