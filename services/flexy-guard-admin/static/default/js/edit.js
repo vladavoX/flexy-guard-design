@@ -16,7 +16,6 @@ function init() {
       })
       .map((card) => {
           if (card[0] === 'count') {
-            console.log(card[1])
               return `
                   <div class="btn-with-heading">
                       <h6 class="body-large custom-heading">Card Count Limit</h6>
@@ -46,12 +45,65 @@ function init() {
                   `).join('')}
               `;
           } else {
-              return `
-                  <div class="btn-with-heading">
-                      <h6 class="body-large custom-heading">Card Amount Limit</h6>
-                      <img id="pen" src="../../assets/icons/pen.svg" />
-                  </div>
-              `;
+            let sumObj = card[1].sum
+            let valueObj = card[1].value
+            
+            return `
+                <div class="btn-with-heading">
+                    <h6 class="body-large custom-heading">Card Amount Limit</h6>
+                    <img id="pen" src="../../assets/icons/pen.svg" />
+                </div>
+                ${Object.keys(sumObj).map((key) => `
+                    <h6 class="heading-smallest">
+                      ${key === '1' ? 'Daily Limit'
+                      : key === '7' ? 'Weekly Limit'
+                      : key === '30'? 'Monthly Limit'
+                      : key === '365' ? 'Yearly Limit' : ''
+                    }
+                    </h6>
+                    <div class="row">
+                        <div>
+                            <label for="card-amount-min-${key}">Min</label>
+                            <input
+                                type="text"
+                                id="card-amount-min-${key}"
+                                class="form-control"
+                                value="${sumObj[key][0]}"
+                            />
+                        </div>
+                        <div>
+                            <label for="card-amount-max-${key}">Max</label>
+                            <input
+                                type="text"
+                                id="card-amount-max-${key}"
+                                class="form-control"
+                                value="${sumObj[key][1]}"
+                            />
+                        </div>
+                    </div>
+                `).join('')}
+                <h6 class="heading-smallest">Value Limits</h6>
+                <div class="row">
+                <div>
+                  <label for="card-value-min">Min</label>
+                  <input
+                    type="text"
+                    id="card-value-min"
+                    class="form-control"
+                    value="${valueObj[0]}"
+                  />
+                </div>
+                <div>
+                  <label for="card-value-max">Max</label>
+                  <input
+                    type="text"
+                    id="card-value-max"
+                    class="form-control"
+                    value="${valueObj[1]}"
+                  />
+                </div>
+              </div>
+            `;
           }
       })
       .join('')}
