@@ -2,11 +2,60 @@ function init() {
   let body = rule.body
   let card_array = Object.entries(body.card)
 
-  $('.card-settings').append(
-    `
-
-    `
-  )
+  $('.card-subgroups').append(`
+  ${card_array
+      .filter((card) => card[0] === 'count' || card[0] === 'amount')
+      .sort((a, b) => {
+          if (a[0] === 'count') {
+              return -1;
+          } else if (b[0] === 'count') {
+              return 1;
+          } else {
+              return 0;
+          }
+      })
+      .map((card) => {
+          if (card[0] === 'count') {
+            console.log(card[1])
+              return `
+                  <div class="btn-with-heading">
+                      <h6 class="body-large custom-heading">Card Count Limit</h6>
+                      <img id="pen" src="../../assets/icons/pen.svg" />
+                  </div>
+                  ${Object.keys(card[1]).map((key) => `
+                      <div class="row">
+                          <div>
+                              <label for="card-count-min-${key}">Min</label>
+                              <input
+                                  type="text"
+                                  id="card-count-min-${key}"
+                                  class="form-control"
+                                  value="${card[1][key][0]}"
+                              />
+                          </div>
+                          <div>
+                              <label for="card-count-max-${key}">Max</label>
+                              <input
+                                  type="text"
+                                  id="card-count-max-${key}"
+                                  class="form-control"
+                                  value="${card[1][key][1]}"
+                              />
+                          </div>
+                      </div>
+                  `).join('')}
+              `;
+          } else {
+              return `
+                  <div class="btn-with-heading">
+                      <h6 class="body-large custom-heading">Card Amount Limit</h6>
+                      <img id="pen" src="../../assets/icons/pen.svg" />
+                  </div>
+              `;
+          }
+      })
+      .join('')}
+`);
 
   let bin_array = Object.entries(body.bin)
   $('.bin-subgroups').append(
