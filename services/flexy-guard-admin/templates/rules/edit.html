@@ -212,38 +212,21 @@
     <div class="row header-row">
       <div class="col-sm-6 header-field-box">
         <label
-          class="header-label"
-          for="header-name"
-          >Type</label
-        >
-        <select
-          id="header-field"
-          class="form-control"
-        >
-          <option value="">Select type</option>
-          <option value="acq_alias">Acquirer Alias</option>
-          <option value="acq_id">Acquirer ID</option>
-          <option value="mid">Merchant ID</option>
-          <option value="gateway_currency">Gateway Currency</option>
-          <option value="currency">Currency</option>
-          <option value="card_brand">Card Brand</option>
-        </select>
-      </div>
-      <div class="col-sm-6 header-field-box">
-        <label
-          class="header-label"
-          for="header-name"
+          class="router-label"
+          for="router-name"
           >Name</label
         >
         <input
           type="text"
-          id="header-name"
+          id="router-name"
           class="form-control js-card-status-count-min"
           value=""
         />
       </div>
+      <button class="btn btn-primary btn-dialog js-add-router"
+        >Add Field</button
+      >
     </div>
-    <button class="btn btn-primary btn-dialog js-add-header">Add Field</button>
   </div>
 </div>
 
@@ -253,6 +236,24 @@
       <div class="mb-3">
         <div class="m-3">
           <form class="form-body">
+            <div class="form-body-left">
+              <div class="card-settings"> </div>
+              <div class="bin">
+                <h3
+                  class="heading-small"
+                  style="margin: 40px 0px 0px"
+                  >Bin
+                  <img
+                    id="cog"
+                    src="{{ url_for('static', filename='assets/icons/cog.svg') }}"
+                  />
+                </h3>
+                <div class="bin-subgroups"> </div>
+              </div>
+            </div>
+            <div class="form-body-right"> </div>
+          </form>
+          <!-- <form class="form-body">
             <input
               type="hidden"
               value="{{ rule['Hash'] }}"
@@ -278,11 +279,6 @@
                   Save Changes
                 </button>
               </div>
-              <!-- <a
-                  href="/rules/advanced/{{ rule.Hash }}"
-                  class="btn btn-warning"
-                  >Advanced</a
-                > -->
             </div>
             <div class="content-left-right">
               <div class="left">
@@ -545,8 +541,7 @@
                     <textarea
                       id="bin-not-in-country"
                       class="form-control custom-textarea"
-                    >
-  {{ '\n'.join(rule.Body.bin.not_in_country) }}</textarea
+                    >{{ '\n'.join(rule.Body.bin.not_in_country) }}</textarea
                     >
                   </div>
                 </div>
@@ -557,8 +552,7 @@
                     <textarea
                       id="bin-in-country"
                       class="form-control custom-textarea"
-                    >
-  {{ '\n'.join(rule.Body.bin.in_country) }}</textarea
+                    >{{ '\n'.join(rule.Body.bin.in_country) }}</textarea
                     >
                   </div>
                 </div>
@@ -571,8 +565,7 @@
                     <textarea
                       id="ip-not-in-country"
                       class="form-control custom-textarea"
-                    >
-  {{ '\n'.join(rule.Body.ip.not_in_ip_country) }}</textarea
+                    >{{ '\n'.join(rule.Body.ip.not_in_ip_country) }}</textarea
                     >
                   </div>
                 </div>
@@ -583,8 +576,7 @@
                     <textarea
                       id="ip-in-country"
                       class="form-control custom-textarea"
-                    >
-  {{ '\n'.join(rule.Body.ip.in_ip_country) }}</textarea
+                    >{{ '\n'.join(rule.Body.ip.in_ip_country) }}</textarea
                     >
                   </div>
                 </div>
@@ -803,10 +795,14 @@
                 Save Changes
               </button>
             </div>
-          </form>
+          </form> -->
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  let rule = '{{ json|tojson }}'
+  rule = JSON.parse(rule)
+</script>
 {% endblock %}

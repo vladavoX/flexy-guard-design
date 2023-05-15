@@ -88,7 +88,7 @@
     display: none;
     flex-direction: column;
     background-color: #FEFEFE;
-    height: 358px;
+    height: 250px;
     width: 741px;
     max-width: 90%;
     position: fixed;
@@ -101,6 +101,10 @@
     color: var(--color-purple-heading);
     font-weight: 400;
     padding: 40px;
+}
+
+#router-modal .header-row {
+    justify-content: center !important;
 }
 
 /* EDITING MODAL */
