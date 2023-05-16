@@ -98,7 +98,7 @@ function init() {
                   ? 'Monthly Limit'
                   : 'Yearly Limit'
               }</h6>
-              <div class="row">
+              <div class="row amount-row">
                 <div>
                   <label for="card-amount-${
                     sum[1][0] === '1'
@@ -134,21 +134,27 @@ function init() {
                       ? 'monthly'
                       : 'yearly'
                   }-max">Max</label>
-                  <input
-                    type="text"
-                    id="card-amount-${
-                      sum[1][0] === '1'
-                        ? 'daily'
-                        : sum[1][0] === '7'
-                        ? 'weekly'
-                        : sum[1][0] === '30'
-                        ? 'monthly'
-                        : 'yearly'
-                    }-max"
-                    class="form-control"
-                    value="${sum[1][1][1]}"
-                  />
+                  <div class='flex-row'>
+                    <input
+                      type="text"
+                      id="card-amount-${
+                        sum[1][0] === '1'
+                          ? 'daily'
+                          : sum[1][0] === '7'
+                          ? 'weekly'
+                          : sum[1][0] === '30'
+                          ? 'monthly'
+                          : 'yearly'
+                      }-max"
+                      class="form-control"
+                      value="${sum[1][1][1]}"
+                    />
+                    <div class="js-amount-delete">
+                      <img src="../../assets/icons/delete_purple.svg" />
+                    </div>
+                  </div>
                 </div>
+
               </div>
             `
               )
@@ -483,6 +489,23 @@ function init() {
     let newRule = rule
     let headerName = $(this).parent().parent().find('label').attr('for')
     delete newRule.header[headerName]
+    createPage(newRule)
+  })
+
+  $('.js-amount-delete').on('click', function () {
+    let newRule = rule
+    let amountName = $(this).parent().find('input').attr('id')
+    amountName.includes('daily') ? delete newRule.body.card.amount.sum['1'] : ''
+    amountName.includes('weekly')
+      ? delete newRule.body.card.amount.sum['7']
+      : ''
+    amountName.includes('monthly')
+      ? delete newRule.body.card.amount.sum['30']
+      : ''
+    amountName.includes('yearly')
+      ? delete newRule.body.card.amount.sum['365']
+      : ''
+
     createPage(newRule)
   })
 
