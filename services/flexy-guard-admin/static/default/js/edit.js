@@ -98,7 +98,7 @@ function init() {
                   ? 'Monthly Limit'
                   : 'Yearly Limit'
               }</h6>
-              <div class="row">
+              <div class="row amount-row">
                 <div>
                   <label for="card-amount-${
                     sum[1][0] === '1'
@@ -134,21 +134,27 @@ function init() {
                       ? 'monthly'
                       : 'yearly'
                   }-max">Max</label>
-                  <input
-                    type="text"
-                    id="card-amount-${
-                      sum[1][0] === '1'
-                        ? 'daily'
-                        : sum[1][0] === '7'
-                        ? 'weekly'
-                        : sum[1][0] === '30'
-                        ? 'monthly'
-                        : 'yearly'
-                    }-max"
-                    class="form-control"
-                    value="${sum[1][1][1]}"
-                  />
+                  <div class='flex-row'>
+                    <input
+                      type="text"
+                      id="card-amount-${
+                        sum[1][0] === '1'
+                          ? 'daily'
+                          : sum[1][0] === '7'
+                          ? 'weekly'
+                          : sum[1][0] === '30'
+                          ? 'monthly'
+                          : 'yearly'
+                      }-max"
+                      class="form-control"
+                      value="${sum[1][1][1]}"
+                    />
+                    <div class="js-amount-delete">
+                      <img src="../../assets/icons/delete_purple.svg" />
+                    </div>
+                  </div>
                 </div>
+
               </div>
             `
               )
@@ -369,26 +375,29 @@ function init() {
             `
           }
           return `
-              <div>
-                <label for=${key}>${
-            key === 'acq_alias'
-              ? 'Acquirer Alias'
-              : key === 'acq_id'
-              ? 'Acquirer ID'
-              : key === 'mid'
-              ? 'Mearchant ID'
-              : key === 'gateway_currency'
-              ? 'Gateway Currency'
-              : key === 'currency'
-              ? 'Currency'
-              : 'Card Brand'
-          }</label>
+            <div>
+                <label for=${key}>
+                ${
+                  key === 'acq_alias'
+                    ? 'Acquirer Alias'
+                    : key === 'acq_id'
+                    ? 'Acquirer ID'
+                    : key === 'mid'
+                    ? 'Mearchant ID'
+                    : key === 'gateway_currency'
+                    ? 'Gateway Currency'
+                    : key === 'currency'
+                    ? 'Currency'
+                    : 'Card Brand'
+                }
+                </label>
                 <div class="header-input-row">
-            ${inputElement}
-            <div class="js-header-delete">
-              <img src="../../assets/icons/delete_purple.svg" />
+                  ${inputElement}
+                  <div class="js-header-delete">
+                    <img src="../../assets/icons/delete_purple.svg" />
+                  </div>
+               </div> 
             </div>
-          </div>
             `
         })
         .filter((block) => block)
@@ -458,11 +467,6 @@ function init() {
     $('#parent-bin-modal').css('display', 'none')
   })
 
-  $('.js-close-router-modal').on('click', function () {
-    $('#router-modal').css('display', 'none')
-    $('#parent-router-modal').css('display', 'none')
-  })
-
   $('.js-add-header').on('click', function () {
     let fieldName = $('#header-name').val()
     let selectedHeader = $('.header-select').find(':selected').val()
@@ -499,11 +503,27 @@ function init() {
   })
 
   $('.js-header-delete').on('click', function () {
-    $(this).closest('.row').remove()
+    let newRule = rule
+    let headerName = $(this).parent().parent().find('label').attr('for')
+    delete newRule.header[headerName]
+    createPage(newRule)
   })
 
-  $('.js-item-delete').on('click', function () {
-    $(this).closest('.js-route-row').remove()
+  $('.js-amount-delete').on('click', function () {
+    let newRule = rule
+    let amountName = $(this).parent().find('input').attr('id')
+    amountName.includes('daily') ? delete newRule.body.card.amount.sum['1'] : ''
+    amountName.includes('weekly')
+      ? delete newRule.body.card.amount.sum['7']
+      : ''
+    amountName.includes('monthly')
+      ? delete newRule.body.card.amount.sum['30']
+      : ''
+    amountName.includes('yearly')
+      ? delete newRule.body.card.amount.sum['365']
+      : ''
+
+    createPage(newRule)
   })
 
   $('.js-item-save').on('click', function (e) {
@@ -810,4 +830,3 @@ function valuesIsNotEmpty(min, max) {
 }
 
 $(document).ready(init)
-;('{"header":{"acq_id":"1234","currency":"USD"},"body":{"card":{"count":{"1":[10,710]},"amount":{"sum":{"1":[0,300000],"30":[0,500000]},"value":[10,10000]}},"bin":{"not_in_country":["                  US","CA"]}},"routing":{}}')
