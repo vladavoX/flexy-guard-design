@@ -441,6 +441,11 @@ function init() {
     $('#router-modal').css('display', 'flex')
   })
 
+  $('.js-open-modal-bin').on('click', function () {
+    $('#parent-bin-modal').css('display', 'flex')
+    $('#bin-modal').css('display', 'flex')
+  })
+
   $('.js-open-modal').on('click', function () {
     $('#parent-header-modal').css('display', 'flex')
     $('#header-modal').css('display', 'flex')
@@ -449,6 +454,8 @@ function init() {
   $('.js-close-modal').on('click', function () {
     $('#header-modal').css('display', 'none')
     $('#parent-header-modal').css('display', 'none')
+    $('#bin-modal').css('display', 'none')
+    $('#parent-bin-modal').css('display', 'none')
   })
 
   $('.js-close-router-modal').on('click', function () {
@@ -464,6 +471,16 @@ function init() {
     newRule.header[selectedHeader] = fieldName
     $('#header-modal').css('display', 'none')
     $('#parent-header-modal').css('display', 'none')
+    createPage(newRule)
+  })
+
+  $('.js-add-bin').on('click', function () {
+    let selectedBin = $('.bin-select').find(':selected').val()
+
+    let newRule = rule
+    newRule.body.bin[selectedBin] = []
+    $('#bin-modal').css('display', 'none')
+    $('#parent-bin-modal').css('display', 'none')
     createPage(newRule)
   })
 
