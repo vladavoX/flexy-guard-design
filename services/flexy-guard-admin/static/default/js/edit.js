@@ -369,26 +369,29 @@ function init() {
             `
           }
           return `
-              <div>
-                <label for=${key}>${
-            key === 'acq_alias'
-              ? 'Acquirer Alias'
-              : key === 'acq_id'
-              ? 'Acquirer ID'
-              : key === 'mid'
-              ? 'Mearchant ID'
-              : key === 'gateway_currency'
-              ? 'Gateway Currency'
-              : key === 'currency'
-              ? 'Currency'
-              : 'Card Brand'
-          }</label>
+            <div>
+                <label for=${key}>
+                ${
+                  key === 'acq_alias'
+                    ? 'Acquirer Alias'
+                    : key === 'acq_id'
+                    ? 'Acquirer ID'
+                    : key === 'mid'
+                    ? 'Mearchant ID'
+                    : key === 'gateway_currency'
+                    ? 'Gateway Currency'
+                    : key === 'currency'
+                    ? 'Currency'
+                    : 'Card Brand'
+                }
+                </label>
                 <div class="header-input-row">
-            ${inputElement}
-            <div class="js-header-delete">
-              <img src="../../assets/icons/delete_purple.svg" />
+                  ${inputElement}
+                  <div class="js-header-delete">
+                    <img src="../../assets/icons/delete_purple.svg" />
+                  </div>
+               </div> 
             </div>
-          </div>
             `
         })
         .filter((block) => block)
@@ -451,11 +454,6 @@ function init() {
     $('#parent-header-modal').css('display', 'none')
   })
 
-  $('.js-close-router-modal').on('click', function () {
-    $('#router-modal').css('display', 'none')
-    $('#parent-router-modal').css('display', 'none')
-  })
-
   $('.js-add-header').on('click', function () {
     let fieldName = $('#header-name').val()
     let selectedHeader = $('.header-select').find(':selected').val()
@@ -482,11 +480,10 @@ function init() {
   })
 
   $('.js-header-delete').on('click', function () {
-    $(this).closest('.row').remove()
-  })
-
-  $('.js-item-delete').on('click', function () {
-    $(this).closest('.js-route-row').remove()
+    let newRule = rule
+    let headerName = $(this).parent().parent().find('label').attr('for')
+    delete newRule.header[headerName]
+    createPage(newRule)
   })
 
   $('.js-item-save').on('click', function (e) {
@@ -793,4 +790,3 @@ function valuesIsNotEmpty(min, max) {
 }
 
 $(document).ready(init)
-;('{"header":{"acq_id":"1234","currency":"USD"},"body":{"card":{"count":{"1":[10,710]},"amount":{"sum":{"1":[0,300000],"30":[0,500000]},"value":[10,10000]}},"bin":{"not_in_country":["                  US","CA"]}},"routing":{}}')
