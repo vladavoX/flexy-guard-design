@@ -237,6 +237,11 @@
       <div class="mb-3">
         <div class="m-3">
           <form class="form-body">
+            <input
+              type="hidden"
+              value="{{ rule['Hash'] }}"
+              id="hash"
+            />
             <div class="form-group row-top">
               <div class="box-header">
                 <input
@@ -316,6 +321,7 @@
                       class="btn btn-primary js-open-modal-router"
                       >Add Field</button
                     >
+                    <div class="router-group"></div>
                   </h2>
                 </div>
               </div>
@@ -885,8 +891,14 @@
   let rule = '{{ json|tojson }}'
   let const_list = '{{ const_list|tojson }}'
   let mid_list = '{{ mid_list|tojson }}'
+  let routing = '{{ routing|tojson }}'
+  let available_routing = '{{ available_routing|tojson }}'
+  let gateways_list = '{{ gateways_list|tojson }}'
   rule = JSON.parse(rule)
   const_list = JSON.parse(const_list)
   mid_list = JSON.parse(mid_list)
+  routing = JSON.parse(routing)
+  available_routing = JSON.parse(available_routing)
+  gateways_list = JSON.parse(gateways_list)
 </script>
 {% endblock %}

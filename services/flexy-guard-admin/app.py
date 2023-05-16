@@ -143,6 +143,12 @@ def edit_rule(id):
             mid_keys = mid_item.Value.split('-')
             mid_list[mid_keys[0].strip()] = mid_item.Value
 
+    gateways_list = {}
+    if gateways:
+        for gw_item in gateways:
+            gw_keys = gw_item.Value.split('-')
+            gateways_list[gw_keys[0].strip()] = gw_item.Value
+
     constants = model.get_all_constants()
     const_list = {}
 
@@ -155,8 +161,7 @@ def edit_rule(id):
 
     json = {
         'header': header,
-        'body': body,
-        'routing': routing
+        'body': body
     }
 
     return render_template(
@@ -168,6 +173,7 @@ def edit_rule(id):
         const_list=const_list,
         available_routing=available_routing,
         gateways=gateways,
+        gateways_list=gateways_list,
         mid_list=mid_list
     )
 

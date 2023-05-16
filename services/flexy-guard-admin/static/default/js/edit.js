@@ -3,6 +3,7 @@ function init() {
   let card_array = Object.entries(body.card)
 
   // CARD-SETTINGS
+  console.log(card_array)
   $('.card-subgroups').append(`
   ${card_array
     .filter((card) => card[0] === 'count' || card[0] === 'amount')
@@ -18,37 +19,37 @@ function init() {
     .map((card) => {
       if (card[0] === 'count') {
         return `
-                  <div class="btn-with-heading">
-                      <h6 class="body-large custom-heading">Card Count Limit</h6>
-                      <img id="pen" src="../../assets/icons/pen.svg" />
+          <div class="btn-with-heading">
+              <h6 class="body-large custom-heading">Card Count Limit</h6>
+              <img id="pen" src="../../assets/icons/pen.svg" />
+          </div>
+          ${Object.keys(card[1])
+            .map(
+              (key) => `
+              <div class="row">
+                  <div>
+                      <label for="card-count-min-${key}">Min</label>
+                      <input
+                          type="text"
+                          id="card-count-min-${key}"
+                          class="form-control"
+                          value="${card[1][key][0]}"
+                      />
                   </div>
-                  ${Object.keys(card[1])
-                    .map(
-                      (key) => `
-                      <div class="row">
-                          <div>
-                              <label for="card-count-min-${key}">Min</label>
-                              <input
-                                  type="text"
-                                  id="card-count-min-${key}"
-                                  class="form-control"
-                                  value="${card[1][key][0]}"
-                              />
-                          </div>
-                          <div>
-                              <label for="card-count-max-${key}">Max</label>
-                              <input
-                                  type="text"
-                                  id="card-count-max-${key}"
-                                  class="form-control"
-                                  value="${card[1][key][1]}"
-                              />
-                          </div>
-                      </div>
-                  `
-                    )
-                    .join('')}
-              `
+                  <div>
+                      <label for="card-count-max-${key}">Max</label>
+                      <input
+                          type="text"
+                          id="card-count-max-${key}"
+                          class="form-control"
+                          value="${card[1][key][1]}"
+                      />
+                  </div>
+              </div>
+          `
+            )
+            .join('')}
+      `
       } else {
         let sumObj = card[1].sum
         let valueObj = card[1].value
@@ -157,7 +158,15 @@ function init() {
             />
           </div>
           <textarea
-            id="bin-not-in-country"
+            ${
+              bin[0] === 'in_country'
+                ? 'id="bin-in-country"'
+                : bin[0] === 'not_in_country'
+                ? 'id="bin-not-in-country"'
+                : bin[0] === 'not_in_ip_country'
+                ? 'id="ip-not-in-country"'
+                : 'id="ip-in-country"'
+            }
             class="form-control custom-textarea"
           >
             ${bin[1]
@@ -328,6 +337,49 @@ function init() {
       .join('')}
   `)
 
+  // ROUTER
+  let available_routing_array = Object.entries(available_routing)
+  let gw_list_array = Object.entries(gateways_list)
+  $('.router-group').append(`
+${available_routing_array
+  .map((av_r) => {
+    return `
+    <div class="row js-route-row row-item">
+      <div>
+        <input
+          type="text"
+          value="${av_r[1]}"
+          class="form-control js-route-item"
+          readonly
+        />
+      </div>
+      <div>
+        <select class="form-control js-gw-item">
+          <option value="">Select Gateway Alias</option>
+          ${gw_list_array
+            .map((gw) => {
+              if (gw[1] === routing[av_r[1]]) {
+                return `
+                <option value="${gw[1]}" selected>${gw[1]}</option>
+              `
+              } else {
+                return `
+                <option value="${gw[1]}">${gw[1]}</option>
+              `
+              }
+            })
+            .join('')}
+        </select>
+      </div>
+      <div class="js-item-delete">
+        <img src="../../assets/icons/delete_purple.svg" />
+      </div>
+    </div>
+  \n`
+  })
+  .join('')}
+`)
+
   $('.js-open-modal-router').on('click', function () {
     $('#parent-router-modal').css('display', 'flex')
     $('#router-modal').css('display', 'flex')
@@ -456,13 +508,13 @@ function init() {
       if (body.card === undefined) {
         body.card = {}
       }
-
       body.card.count = {
         1: [
           parseInt(form.find('#card-count-min').val()),
           parseInt(form.find('#card-count-max').val())
         ]
       }
+      console.log(body)
     }
 
     if (
@@ -699,19 +751,19 @@ function init() {
       routing: routing
     })
 
-    $.ajax({
-      type: 'POST',
-      url: '/update',
-      data: data
-    }).done(function (response) {
-      let parsed = JSON.parse(response)
+    // $.ajax({
+    //   type: 'POST',
+    //   url: '/update',
+    //   data: data
+    // }).done(function (response) {
+    //   let parsed = JSON.parse(response)
 
-      if (parsed.result === false) {
-        alert(parsed.message)
-      } else {
-        window.location = '/rules/edit/' + parsed.data
-      }
-    })
+    //   if (parsed.result === false) {
+    //     alert(parsed.message)
+    //   } else {
+    //     window.location = '/rules/edit/' + parsed.data
+    //   }
+    // })
   })
 }
 
