@@ -76,7 +76,7 @@ function init() {
               <button
                 id="add-field-btn"
                 type="button"
-                class="btn btn-primary js-open-modal-router"
+                class="btn btn-primary js-open-amount-bin"
                 >Add Field</button
               >
               </h6>
@@ -458,6 +458,11 @@ function init() {
     $('#bin-modal').css('display', 'flex')
   })
 
+  $('.js-open-amount-bin').on('click', function () {
+    $('#parent-amount-modal').css('display', 'flex')
+    $('#amount-modal').css('display', 'flex')
+  })
+
   $('.js-open-modal').on('click', function () {
     $('#parent-header-modal').css('display', 'flex')
     $('#header-modal').css('display', 'flex')
@@ -468,6 +473,8 @@ function init() {
     $('#parent-header-modal').css('display', 'none')
     $('#bin-modal').css('display', 'none')
     $('#parent-bin-modal').css('display', 'none')
+    $('#amount-modal').css('display', 'none')
+    $('#parent-amount-modal').css('display', 'none')
   })
 
   $('.js-add-header').on('click', function () {
@@ -488,6 +495,15 @@ function init() {
     newRule.body.bin[selectedBin] = []
     $('#bin-modal').css('display', 'none')
     $('#parent-bin-modal').css('display', 'none')
+    createPage(newRule)
+  })
+
+  $('.js-add-amount').on('click', function () {
+    let selectedAmount = $('.amount-select').find(':selected').val()
+    let newRule = rule
+    newRule.body.card.amount.sum[selectedAmount] = [0, 0]
+    $('#amount-modal').css('display', 'none')
+    $('#parent-amount-modal').css('display', 'none')
     createPage(newRule)
   })
 
