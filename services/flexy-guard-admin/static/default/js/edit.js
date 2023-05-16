@@ -1,13 +1,117 @@
 function init() {
+
   let body = rule.body
   let card_array = Object.entries(body.card)
 
-  $('.card-settings').append(
-    `
+  // CARD-SETTINGS
+  $('.card-subgroups').append(`
+  ${card_array
+      .filter((card) => card[0] === 'count' || card[0] === 'amount')
+      .sort((a, b) => {
+          if (a[0] === 'count') {
+              return -1;
+          } else if (b[0] === 'count') {
+              return 1;
+          } else {
+              return 0;
+          }
+      })
+      .map((card) => {
+          if (card[0] === 'count') {
+              return `
+                  <div class="btn-with-heading">
+                      <h6 class="body-large custom-heading">Card Count Limit</h6>
+                      <img id="pen" src="../../assets/icons/pen.svg" />
+                  </div>
+                  ${Object.keys(card[1]).map((key) => `
+                      <div class="row">
+                          <div>
+                              <label for="card-count-min-${key}">Min</label>
+                              <input
+                                  type="text"
+                                  id="card-count-min-${key}"
+                                  class="form-control"
+                                  value="${card[1][key][0]}"
+                              />
+                          </div>
+                          <div>
+                              <label for="card-count-max-${key}">Max</label>
+                              <input
+                                  type="text"
+                                  id="card-count-max-${key}"
+                                  class="form-control"
+                                  value="${card[1][key][1]}"
+                              />
+                          </div>
+                      </div>
+                  `).join('')}
+              `;
+          } else {
+            let sumObj = card[1].sum
+            let valueObj = card[1].value
+            
+            return `
+                <div class="btn-with-heading">
+                    <h6 class="body-large custom-heading">Card Amount Limit</h6>
+                    <img id="pen" src="../../assets/icons/pen.svg" />
+                </div>
+                ${Object.keys(sumObj).map((key) => `
+                    <h6 class="heading-smallest">
+                      ${key === '1' ? 'Daily Limit'
+                      : key === '7' ? 'Weekly Limit'
+                      : key === '30'? 'Monthly Limit'
+                      : key === '365' ? 'Yearly Limit' : ''
+                    }
+                    </h6>
+                    <div class="row">
+                        <div>
+                            <label for="card-amount-min-${key}">Min</label>
+                            <input
+                                type="text"
+                                id="card-amount-min-${key}"
+                                class="form-control"
+                                value="${sumObj[key][0]}"
+                            />
+                        </div>
+                        <div>
+                            <label for="card-amount-max-${key}">Max</label>
+                            <input
+                                type="text"
+                                id="card-amount-max-${key}"
+                                class="form-control"
+                                value="${sumObj[key][1]}"
+                            />
+                        </div>
+                    </div>
+                `).join('')}
+                <h6 class="heading-smallest">Value Limits</h6>
+                <div class="row">
+                <div>
+                  <label for="card-value-min">Min</label>
+                  <input
+                    type="text"
+                    id="card-value-min"
+                    class="form-control"
+                    value="${valueObj[0]}"
+                  />
+                </div>
+                <div>
+                  <label for="card-value-max">Max</label>
+                  <input
+                    type="text"
+                    id="card-value-max"
+                    class="form-control"
+                    value="${valueObj[1]}"
+                  />
+                </div>
+              </div>
+            `;
+          }
+      })
+      .join('')}
+`);
 
-    `
-  )
-
+  // BIN
   let bin_array = Object.entries(body.bin)
   $('.bin-subgroups').append(
     `
@@ -58,6 +162,112 @@ function init() {
 
     `
   )
+
+  // HEADER
+  let header = rule.header
+  let header_array = Object.entries(header)
+  $('.header-group').append(`
+        ${header_array.map(([key, value]) => {
+          let inputElement = `
+      <input
+        class="form-control form-control-sm"
+        placeholder=""
+        id=${key}
+        name="${key}" value="${value}"
+      />
+    `;
+
+    if (key === 'mid') {
+      inputElement = `
+        <input
+          class="form-control form-control-sm"
+          placeholder=""
+          id="${key}"
+          name="${key}"
+          placeholder=""
+          value="{{ mid_list[mid] }}"
+          list="mid_list"
+        />
+        <datalist id="mid_list">
+          {% for item in const_list['mid'] %}
+          <option value="{{ item }}">{{ item }}</option>
+          {% endfor %}
+        </datalist>
+      `;
+    } else if (key === 'gw_currencies') {
+      inputElement = `
+        <input
+          name="gw_currencies"
+          list="gw_currencies_list"
+          class="form-control form-control-sm"
+          id="gw_currencies"
+          placeholder=""
+          value="{{ gw_currencies_list[gw_currencies] }}"
+        />
+        <datalist id="gw_currencies_list">
+          {% for item in const_list['gw_currencies'] %}
+          <option value="{{ item }}">{{ item }}</option>
+          {% endfor %}
+        </datalist>
+      `;
+    } else if (key === 'currencies') {
+      inputElement = `
+        <input
+          name="gateway_currency"
+          list="currencies"
+          class="form-control form-control-sm"
+          id="currency"
+          placeholder=""
+          value="{{ currencies[currency] }}"
+        />
+        <datalist id="currencies">
+          {% for item in const_list['currency'] %}
+          <option value="{{ item }}">{{ item }}</option>
+          {% endfor %}
+        </datalist>
+      `;
+    } else if (key === 'card_brand') {
+      inputElement = `
+        <input
+          name="card_brand"
+          list="card_brands"
+          class="form-control form-control-sm"
+          id="card_brand"
+          placeholder=""
+          value="{{ card_brand }}"
+        />
+        <datalist id="card_brands">
+          <option>MasterCard</option>
+          <option>VISA</option>
+        </datalist>
+      `;
+    }
+          return `
+            <div>
+              <label for=${key}>${
+                key === 'acq_alias'
+                  ? 'Acquirer Alias'
+                  : key === 'acq_id'
+                  ? 'Acquirer ID'
+                  : key === 'mid'
+                  ? 'MID'
+                  : key === 'gateway_currency'
+                  ? 'Gateway Currency'
+                  : key === 'currency'
+                  ? 'Currency'
+                  : 'Card Brand'
+              }</label>
+              <div class="header-input-row">
+          ${inputElement}
+          <div class="js-header-delete">
+            <img src="../../assets/icons/delete_purple.svg" />
+          </div>
+        </div>
+          `
+        }).filter((block) => block)
+        .join('')}
+  `)
+
 
   $('.js-open-modal-router').on('click', function () {
     $('#parent-router-modal').css('display', 'flex')
@@ -113,7 +323,7 @@ function init() {
                   value="${fieldName}"
                 />
                 <div class="js-header-delete">
-                  src=(require('assets/icons/delete_purple.svg))
+                src="../../assets/icons/delete_purple.svg"
                 </div>
               </div>
             </div>

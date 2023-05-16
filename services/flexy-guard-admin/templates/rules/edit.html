@@ -230,28 +230,108 @@
   </div>
 </div>
 
+<!-- EDIT PAGE -->
 <div class="row">
   <div class="box">
     <div class="box-body">
       <div class="mb-3">
         <div class="m-3">
           <form class="form-body">
-            <div class="form-body-left">
-              <div class="card-settings"> </div>
-              <div class="bin">
-                <h3
-                  class="heading-small"
-                  style="margin: 40px 0px 0px"
-                  >Bin
-                  <img
-                    id="cog"
-                    src="{{ url_for('static', filename='assets/icons/cog.svg') }}"
-                  />
-                </h3>
-                <div class="bin-subgroups"> </div>
+            <div class="form-group row-top">
+              <div class="box-header">
+                <input
+                  name="comment"
+                  class="custom-edit-name"
+                  id="comment"
+                  placeholder=""
+                  value="{{ rule.Comment }}"
+                />
+              </div>
+              <div class="row-top-buttons">
+                <a
+                  href="/list"
+                  class="btn custom-discard"
+                  >Discard</a
+                >
+                <button class="btn custom-save js-item-save pull-right">
+                  Save Changes
+                </button>
               </div>
             </div>
-            <div class="form-body-right"> </div>
+            <div class="content-left-right">
+              <div class="left">
+                  <h2 class="heading-medium"
+                    >Body
+                    <!-- <button
+                      id="add-field-btn"
+                      type="button"
+                      class="btn btn-primary"
+                      >Add Field</button
+                    > -->
+                  </h2>
+                <div class="card-settings"> 
+                  <h3
+                    class="heading-small"
+                    style="margin: 40px 0px 0px"
+                    >Card Settings
+                    <img
+                      id="cog"
+                      src="{{ url_for('static', filename='assets/icons/cog.svg') }}"
+                    />
+                  </h3>
+                  <div class="card-subgroups"> </div>
+                </div>
+                <div class="bin">
+                  <h3
+                    class="heading-small"
+                    style="margin: 40px 0px 0px"
+                    >Bin
+                    <img
+                      id="cog"
+                      src="{{ url_for('static', filename='assets/icons/cog.svg') }}"
+                    />
+                  </h3>
+                  <div class="bin-subgroups"> </div>
+                </div>
+              </div>
+              <div class="right"> 
+                <div class="header">
+                  <h2 class="heading-medium"
+                    >Header
+                    <button
+                      id="add-field-btn"
+                      type="button"
+                      class="btn btn-primary js-open-modal"
+                      >Add Field</button
+                    >
+                  </h2>
+                  <div class="header-group"></div>
+                </div>
+                <div class="router"> 
+                  <h2 class="heading-medium"
+                    >Router
+                    <button
+                      id="add-field-btn"
+                      type="button"
+                      class="btn btn-primary js-open-modal-router"
+                      >Add Field</button
+                    >
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="form-group custom-form-group">
+              <a
+                href="/list"
+                class="btn custom-discard"
+                >Discard</a
+              >
+              <button
+                class="btn btn-primary custom-button js-item-save pull-right"
+              >
+                Save Changes
+              </button>
+            </div>
           </form>
           <!-- <form class="form-body">
             <input
@@ -804,5 +884,7 @@
 <script>
   let rule = '{{ json|tojson }}'
   rule = JSON.parse(rule)
+  let const_list = '{{ const_list|tojson }}'
+  const_list = JSON.parse(const_list)
 </script>
 {% endblock %}
