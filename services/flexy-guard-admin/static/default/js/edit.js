@@ -3,7 +3,6 @@ function init() {
   let card_array = Object.entries(body.card)
 
   // CARD-SETTINGS
-  console.log(card_array)
   $('.card-subgroups').append(`
   ${card_array
     .filter((card) => card[0] === 'count' || card[0] === 'amount')
@@ -17,109 +16,189 @@ function init() {
       }
     })
     .map((card) => {
+      if (card[0] === 'status') {
+        return `
+          <h6 class="body-large custom-heading">
+            Card status count approved
+          </h6>
+          <div class="row">
+            <div>
+              <label for="card-approved-min">Min</label>
+              <input
+                type="text"
+                id="card-approved-min"
+                class="form-control js-card-status-count-min"
+                value="${Object.entries(card[1])[0][1][0]}
+              />
+            </div>
+            <div>
+              <label for="card-approved-max">Max</label>
+              <input
+                type="text"
+                id="card-approved-max"
+                class="form-control js-card-status-count-max"
+                value="${Object.entries(card[1])[0][1][1]}
+              />
+            </div>
+          </div>
+        `
+      }
       if (card[0] === 'count') {
         return `
           <div class="btn-with-heading">
-              <h6 class="body-large custom-heading">Card Count Limit</h6>
-              <img id="pen" src="../../assets/icons/pen.svg" />
+            <h6 class="body-large custom-heading">Card Count Limit</h6>
+            <img
+              id="pen"
+              src="../../assets/icons/pen.svg"
+            />
           </div>
-          ${Object.keys(card[1])
-            .map(
-              (key) => `
-              <div class="row">
-                  <div>
-                      <label for="card-count-min-${key}">Min</label>
-                      <input
-                          type="text"
-                          id="card-count-min-${key}"
-                          class="form-control"
-                          value="${card[1][key][0]}"
-                      />
-                  </div>
-                  <div>
-                      <label for="card-count-max-${key}">Max</label>
-                      <input
-                          type="text"
-                          id="card-count-max-${key}"
-                          class="form-control"
-                          value="${card[1][key][1]}"
-                      />
-                  </div>
-              </div>
-          `
-            )
-            .join('')}
-      `
-      } else {
-        let sumObj = card[1].sum
-        let valueObj = card[1].value
-
+          <div class="row">
+            <div>
+              <label for="card-count-min">Min</label>
+              <input
+                type="text"
+                id="card-count-min"
+                class="form-control"
+                value="${Object.entries(card[1])[0][1][0]}"
+              />
+            </div>
+            <div>
+              <label for="card-count-max">Max</label>
+              <input
+                type="text"
+                id="card-count-max"
+                class="form-control"
+                value="${Object.entries(card[1])[0][1][1]}"
+              />
+            </div>
+          </div>
+        `
+      }
+      if (card[0] === 'daily') {
         return `
-                <div class="btn-with-heading">
-                    <h6 class="body-large custom-heading">Card Amount Limit</h6>
-                    <img id="pen" src="../../assets/icons/pen.svg" />
-                </div>
-                ${Object.keys(sumObj)
-                  .map(
-                    (key) => `
-                    <h6 class="heading-smallest">
-                      ${
-                        key === '1'
-                          ? 'Daily Limit'
-                          : key === '7'
-                          ? 'Weekly Limit'
-                          : key === '30'
-                          ? 'Monthly Limit'
-                          : key === '365'
-                          ? 'Yearly Limit'
-                          : ''
-                      }
-                    </h6>
-                    <div class="row">
-                        <div>
-                            <label for="card-amount-min-${key}">Min</label>
-                            <input
-                                type="text"
-                                id="card-amount-min-${key}"
-                                class="form-control"
-                                value="${sumObj[key][0]}"
-                            />
-                        </div>
-                        <div>
-                            <label for="card-amount-max-${key}">Max</label>
-                            <input
-                                type="text"
-                                id="card-amount-max-${key}"
-                                class="form-control"
-                                value="${sumObj[key][1]}"
-                            />
-                        </div>
-                    </div>
-                `
-                  )
-                  .join('')}
-                <h6 class="heading-smallest">Value Limits</h6>
-                <div class="row">
-                <div>
-                  <label for="card-value-min">Min</label>
-                  <input
-                    type="text"
-                    id="card-value-min"
-                    class="form-control"
-                    value="${valueObj[0]}"
-                  />
-                </div>
-                <div>
-                  <label for="card-value-max">Max</label>
-                  <input
-                    type="text"
-                    id="card-value-max"
-                    class="form-control"
-                    value="${valueObj[1]}"
-                  />
-                </div>
-              </div>
-            `
+          <h6 class="heading-smallest">Daily Limit</h6>
+          <div class="row">
+            <div>
+              <label for="card-amount-daily-min">Min</label>
+              <input
+                type="text"
+                id="card-amount-daily-min"
+                class="form-control"
+                value="${Object.entries(card[1])[0][1][0]}"
+              />
+            </div>
+            <div>
+              <label for="card-amount-daily-max">Max</label>
+              <input
+                type="text"
+                id="card-amount-daily-max"
+                class="form-control"
+                value="${Object.entries(card[1])[0][1][1]}"
+              />
+            </div>
+          </div>
+        `
+      }
+      if (card[0] === 'weekly') {
+        return `
+          <h6 class="heading-smallest">Weekly Limit</h6>
+          <div class="row">
+            <div>
+              <label for="card-amount-weekly-min">Min</label>
+              <input
+                type="text"
+                id="card-amount-weekly-min"
+                class="form-control"
+                value="${Object.entries(card[1])[0][1][0]}"
+              />
+            </div>
+            <div>
+              <label for="card-amount-weekly-max">Max</label>
+              <input
+                type="text"
+                id="card-amount-weekly-max"
+                class="form-control"
+                value="${Object.entries(card[1])[0][1][1]}"
+              />
+            </div>
+          </div>
+        `
+      }
+      if (card[0] === 'monthly') {
+        return `
+          <h6 class="heading-smallest">Monthly Limit</h6>
+          <div class="row">
+            <div>
+              <label for="card-amount-monthly-min">Min</label>
+              <input
+                type="text"
+                id="card-amount-monthly-min"
+                class="form-control"
+                value="${Object.entries(card[1])[0][1][0]}"
+              />
+            </div>
+            <div>
+              <label for="card-amount-monthly-max">Max</label>
+              <input
+                type="text"
+                id="card-amount-monthly-max"
+                class="form-control"
+                value="${Object.entries(card[1])[0][1][1]}"
+              />
+            </div>
+          </div>
+        `
+      }
+      if (card[0] === 'yearly') {
+        return `
+          <h6 class="heading-smallest">Yearly Limit</h6>
+          <div class="row">
+            <div>
+              <label for="card-amount-yearly-min">Min</label>
+              <input
+                type="text"
+                id="card-amount-yearly-min"
+                class="form-control"
+                value="${Object.entries(card[1])[0][1][0]}"
+              />
+            </div>
+            <div>
+              <label for="card-amount-yearly-max">Max</label>
+              <input
+                type="text"
+                id="card-amount-yearly-max"
+                class="form-control"
+                value="${Object.entries(card[1])[0][1][1]}"
+              />
+            </div>
+          </div>
+        `
+      }
+      if (card[0] === 'amount') {
+        console.log(Object.entries(card[1])[1])
+        return `
+          <h6 class="heading-smallest">Value limits</h6>
+          <div class="row">
+            <div>
+              <label for="card-amount-min">Min</label>
+              <input
+                type="text"
+                id="card-amount-min"
+                class="form-control"
+                value="${Object.entries(card[1])[1][1][0]}"
+              />
+            </div>
+            <div>
+              <label for="card-amount-max">Max</label>
+              <input
+                type="text"
+                id="card-amount-max"
+                class="form-control"
+                value="${Object.entries(card[1])[1][1][1]}"
+              />
+            </div>
+          </div>
+        `
       }
     })
     .join('')}
