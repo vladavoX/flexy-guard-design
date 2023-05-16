@@ -9,6 +9,12 @@
     width: 300px;
     margin: 0 auto;
 }
+
+.bin-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
   
 #bin-field {
     width: 300px !important;
