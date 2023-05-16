@@ -445,11 +445,6 @@ function init() {
   `)
   }
 
-  $('.js-open-modal-router').on('click', function () {
-    $('#parent-router-modal').css('display', 'flex')
-    $('#router-modal').css('display', 'flex')
-  })
-
   $('.js-open-modal-bin').on('click', function () {
     $('#parent-bin-modal').css('display', 'flex')
     $('#bin-modal').css('display', 'flex')
@@ -486,20 +481,6 @@ function init() {
     $('#bin-modal').css('display', 'none')
     $('#parent-bin-modal').css('display', 'none')
     createPage(newRule)
-  })
-
-  $('.js-add-router').on('click', function () {
-    let fieldName = $('#router-name').val()
-  })
-
-  $('.js-open-edit-modal').on('click', function () {
-    $('#parent-edit-modal').css('display', 'flex')
-    $('#edit-modal').css('display', 'flex')
-  })
-
-  $('.js-close-edit-modal').on('click', function () {
-    $('#edit-modal').css('display', 'none')
-    $('#parent-edit-modal').css('display', 'none')
   })
 
   $('.js-header-delete').on('click', function () {
