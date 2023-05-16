@@ -445,9 +445,9 @@ function init() {
   `)
   }
 
-  $('.js-open-modal-router').on('click', function () {
-    $('#parent-router-modal').css('display', 'flex')
-    $('#router-modal').css('display', 'flex')
+  $('.js-open-modal-bin').on('click', function () {
+    $('#parent-bin-modal').css('display', 'flex')
+    $('#bin-modal').css('display', 'flex')
   })
 
   $('.js-open-modal').on('click', function () {
@@ -458,6 +458,8 @@ function init() {
   $('.js-close-modal').on('click', function () {
     $('#header-modal').css('display', 'none')
     $('#parent-header-modal').css('display', 'none')
+    $('#bin-modal').css('display', 'none')
+    $('#parent-bin-modal').css('display', 'none')
   })
 
   $('.js-add-header').on('click', function () {
@@ -471,18 +473,14 @@ function init() {
     createPage(newRule)
   })
 
-  $('.js-add-router').on('click', function () {
-    let fieldName = $('#router-name').val()
-  })
+  $('.js-add-bin').on('click', function () {
+    let selectedBin = $('.bin-select').find(':selected').val()
 
-  $('.js-open-edit-modal').on('click', function () {
-    $('#parent-edit-modal').css('display', 'flex')
-    $('#edit-modal').css('display', 'flex')
-  })
-
-  $('.js-close-edit-modal').on('click', function () {
-    $('#edit-modal').css('display', 'none')
-    $('#parent-edit-modal').css('display', 'none')
+    let newRule = rule
+    newRule.body.bin[selectedBin] = []
+    $('#bin-modal').css('display', 'none')
+    $('#parent-bin-modal').css('display', 'none')
+    createPage(newRule)
   })
 
   $('.js-header-delete').on('click', function () {
