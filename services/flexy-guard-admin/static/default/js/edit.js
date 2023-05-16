@@ -72,132 +72,112 @@ function init() {
               />
             </div>
           </div>
-        `
-      }
-      if (card[0] === 'daily') {
-        return `
-          <h6 class="heading-smallest">Daily Limit</h6>
-          <div class="row">
-            <div>
-              <label for="card-amount-daily-min">Min</label>
-              <input
-                type="text"
-                id="card-amount-daily-min"
-                class="form-control"
-                value="${Object.entries(card[1])[0][1][0]}"
-              />
-            </div>
-            <div>
-              <label for="card-amount-daily-max">Max</label>
-              <input
-                type="text"
-                id="card-amount-daily-max"
-                class="form-control"
-                value="${Object.entries(card[1])[0][1][1]}"
-              />
-            </div>
-          </div>
-        `
-      }
-      if (card[0] === 'weekly') {
-        return `
-          <h6 class="heading-smallest">Weekly Limit</h6>
-          <div class="row">
-            <div>
-              <label for="card-amount-weekly-min">Min</label>
-              <input
-                type="text"
-                id="card-amount-weekly-min"
-                class="form-control"
-                value="${Object.entries(card[1])[0][1][0]}"
-              />
-            </div>
-            <div>
-              <label for="card-amount-weekly-max">Max</label>
-              <input
-                type="text"
-                id="card-amount-weekly-max"
-                class="form-control"
-                value="${Object.entries(card[1])[0][1][1]}"
-              />
-            </div>
-          </div>
-        `
-      }
-      if (card[0] === 'monthly') {
-        return `
-          <h6 class="heading-smallest">Monthly Limit</h6>
-          <div class="row">
-            <div>
-              <label for="card-amount-monthly-min">Min</label>
-              <input
-                type="text"
-                id="card-amount-monthly-min"
-                class="form-control"
-                value="${Object.entries(card[1])[0][1][0]}"
-              />
-            </div>
-            <div>
-              <label for="card-amount-monthly-max">Max</label>
-              <input
-                type="text"
-                id="card-amount-monthly-max"
-                class="form-control"
-                value="${Object.entries(card[1])[0][1][1]}"
-              />
-            </div>
-          </div>
-        `
-      }
-      if (card[0] === 'yearly') {
-        return `
-          <h6 class="heading-smallest">Yearly Limit</h6>
-          <div class="row">
-            <div>
-              <label for="card-amount-yearly-min">Min</label>
-              <input
-                type="text"
-                id="card-amount-yearly-min"
-                class="form-control"
-                value="${Object.entries(card[1])[0][1][0]}"
-              />
-            </div>
-            <div>
-              <label for="card-amount-yearly-max">Max</label>
-              <input
-                type="text"
-                id="card-amount-yearly-max"
-                class="form-control"
-                value="${Object.entries(card[1])[0][1][1]}"
-              />
-            </div>
+          <div class="btn-with-heading">
+            <h6 class="body-large custom-heading">Card Amount Limit</h6>
+            <img
+              id="pen"
+              src="../../assets/icons/pen.svg"
+            />
           </div>
         `
       }
       if (card[0] === 'amount') {
-        console.log(Object.entries(card[1])[1])
         return `
-          <h6 class="heading-smallest">Value limits</h6>
-          <div class="row">
-            <div>
-              <label for="card-amount-min">Min</label>
-              <input
-                type="text"
-                id="card-amount-min"
-                class="form-control"
-                value="${Object.entries(card[1])[1][1][0]}"
-              />
+          ${Object.entries(Object.entries(card[1].sum))
+            .map(
+              (sum) => `
+            <h6 class="heading-smallest">${
+              sum[1][0] === '1'
+                ? 'Daily Limit'
+                : sum[1][0] === '7'
+                ? 'Weekly Limit'
+                : sum[1][0] === '30'
+                ? 'Monthly Limit'
+                : 'Yearly Limit'
+            }</h6>
+            <div class="row">
+              <div>
+                <label for="card-amount-${
+                  sum[1][0] === '1'
+                    ? 'daily'
+                    : sum[1][0] === '7'
+                    ? 'weekly'
+                    : sum[1][0] === '30'
+                    ? 'monthly'
+                    : 'yearly'
+                }-min">Min</label>
+                <input
+                  type="text"
+                  id="card-amount-${
+                    sum[1][0] === '1'
+                      ? 'daily'
+                      : sum[1][0] === '7'
+                      ? 'weekly'
+                      : sum[1][0] === '30'
+                      ? 'monthly'
+                      : 'yearly'
+                  }-min"
+                  class="form-control"
+                  value="${sum[1][1][0]}"
+                />
+              </div>
+              <div>
+                <label for="card-amount-${
+                  sum[1][0] === '1'
+                    ? 'daily'
+                    : sum[1][0] === '7'
+                    ? 'weekly'
+                    : sum[1][0] === '30'
+                    ? 'monthly'
+                    : 'yearly'
+                }-max">Max</label>
+                <input
+                  type="text"
+                  id="card-amount-${
+                    sum[1][0] === '1'
+                      ? 'daily'
+                      : sum[1][0] === '7'
+                      ? 'weekly'
+                      : sum[1][0] === '30'
+                      ? 'monthly'
+                      : 'yearly'
+                  }-max"
+                  class="form-control"
+                  value="${sum[1][1][1]}"
+                />
+              </div>
             </div>
-            <div>
-              <label for="card-amount-max">Max</label>
-              <input
-                type="text"
-                id="card-amount-max"
-                class="form-control"
-                value="${Object.entries(card[1])[1][1][1]}"
-              />
-            </div>
-          </div>
+          `
+            )
+            .join('')}
+            ${
+              card[1].value
+                ? `
+                  <h6 class="heading-smallest">Value limits</h6>
+                  <div class="row">
+                    <div>
+                      <label for="card-amount-min">Min</label>
+                      <input
+                        type="text"
+                        id="card-amount-min"
+                        class="form-control"
+                        value="${card[1].value[0]}"
+                      />
+                    </div>
+                    <div>
+                      <label for="card-amount-max">Max</label>
+                      <input
+                        type="text"
+                        id="card-amount-max"
+                        class="form-control"
+                        value="${card[1].value[1]}"
+                      />
+                    </div>
+                  </div>
+            `
+                : ''
+            }
+          
         `
       }
     })
@@ -830,19 +810,19 @@ ${available_routing_array
       routing: routing
     })
 
-    // $.ajax({
-    //   type: 'POST',
-    //   url: '/update',
-    //   data: data
-    // }).done(function (response) {
-    //   let parsed = JSON.parse(response)
+    $.ajax({
+      type: 'POST',
+      url: '/update',
+      data: data
+    }).done(function (response) {
+      let parsed = JSON.parse(response)
 
-    //   if (parsed.result === false) {
-    //     alert(parsed.message)
-    //   } else {
-    //     window.location = '/rules/edit/' + parsed.data
-    //   }
-    // })
+      if (parsed.result === false) {
+        alert(parsed.message)
+      } else {
+        window.location = '/rules/edit/' + parsed.data
+      }
+    })
   })
 }
 

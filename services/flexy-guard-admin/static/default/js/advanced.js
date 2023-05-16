@@ -31,19 +31,19 @@ function init() {
 
 function send(url, data) {
   console.log(data)
-  //   $.ajax({
-  //     type: 'POST',
-  //     url: url,
-  //     data: data
-  //   }).done(function (response) {
-  //     let parsed = JSON.parse(response)
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: data
+  }).done(function (response) {
+    let parsed = JSON.parse(response)
 
-  //     if (parsed.result === false) {
-  //       alert(parsed.message)
-  //     } else {
-  //       window.location = '/rules/edit/' + '/' + parsed.data
-  //     }
-  //   })
+    if (parsed.result === false) {
+      alert(parsed.message)
+    } else {
+      window.location = '/rules/edit/' + '/' + parsed.data
+    }
+  })
 }
 
 $(document).ready(init)
