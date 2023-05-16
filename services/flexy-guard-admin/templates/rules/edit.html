@@ -5,7 +5,7 @@
   href="{{ url_for('static', filename='styles/rules/edit.css') }}"
 />
 <!-- EDITING MODAL -->
-<div
+<!-- <div
   id="parent-edit-modal"
   class="parent-edit-modal"
 >
@@ -143,7 +143,7 @@
       <button class="btn btn-primary">Apply Changes</button>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- HEADER MODAL -->
 <div
@@ -167,7 +167,7 @@
         >
         <select
           id="header-field"
-          class="form-control"
+          class="form-control header-select"
         >
           <option value="">Select type</option>
           <option value="acq_alias">Acquirer Alias</option>
@@ -193,40 +193,6 @@
       </div>
     </div>
     <button class="btn btn-primary btn-dialog js-add-header">Add Field</button>
-  </div>
-</div>
-
-<!-- ROUTER MODAL -->
-<div
-  id="parent-router-modal"
-  class="parent-router-modal"
->
-  <div id="router-modal">
-    <p
-      class="close-icon js-close-router-modal"
-      class="fa"
-    >
-      <img src="{{ url_for('static', filename='assets/icons/close.svg') }}" />
-    </p>
-    <h2 class="heading-medium header-heading">Add Router Field</h2>
-    <div class="row header-row">
-      <div class="col-sm-6 header-field-box">
-        <label
-          class="router-label"
-          for="router-name"
-          >Name</label
-        >
-        <input
-          type="text"
-          id="router-name"
-          class="form-control js-card-status-count-min"
-          value=""
-        />
-      </div>
-      <button class="btn btn-primary btn-dialog js-add-router"
-        >Add Field</button
-      >
-    </div>
   </div>
 </div>
 
@@ -291,10 +257,12 @@
                     class="heading-small"
                     style="margin: 40px 0px 0px"
                     >Bin
-                    <img
-                      id="cog"
-                      src="{{ url_for('static', filename='assets/icons/cog.svg') }}"
-                    />
+                    <button
+                      id="add-field-btn"
+                      type="button"
+                      class="btn btn-primary js-open-modal-router"
+                      >Add Field</button
+                    >
                   </h3>
                   <div class="bin-subgroups"> </div>
                 </div>
@@ -313,15 +281,7 @@
                   <div class="header-group"></div>
                 </div>
                 <div class="router">
-                  <h2 class="heading-medium"
-                    >Router
-                    <button
-                      id="add-field-btn"
-                      type="button"
-                      class="btn btn-primary js-open-modal-router"
-                      >Add Field</button
-                    >
-                  </h2>
+                  <h2 class="heading-medium">Router </h2>
                   <div class="router-group"></div>
                 </div>
               </div>

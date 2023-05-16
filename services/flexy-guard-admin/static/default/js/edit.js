@@ -1,443 +1,440 @@
 function init() {
-  let body = rule.body
-  let card_array = Object.entries(body.card)
+  createPage(rule)
 
-  // CARD-SETTINGS
-  $('.card-subgroups').append(`
-  ${card_array
-    .filter((card) => card[0] === 'count' || card[0] === 'amount')
-    .sort((a, b) => {
-      if (a[0] === 'count') {
-        return -1
-      } else if (b[0] === 'count') {
-        return 1
-      } else {
-        return 0
-      }
-    })
-    .map((card) => {
-      if (card[0] === 'status') {
-        return `
-          <h6 class="body-large custom-heading">
-            Card status count approved
-          </h6>
-          <div class="row">
-            <div>
-              <label for="card-approved-min">Min</label>
-              <input
-                type="text"
-                id="card-approved-min"
-                class="form-control js-card-status-count-min"
-                value="${Object.entries(card[1])[0][1][0]}
-              />
-            </div>
-            <div>
-              <label for="card-approved-max">Max</label>
-              <input
-                type="text"
-                id="card-approved-max"
-                class="form-control js-card-status-count-max"
-                value="${Object.entries(card[1])[0][1][1]}
-              />
-            </div>
-          </div>
-        `
-      }
-      if (card[0] === 'count') {
-        return `
-          <div class="btn-with-heading">
-            <h6 class="body-large custom-heading">Card Count Limit</h6>
-            <img
-              id="pen"
-              src="../../assets/icons/pen.svg"
-            />
-          </div>
-          <div class="row">
-            <div>
-              <label for="card-count-min">Min</label>
-              <input
-                type="text"
-                id="card-count-min"
-                class="form-control"
-                value="${Object.entries(card[1])[0][1][0]}"
-              />
-            </div>
-            <div>
-              <label for="card-count-max">Max</label>
-              <input
-                type="text"
-                id="card-count-max"
-                class="form-control"
-                value="${Object.entries(card[1])[0][1][1]}"
-              />
-            </div>
-          </div>
-          <div class="btn-with-heading">
-            <h6 class="body-large custom-heading">Card Amount Limit</h6>
-            <img
-              id="pen"
-              src="../../assets/icons/pen.svg"
-            />
-          </div>
-        `
-      }
-      if (card[0] === 'amount') {
-        return `
-          ${Object.entries(Object.entries(card[1].sum))
-            .map(
-              (sum) => `
-            <h6 class="heading-smallest">${
-              sum[1][0] === '1'
-                ? 'Daily Limit'
-                : sum[1][0] === '7'
-                ? 'Weekly Limit'
-                : sum[1][0] === '30'
-                ? 'Monthly Limit'
-                : 'Yearly Limit'
-            }</h6>
+  function createPage(rule) {
+    let body = rule.body
+    let card_array = Object.entries(body.card)
+    // CARD-SETTINGS
+    $('.card-subgroups').html(`
+    ${card_array
+      .filter((card) => card[0] === 'count' || card[0] === 'amount')
+      .sort((a, b) => {
+        if (a[0] === 'count') {
+          return -1
+        } else if (b[0] === 'count') {
+          return 1
+        } else {
+          return 0
+        }
+      })
+      .map((card) => {
+        if (card[0] === 'status') {
+          return `
+            <h6 class="body-large custom-heading">
+              Card status count approved
+            </h6>
             <div class="row">
               <div>
-                <label for="card-amount-${
-                  sum[1][0] === '1'
-                    ? 'daily'
-                    : sum[1][0] === '7'
-                    ? 'weekly'
-                    : sum[1][0] === '30'
-                    ? 'monthly'
-                    : 'yearly'
-                }-min">Min</label>
+                <label for="card-approved-min">Min</label>
                 <input
                   type="text"
-                  id="card-amount-${
-                    sum[1][0] === '1'
-                      ? 'daily'
-                      : sum[1][0] === '7'
-                      ? 'weekly'
-                      : sum[1][0] === '30'
-                      ? 'monthly'
-                      : 'yearly'
-                  }-min"
-                  class="form-control"
-                  value="${sum[1][1][0]}"
+                  id="card-approved-min"
+                  class="form-control js-card-status-count-min"
+                  value="${Object.entries(card[1])[0][1][0]}
                 />
               </div>
               <div>
-                <label for="card-amount-${
-                  sum[1][0] === '1'
-                    ? 'daily'
-                    : sum[1][0] === '7'
-                    ? 'weekly'
-                    : sum[1][0] === '30'
-                    ? 'monthly'
-                    : 'yearly'
-                }-max">Max</label>
+                <label for="card-approved-max">Max</label>
                 <input
                   type="text"
-                  id="card-amount-${
-                    sum[1][0] === '1'
-                      ? 'daily'
-                      : sum[1][0] === '7'
-                      ? 'weekly'
-                      : sum[1][0] === '30'
-                      ? 'monthly'
-                      : 'yearly'
-                  }-max"
-                  class="form-control"
-                  value="${sum[1][1][1]}"
+                  id="card-approved-max"
+                  class="form-control js-card-status-count-max"
+                  value="${Object.entries(card[1])[0][1][1]}
                 />
               </div>
             </div>
           `
-            )
-            .join('')}
-            ${
-              card[1].value
-                ? `
-                  <h6 class="heading-smallest">Value limits</h6>
-                  <div class="row">
-                    <div>
-                      <label for="card-amount-min">Min</label>
-                      <input
-                        type="text"
-                        id="card-amount-min"
-                        class="form-control"
-                        value="${card[1].value[0]}"
-                      />
-                    </div>
-                    <div>
-                      <label for="card-amount-max">Max</label>
-                      <input
-                        type="text"
-                        id="card-amount-max"
-                        class="form-control"
-                        value="${card[1].value[1]}"
-                      />
-                    </div>
-                  </div>
+        }
+        if (card[0] === 'count') {
+          return `
+            <div class="btn-with-heading">
+              <h6 class="body-large custom-heading">Card Count Limit</h6>
+            </div>
+            <div class="row">
+              <div>
+                <label for="card-count-min">Min</label>
+                <input
+                  type="text"
+                  id="card-count-min"
+                  class="form-control"
+                  value="${Object.entries(card[1])[0][1][0]}"
+                />
+              </div>
+              <div>
+                <label for="card-count-max">Max</label>
+                <input
+                  type="text"
+                  id="card-count-max"
+                  class="form-control"
+                  value="${Object.entries(card[1])[0][1][1]}"
+                />
+              </div>
+            </div>
+            <div class="btn-with-heading">
+              <h6 class="body-large custom-heading">
+              Card Amount Limit
+              <button
+                id="add-field-btn"
+                type="button"
+                class="btn btn-primary js-open-modal-router"
+                >Add Field</button
+              >
+              </h6>
+
+            </div>
+          `
+        }
+        if (card[0] === 'amount') {
+          return `
+            ${Object.entries(Object.entries(card[1].sum))
+              .map(
+                (sum) => `
+              <h6 class="heading-smallest">${
+                sum[1][0] === '1'
+                  ? 'Daily Limit'
+                  : sum[1][0] === '7'
+                  ? 'Weekly Limit'
+                  : sum[1][0] === '30'
+                  ? 'Monthly Limit'
+                  : 'Yearly Limit'
+              }</h6>
+              <div class="row">
+                <div>
+                  <label for="card-amount-${
+                    sum[1][0] === '1'
+                      ? 'daily'
+                      : sum[1][0] === '7'
+                      ? 'weekly'
+                      : sum[1][0] === '30'
+                      ? 'monthly'
+                      : 'yearly'
+                  }-min">Min</label>
+                  <input
+                    type="text"
+                    id="card-amount-${
+                      sum[1][0] === '1'
+                        ? 'daily'
+                        : sum[1][0] === '7'
+                        ? 'weekly'
+                        : sum[1][0] === '30'
+                        ? 'monthly'
+                        : 'yearly'
+                    }-min"
+                    class="form-control"
+                    value="${sum[1][1][0]}"
+                  />
+                </div>
+                <div>
+                  <label for="card-amount-${
+                    sum[1][0] === '1'
+                      ? 'daily'
+                      : sum[1][0] === '7'
+                      ? 'weekly'
+                      : sum[1][0] === '30'
+                      ? 'monthly'
+                      : 'yearly'
+                  }-max">Max</label>
+                  <input
+                    type="text"
+                    id="card-amount-${
+                      sum[1][0] === '1'
+                        ? 'daily'
+                        : sum[1][0] === '7'
+                        ? 'weekly'
+                        : sum[1][0] === '30'
+                        ? 'monthly'
+                        : 'yearly'
+                    }-max"
+                    class="form-control"
+                    value="${sum[1][1][1]}"
+                  />
+                </div>
+              </div>
             `
-                : ''
-            }
-          
-        `
-      }
-    })
-    .join('')}
-`)
-
-  // BIN
-  let bin_array = Object.entries(body.bin)
-  $('.bin-subgroups').append(
-    `
-      ${bin_array
-        .map((bin) => {
-          if (
-            bin[0] === 'in_country' ||
-            bin[0] === 'not_in_country' ||
-            bin[0] === 'not_in_ip_country' ||
-            bin[0] === 'in_ip_country'
-          ) {
-            return `
-      <div class="row">
-        <div>
-          <div class="btn-with-heading">
-            <h6 class="body-large custom-heading">
+              )
+              .join('')}
               ${
-                bin[0] === 'in_country'
-                  ? 'In Country'
-                  : bin[0] === 'not_in_country'
-                  ? 'Not In Country'
-                  : bin[0] === 'not_in_ip_country'
-                  ? 'Not In IP Country'
-                  : 'In IP Country'
+                card[1].value
+                  ? `
+                    <h6 class="heading-smallest">Value limits</h6>
+                    <div class="row">
+                      <div>
+                        <label for="card-amount-min">Min</label>
+                        <input
+                          type="text"
+                          id="card-amount-min"
+                          class="form-control"
+                          value="${card[1].value[0]}"
+                        />
+                      </div>
+                      <div>
+                        <label for="card-amount-max">Max</label>
+                        <input
+                          type="text"
+                          id="card-amount-max"
+                          class="form-control"
+                          value="${card[1].value[1]}"
+                        />
+                      </div>
+                    </div>
+              `
+                  : ''
               }
-            </h6>
-            <img
-              id="pen"
-              src="../../assets/icons/pen.svg"
-            />
-          </div>
-          <textarea
-            ${
-              bin[0] === 'in_country'
-                ? 'id="bin-in-country"'
-                : bin[0] === 'not_in_country'
-                ? 'id="bin-not-in-country"'
-                : bin[0] === 'not_in_ip_country'
-                ? 'id="ip-not-in-country"'
-                : 'id="ip-in-country"'
-            }
-            class="form-control custom-textarea"
-          >
-            ${bin[1]
-              .map((country) => country)
-              .filter((c) => c)
-              .join('\n')}
-          </textarea>
-        </div>
-      </div>
-    `
-          }
-        })
-        .filter((block) => block)
-        .join('')}
-
-    `
-  )
-
-  // HEADER
-  let header = rule.header
-  let header_array = Object.entries(header)
-  let const_list_array = Object.entries(const_list)
-  let mid_list_array = Object.entries(mid_list)
-  $('.header-group').append(`
-    ${header_array
-      .map(([key, value]) => {
-        let inputElement = `
-          <input
-            class="form-control form-control-sm"
-            placeholder=""
-            id=${key}
-            name="${key}" value="${value}"
-          />
-        `
-        if (key === 'mid') {
-          inputElement = `
-            <input
-              name="mid"
-              list="mid_list"
-              class="form-control form-control-sm"
-              id="mid"
-              placeholder=""
-              value="${value}"
-            />
-            <datalist id="mid_list">
-              ${mid_list_array
-                .map((mid) => {
-                  return `
-                  <div>
-                    <option value="${mid[1]}">${mid[1]}</option>
-                  </div>
-                `
-                })
-                .join('')}
-            </datalist>
+            
           `
         }
-        if (key === 'acq_alias') {
-          inputElement = `
-            <input
-              name="acq_alias"
-              id="acq-alias"
-              class="form-control form-control-sm"
-              placeholder=""
-              value="${value}"
-            />
-          `
-        }
-        if (key === 'acq_id') {
-          inputElement = `
-            <input
-              name="acq_id"
-              id="acq-id"
-              class="form-control form-control-sm"
-              placeholder=""
-              value="${value}"
-            />
-          `
-        }
-        if (key === 'gateway_currency') {
-          inputElement = `
-            <input
-              name="gateway_currency"
-              list="gw_currencies"
-              class="form-control form-control-sm"
-              id="gateway-currency"
-              placeholder=""
-              value="${value}"
-            />
-            <datalist id="gw_currencies">
-              ${const_list_array
-                .filter((const_list) => const_list[0] === 'currency')
-                .map((const_list) => {
-                  return `
-                  <div>
-                    <option value="${const_list[1]}">${const_list[1]}</option>
-                  </div>
-                `
-                })
-                .join('')}
-            </datalist>
-          `
-        }
-        if (key === 'currency') {
-          inputElement = `
-            <input
-              name="gateway_currency"
-              list="currencies"
-              class="form-control form-control-sm"
-              id="currency"
-              placeholder=""
-              value="${value}"
-            />
-            <datalist id="currencies">
-              ${const_list_array
-                .filter((const_list) => const_list[0] === 'currency')
-                .map((const_list) => {
-                  return `
-                  <div>
-                    <option value="${const_list[1]}">${const_list[1]}</option>
-                  </div>
-                `
-                })
-                .join('')}
-            </datalist>
-          `
-        }
-        if (key === 'card_brand') {
-          inputElement = `
-            <input
-              name="card_brand"
-              list="card_brands"
-              class="form-control form-control-sm"
-              id="card-brand"
-              placeholder=""
-              value="${value}"
-            />
-            <datalist id="card_brands">
-              <option>MasterCard</option>
-              <option>VISA</option>
-            </datalist>
-          `
-        }
-        return `
-            <div>
-              <label for=${key}>${
-          key === 'acq_alias'
-            ? 'Acquirer Alias'
-            : key === 'acq_id'
-            ? 'Acquirer ID'
-            : key === 'mid'
-            ? 'Mearchant ID'
-            : key === 'gateway_currency'
-            ? 'Gateway Currency'
-            : key === 'currency'
-            ? 'Currency'
-            : 'Card Brand'
-        }</label>
-              <div class="header-input-row">
-          ${inputElement}
-          <div class="js-header-delete">
-            <img src="../../assets/icons/delete_purple.svg" />
-          </div>
-        </div>
-          `
       })
-      .filter((block) => block)
       .join('')}
   `)
 
-  // ROUTER
-  let available_routing_array = Object.entries(available_routing)
-  let gw_list_array = Object.entries(gateways_list)
-  $('.router-group').append(`
-${available_routing_array
-  .map((av_r) => {
-    return `
-    <div class="row js-route-row row-item">
-      <div>
-        <input
-          type="text"
-          value="${av_r[1]}"
-          class="form-control js-route-item"
-          readonly
-        />
-      </div>
-      <div>
-        <select class="form-control js-gw-item">
-          <option value="">Select Gateway Alias</option>
-          ${gw_list_array
-            .map((gw) => {
-              if (gw[1] === routing[av_r[1]]) {
-                return `
-                <option value="${gw[1]}" selected>${gw[1]}</option>
-              `
-              } else {
-                return `
-                <option value="${gw[1]}">${gw[1]}</option>
-              `
+    // BIN
+    let bin_array = Object.entries(body.bin)
+    $('.bin-subgroups').html(
+      `
+        ${bin_array
+          .map((bin) => {
+            if (
+              bin[0] === 'in_country' ||
+              bin[0] === 'not_in_country' ||
+              bin[0] === 'not_in_ip_country' ||
+              bin[0] === 'in_ip_country'
+            ) {
+              return `
+        <div class="row">
+          <div>
+            <div class="btn-with-heading">
+              <h6 class="body-large custom-heading">
+                ${
+                  bin[0] === 'in_country'
+                    ? 'In Country'
+                    : bin[0] === 'not_in_country'
+                    ? 'Not In Country'
+                    : bin[0] === 'not_in_ip_country'
+                    ? 'Not In IP Country'
+                    : 'In IP Country'
+                }
+              </h6>
+            </div>
+            <textarea
+              ${
+                bin[0] === 'in_country'
+                  ? 'id="bin-in-country"'
+                  : bin[0] === 'not_in_country'
+                  ? 'id="bin-not-in-country"'
+                  : bin[0] === 'not_in_ip_country'
+                  ? 'id="ip-not-in-country"'
+                  : 'id="ip-in-country"'
               }
-            })
-            .join('')}
-        </select>
+              class="form-control custom-textarea"
+            >
+              ${bin[1]
+                .map((country) => country)
+                .filter((c) => c)
+                .join('\n')}
+            </textarea>
+          </div>
+        </div>
+      `
+            }
+          })
+          .filter((block) => block)
+          .join('')}
+  
+      `
+    )
+
+    // HEADER
+    let header = rule.header
+    let header_array = Object.entries(header)
+    let const_list_array = Object.entries(const_list)
+    let mid_list_array = Object.entries(mid_list)
+    $('.header-group').html(`
+      ${header_array
+        .map(([key, value]) => {
+          let inputElement = `
+            <input
+              class="form-control form-control-sm"
+              placeholder=""
+              id=${key}
+              name="${key}" value="${value}"
+            />
+          `
+          if (key === 'mid') {
+            inputElement = `
+              <input
+                name="mid"
+                list="mid_list"
+                class="form-control form-control-sm"
+                id="mid"
+                placeholder=""
+                value="${value}"
+              />
+              <datalist id="mid_list">
+                ${mid_list_array
+                  .map((mid) => {
+                    return `
+                    <div>
+                      <option value="${mid[1]}">${mid[1]}</option>
+                    </div>
+                  `
+                  })
+                  .join('')}
+              </datalist>
+            `
+          }
+          if (key === 'acq_alias') {
+            inputElement = `
+              <input
+                name="acq_alias"
+                id="acq-alias"
+                class="form-control form-control-sm"
+                placeholder=""
+                value="${value}"
+              />
+            `
+          }
+          if (key === 'acq_id') {
+            inputElement = `
+              <input
+                name="acq_id"
+                id="acq-id"
+                class="form-control form-control-sm"
+                placeholder=""
+                value="${value}"
+              />
+            `
+          }
+          if (key === 'gateway_currency') {
+            inputElement = `
+              <input
+                name="gateway_currency"
+                list="gw_currencies"
+                class="form-control form-control-sm"
+                id="gateway-currency"
+                placeholder=""
+                value="${value}"
+              />
+              <datalist id="gw_currencies">
+                ${const_list_array
+                  .filter((const_list) => const_list[0] === 'currency')
+                  .map((const_list) => {
+                    return `
+                    <div>
+                      <option value="${const_list[1]}">${const_list[1]}</option>
+                    </div>
+                  `
+                  })
+                  .join('')}
+              </datalist>
+            `
+          }
+          if (key === 'currency') {
+            inputElement = `
+              <input
+                name="gateway_currency"
+                list="currencies"
+                class="form-control form-control-sm"
+                id="currency"
+                placeholder=""
+                value="${value}"
+              />
+              <datalist id="currencies">
+                ${const_list_array
+                  .filter((const_list) => const_list[0] === 'currency')
+                  .map((const_list) => {
+                    return `
+                    <div>
+                      <option value="${const_list[1]}">${const_list[1]}</option>
+                    </div>
+                  `
+                  })
+                  .join('')}
+              </datalist>
+            `
+          }
+          if (key === 'card_brand') {
+            inputElement = `
+              <input
+                name="card_brand"
+                list="card_brands"
+                class="form-control form-control-sm"
+                id="card-brand"
+                placeholder=""
+                value="${value}"
+              />
+              <datalist id="card_brands">
+                <option>MasterCard</option>
+                <option>VISA</option>
+              </datalist>
+            `
+          }
+          return `
+              <div>
+                <label for=${key}>${
+            key === 'acq_alias'
+              ? 'Acquirer Alias'
+              : key === 'acq_id'
+              ? 'Acquirer ID'
+              : key === 'mid'
+              ? 'Mearchant ID'
+              : key === 'gateway_currency'
+              ? 'Gateway Currency'
+              : key === 'currency'
+              ? 'Currency'
+              : 'Card Brand'
+          }</label>
+                <div class="header-input-row">
+            ${inputElement}
+            <div class="js-header-delete">
+              <img src="../../assets/icons/delete_purple.svg" />
+            </div>
+          </div>
+            `
+        })
+        .filter((block) => block)
+        .join('')}
+    `)
+
+    // ROUTER
+    let available_routing_array = Object.entries(available_routing)
+    let gw_list_array = Object.entries(gateways_list)
+    $('.router-group').html(`
+  ${available_routing_array
+    .map((av_r) => {
+      return `
+      <div class="row js-route-row row-item">
+        <div>
+          <input
+            type="text"
+            value="${av_r[1]}"
+            class="form-control js-route-item"
+            readonly
+          />
+        </div>
+        <div>
+          <select class="form-control js-gw-item">
+            <option value="">Select Gateway Alias</option>
+            ${gw_list_array
+              .map((gw) => {
+                if (gw[1] === routing[av_r[1]]) {
+                  return `
+                  <option value="${gw[1]}" selected>${gw[1]}</option>
+                `
+                } else {
+                  return `
+                  <option value="${gw[1]}">${gw[1]}</option>
+                `
+                }
+              })
+              .join('')}
+          </select>
+        </div>
       </div>
-      <div class="js-item-delete">
-        <img src="../../assets/icons/delete_purple.svg" />
-      </div>
-    </div>
-  \n`
-  })
-  .join('')}
-`)
+    \n`
+    })
+    .join('')}
+  `)
+  }
 
   $('.js-open-modal-router').on('click', function () {
     $('#parent-router-modal').css('display', 'flex')
@@ -460,52 +457,14 @@ ${available_routing_array
   })
 
   $('.js-add-header').on('click', function () {
-    let selectedHeader = $('#header-field').find(':selected').val()
     let fieldName = $('#header-name').val()
-    $('.right')
-      .children()
-      .first()
-      .after(
-        `
-          <div class="row form-group">
-            <div>
-              <label for=${selectedHeader}>
-              ${
-                selectedHeader === 'acq_alias'
-                  ? 'Acquirer Alias'
-                  : selectedHeader === 'acq_id'
-                  ? 'Acquirer ID'
-                  : selectedHeader === 'mid'
-                  ? 'MID'
-                  : selectedHeader === 'gateway_currency'
-                  ? 'Gateway Currency'
-                  : selectedHeader === 'currency'
-                  ? 'Currency'
-                  : 'Card Brand'
-              }
-              </label>
-              <div class="header-input-row">
-                <input
-                  name="acq_alias"
-                  class="form-control form-control-sm"
-                  id=${selectedHeader}
-                  placeholder=""
-                  value="${fieldName}"
-                />
-                <div class="js-header-delete">
-                src="../../assets/icons/delete_purple.svg"
-                </div>
-              </div>
-            </div>
-          </div>
-        `
-      )
+    let selectedHeader = $('.header-select').find(':selected').val()
 
+    let newRule = rule
+    newRule.header[selectedHeader] = fieldName
     $('#header-modal').css('display', 'none')
     $('#parent-header-modal').css('display', 'none')
-
-    $('#header-field').val('')
-    $('#header-name').val('')
+    createPage(newRule)
   })
 
   $('.js-add-router').on('click', function () {
