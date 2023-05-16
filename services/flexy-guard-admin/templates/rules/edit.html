@@ -260,16 +260,16 @@
             </div>
             <div class="content-left-right">
               <div class="left">
-                  <h2 class="heading-medium"
-                    >Body
-                    <!-- <button
+                <h2 class="heading-medium"
+                  >Body
+                  <!-- <button
                       id="add-field-btn"
                       type="button"
                       class="btn btn-primary"
                       >Add Field</button
                     > -->
-                  </h2>
-                <div class="card-settings"> 
+                </h2>
+                <div class="card-settings">
                   <h3
                     class="heading-small"
                     style="margin: 40px 0px 0px"
@@ -294,7 +294,7 @@
                   <div class="bin-subgroups"> </div>
                 </div>
               </div>
-              <div class="right"> 
+              <div class="right">
                 <div class="header">
                   <h2 class="heading-medium"
                     >Header
@@ -307,7 +307,7 @@
                   </h2>
                   <div class="header-group"></div>
                 </div>
-                <div class="router"> 
+                <div class="router">
                   <h2 class="heading-medium"
                     >Router
                     <button
@@ -883,8 +883,10 @@
 </div>
 <script>
   let rule = '{{ json|tojson }}'
-  rule = JSON.parse(rule)
   let const_list = '{{ const_list|tojson }}'
+  let mid_list = '{{ mid_list|tojson }}'
+  rule = JSON.parse(rule)
   const_list = JSON.parse(const_list)
+  mid_list = JSON.parse(mid_list)
 </script>
 {% endblock %}

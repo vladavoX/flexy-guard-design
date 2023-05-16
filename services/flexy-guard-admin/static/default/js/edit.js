@@ -1,29 +1,30 @@
 function init() {
-
   let body = rule.body
   let card_array = Object.entries(body.card)
 
   // CARD-SETTINGS
   $('.card-subgroups').append(`
   ${card_array
-      .filter((card) => card[0] === 'count' || card[0] === 'amount')
-      .sort((a, b) => {
-          if (a[0] === 'count') {
-              return -1;
-          } else if (b[0] === 'count') {
-              return 1;
-          } else {
-              return 0;
-          }
-      })
-      .map((card) => {
-          if (card[0] === 'count') {
-              return `
+    .filter((card) => card[0] === 'count' || card[0] === 'amount')
+    .sort((a, b) => {
+      if (a[0] === 'count') {
+        return -1
+      } else if (b[0] === 'count') {
+        return 1
+      } else {
+        return 0
+      }
+    })
+    .map((card) => {
+      if (card[0] === 'count') {
+        return `
                   <div class="btn-with-heading">
                       <h6 class="body-large custom-heading">Card Count Limit</h6>
                       <img id="pen" src="../../assets/icons/pen.svg" />
                   </div>
-                  ${Object.keys(card[1]).map((key) => `
+                  ${Object.keys(card[1])
+                    .map(
+                      (key) => `
                       <div class="row">
                           <div>
                               <label for="card-count-min-${key}">Min</label>
@@ -44,24 +45,34 @@ function init() {
                               />
                           </div>
                       </div>
-                  `).join('')}
-              `;
-          } else {
-            let sumObj = card[1].sum
-            let valueObj = card[1].value
-            
-            return `
+                  `
+                    )
+                    .join('')}
+              `
+      } else {
+        let sumObj = card[1].sum
+        let valueObj = card[1].value
+
+        return `
                 <div class="btn-with-heading">
                     <h6 class="body-large custom-heading">Card Amount Limit</h6>
                     <img id="pen" src="../../assets/icons/pen.svg" />
                 </div>
-                ${Object.keys(sumObj).map((key) => `
+                ${Object.keys(sumObj)
+                  .map(
+                    (key) => `
                     <h6 class="heading-smallest">
-                      ${key === '1' ? 'Daily Limit'
-                      : key === '7' ? 'Weekly Limit'
-                      : key === '30'? 'Monthly Limit'
-                      : key === '365' ? 'Yearly Limit' : ''
-                    }
+                      ${
+                        key === '1'
+                          ? 'Daily Limit'
+                          : key === '7'
+                          ? 'Weekly Limit'
+                          : key === '30'
+                          ? 'Monthly Limit'
+                          : key === '365'
+                          ? 'Yearly Limit'
+                          : ''
+                      }
                     </h6>
                     <div class="row">
                         <div>
@@ -83,7 +94,9 @@ function init() {
                             />
                         </div>
                     </div>
-                `).join('')}
+                `
+                  )
+                  .join('')}
                 <h6 class="heading-smallest">Value Limits</h6>
                 <div class="row">
                 <div>
@@ -105,11 +118,11 @@ function init() {
                   />
                 </div>
               </div>
-            `;
-          }
-      })
-      .join('')}
-`);
+            `
+      }
+    })
+    .join('')}
+`)
 
   // BIN
   let bin_array = Object.entries(body.bin)
@@ -166,97 +179,143 @@ function init() {
   // HEADER
   let header = rule.header
   let header_array = Object.entries(header)
+  let const_list_array = Object.entries(const_list)
+  let mid_list_array = Object.entries(mid_list)
   $('.header-group').append(`
-        ${header_array.map(([key, value]) => {
-          let inputElement = `
-      <input
-        class="form-control form-control-sm"
-        placeholder=""
-        id=${key}
-        name="${key}" value="${value}"
-      />
-    `;
-
-    if (key === 'mid') {
-      inputElement = `
-        <input
-          class="form-control form-control-sm"
-          placeholder=""
-          id="${key}"
-          name="${key}"
-          placeholder=""
-          value="{{ mid_list[mid] }}"
-          list="mid_list"
-        />
-        <datalist id="mid_list">
-          {% for item in const_list['mid'] %}
-          <option value="{{ item }}">{{ item }}</option>
-          {% endfor %}
-        </datalist>
-      `;
-    } else if (key === 'gw_currencies') {
-      inputElement = `
-        <input
-          name="gw_currencies"
-          list="gw_currencies_list"
-          class="form-control form-control-sm"
-          id="gw_currencies"
-          placeholder=""
-          value="{{ gw_currencies_list[gw_currencies] }}"
-        />
-        <datalist id="gw_currencies_list">
-          {% for item in const_list['gw_currencies'] %}
-          <option value="{{ item }}">{{ item }}</option>
-          {% endfor %}
-        </datalist>
-      `;
-    } else if (key === 'currencies') {
-      inputElement = `
-        <input
-          name="gateway_currency"
-          list="currencies"
-          class="form-control form-control-sm"
-          id="currency"
-          placeholder=""
-          value="{{ currencies[currency] }}"
-        />
-        <datalist id="currencies">
-          {% for item in const_list['currency'] %}
-          <option value="{{ item }}">{{ item }}</option>
-          {% endfor %}
-        </datalist>
-      `;
-    } else if (key === 'card_brand') {
-      inputElement = `
-        <input
-          name="card_brand"
-          list="card_brands"
-          class="form-control form-control-sm"
-          id="card_brand"
-          placeholder=""
-          value="{{ card_brand }}"
-        />
-        <datalist id="card_brands">
-          <option>MasterCard</option>
-          <option>VISA</option>
-        </datalist>
-      `;
-    }
-          return `
+    ${header_array
+      .map(([key, value]) => {
+        let inputElement = `
+          <input
+            class="form-control form-control-sm"
+            placeholder=""
+            id=${key}
+            name="${key}" value="${value}"
+          />
+        `
+        if (key === 'mid') {
+          inputElement = `
+            <input
+              name="mid"
+              list="mid_list"
+              class="form-control form-control-sm"
+              id="mid"
+              placeholder=""
+              value="${value}"
+            />
+            <datalist id="mid_list">
+              ${mid_list_array
+                .map((mid) => {
+                  return `
+                  <div>
+                    <option value="${mid[1]}">${mid[1]}</option>
+                  </div>
+                `
+                })
+                .join('')}
+            </datalist>
+          `
+        }
+        if (key === 'acq_alias') {
+          inputElement = `
+            <input
+              name="acq_alias"
+              id="acq-alias"
+              class="form-control form-control-sm"
+              placeholder=""
+              value="${value}"
+            />
+          `
+        }
+        if (key === 'acq_id') {
+          inputElement = `
+            <input
+              name="acq_id"
+              id="acq-id"
+              class="form-control form-control-sm"
+              placeholder=""
+              value="${value}"
+            />
+          `
+        }
+        if (key === 'gateway_currency') {
+          inputElement = `
+            <input
+              name="gateway_currency"
+              list="gw_currencies"
+              class="form-control form-control-sm"
+              id="gateway-currency"
+              placeholder=""
+              value="${value}"
+            />
+            <datalist id="gw_currencies">
+              ${const_list_array
+                .filter((const_list) => const_list[0] === 'currency')
+                .map((const_list) => {
+                  return `
+                  <div>
+                    <option value="${const_list[1]}">${const_list[1]}</option>
+                  </div>
+                `
+                })
+                .join('')}
+            </datalist>
+          `
+        }
+        if (key === 'currency') {
+          inputElement = `
+            <input
+              name="gateway_currency"
+              list="currencies"
+              class="form-control form-control-sm"
+              id="currency"
+              placeholder=""
+              value="${value}"
+            />
+            <datalist id="currencies">
+              ${const_list_array
+                .filter((const_list) => const_list[0] === 'currency')
+                .map((const_list) => {
+                  return `
+                  <div>
+                    <option value="${const_list[1]}">${const_list[1]}</option>
+                  </div>
+                `
+                })
+                .join('')}
+            </datalist>
+          `
+        }
+        if (key === 'card_brand') {
+          inputElement = `
+            <input
+              name="card_brand"
+              list="card_brands"
+              class="form-control form-control-sm"
+              id="card-brand"
+              placeholder=""
+              value="${value}"
+            />
+            <datalist id="card_brands">
+              <option>MasterCard</option>
+              <option>VISA</option>
+            </datalist>
+          `
+        }
+        return `
             <div>
               <label for=${key}>${
-                key === 'acq_alias'
-                  ? 'Acquirer Alias'
-                  : key === 'acq_id'
-                  ? 'Acquirer ID'
-                  : key === 'mid'
-                  ? 'MID'
-                  : key === 'gateway_currency'
-                  ? 'Gateway Currency'
-                  : key === 'currency'
-                  ? 'Currency'
-                  : 'Card Brand'
-              }</label>
+          key === 'acq_alias'
+            ? 'Acquirer Alias'
+            : key === 'acq_id'
+            ? 'Acquirer ID'
+            : key === 'mid'
+            ? 'Mearchant ID'
+            : key === 'gateway_currency'
+            ? 'Gateway Currency'
+            : key === 'currency'
+            ? 'Currency'
+            : 'Card Brand'
+        }</label>
               <div class="header-input-row">
           ${inputElement}
           <div class="js-header-delete">
@@ -264,10 +323,10 @@ function init() {
           </div>
         </div>
           `
-        }).filter((block) => block)
-        .join('')}
+      })
+      .filter((block) => block)
+      .join('')}
   `)
-
 
   $('.js-open-modal-router').on('click', function () {
     $('#parent-router-modal').css('display', 'flex')
