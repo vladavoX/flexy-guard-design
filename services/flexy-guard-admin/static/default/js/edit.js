@@ -168,6 +168,80 @@ function init() {
   let header_array = Object.entries(header)
   $('.header-group').append(`
         ${header_array.map(([key, value]) => {
+          let inputElement = `
+      <input
+        class="form-control form-control-sm"
+        placeholder=""
+        id=${key}
+        name="${key}" value="${value}"
+      />
+    `;
+
+    if (key === 'mid') {
+      inputElement = `
+        <input
+          class="form-control form-control-sm"
+          placeholder=""
+          id="${key}"
+          name="${key}"
+          placeholder=""
+          value="{{ mid_list[mid] }}"
+          list="mid_list"
+        />
+        <datalist id="mid_list">
+          {% for item in const_list['mid'] %}
+          <option value="{{ item }}">{{ item }}</option>
+          {% endfor %}
+        </datalist>
+      `;
+    } else if (key === 'gw_currencies') {
+      inputElement = `
+        <input
+          name="gw_currencies"
+          list="gw_currencies_list"
+          class="form-control form-control-sm"
+          id="gw_currencies"
+          placeholder=""
+          value="{{ gw_currencies_list[gw_currencies] }}"
+        />
+        <datalist id="gw_currencies_list">
+          {% for item in const_list['gw_currencies'] %}
+          <option value="{{ item }}">{{ item }}</option>
+          {% endfor %}
+        </datalist>
+      `;
+    } else if (key === 'currencies') {
+      inputElement = `
+        <input
+          name="gateway_currency"
+          list="currencies"
+          class="form-control form-control-sm"
+          id="currency"
+          placeholder=""
+          value="{{ currencies[currency] }}"
+        />
+        <datalist id="currencies">
+          {% for item in const_list['currency'] %}
+          <option value="{{ item }}">{{ item }}</option>
+          {% endfor %}
+        </datalist>
+      `;
+    } else if (key === 'card_brand') {
+      inputElement = `
+        <input
+          name="card_brand"
+          list="card_brands"
+          class="form-control form-control-sm"
+          id="card_brand"
+          placeholder=""
+          value="{{ card_brand }}"
+        />
+        <datalist id="card_brands">
+          <option>MasterCard</option>
+          <option>VISA</option>
+        </datalist>
+      `;
+    }
           return `
             <div>
               <label for=${key}>${
@@ -184,18 +258,11 @@ function init() {
                   : 'Card Brand'
               }</label>
               <div class="header-input-row">
-                <input
-                  class="form-control form-control-sm"
-                  placeholder=""
-                  id=${key}
-                  name="${key}" value="${value}"
-                />
-              <div class="js-header-delete">
-                <img
-                  src="../../assets/icons/delete_purple.svg"
-                />
-              </div>
-            </div>
+          ${inputElement}
+          <div class="js-header-delete">
+            <img src="../../assets/icons/delete_purple.svg" />
+          </div>
+        </div>
           `
         }).filter((block) => block)
         .join('')}

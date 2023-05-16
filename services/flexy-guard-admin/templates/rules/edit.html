@@ -884,5 +884,7 @@
 <script>
   let rule = '{{ json|tojson }}'
   rule = JSON.parse(rule)
+  let const_list = '{{ const_list|tojson }}'
+  const_list = JSON.parse(const_list)
 </script>
 {% endblock %}
