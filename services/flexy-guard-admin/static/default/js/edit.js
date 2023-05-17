@@ -76,7 +76,7 @@ function init() {
               <button
                 id="add-field-btn"
                 type="button"
-                class="btn btn-primary js-open-modal-router"
+                class="btn btn-primary js-open-amount-bin"
                 >Add Field</button
               >
               </h6>
@@ -221,7 +221,8 @@ function init() {
                 }
               </h6>
             </div>
-            <textarea
+            <div class="bin-row">
+              <textarea
               ${
                 bin[0] === 'in_country'
                   ? 'id="bin-in-country"'
@@ -230,14 +231,21 @@ function init() {
                   : bin[0] === 'not_in_ip_country'
                   ? 'id="ip-not-in-country"'
                   : 'id="ip-in-country"'
-              }
-              class="form-control custom-textarea"
-            >
-              ${bin[1]
-                .map((country) => country)
-                .filter((c) => c)
-                .join('\n')}
-            </textarea>
+                }
+                class="form-control custom-textarea"
+                >
+                ${bin[1]
+                  .map((country) => country)
+                  .filter((c) => c)
+                  .join('\n')}
+              </textarea>
+              
+                <div class="js-bin-delete" style="margin-left: 20px;">
+                    <img src="../../assets/icons/delete_purple.svg" />
+                </div>
+           
+            </div>
+            
           </div>
         </div>
       `
@@ -450,6 +458,11 @@ function init() {
     $('#bin-modal').css('display', 'flex')
   })
 
+  $('.js-open-amount-bin').on('click', function () {
+    $('#parent-amount-modal').css('display', 'flex')
+    $('#amount-modal').css('display', 'flex')
+  })
+
   $('.js-open-modal').on('click', function () {
     $('#parent-header-modal').css('display', 'flex')
     $('#header-modal').css('display', 'flex')
@@ -460,6 +473,8 @@ function init() {
     $('#parent-header-modal').css('display', 'none')
     $('#bin-modal').css('display', 'none')
     $('#parent-bin-modal').css('display', 'none')
+    $('#amount-modal').css('display', 'none')
+    $('#parent-amount-modal').css('display', 'none')
   })
 
   $('.js-add-header').on('click', function () {
@@ -483,10 +498,30 @@ function init() {
     createPage(newRule)
   })
 
+  $('.js-add-amount').on('click', function () {
+    let selectedAmount = $('.amount-select').find(':selected').val()
+    let newRule = rule
+    newRule.body.card.amount.sum[selectedAmount] = [0, 0]
+    $('#amount-modal').css('display', 'none')
+    $('#parent-amount-modal').css('display', 'none')
+    createPage(newRule)
+  })
+
   $('.js-header-delete').on('click', function () {
     let newRule = rule
     let headerName = $(this).parent().parent().find('label').attr('for')
     delete newRule.header[headerName]
+    createPage(newRule)
+  })
+
+  $('.js-bin-delete').on('click', function () {
+    let newRule = rule
+    let binName = $(this).parent().find('textarea').attr('id')
+    binName.includes('bin-in-country') ? delete newRule.body.bin.in_country : ''
+    binName.includes('bin-not-in-country') ? delete newRule.body.bin.not_in_country : ''
+    binName.includes('ip-in-country') ? delete newRule.body.bin.in_ip_country : ''
+    binName.includes('ip-not-in-country') ? delete newRule.body.bin.not_in_ip_country : ''
+
     createPage(newRule)
   })
 
