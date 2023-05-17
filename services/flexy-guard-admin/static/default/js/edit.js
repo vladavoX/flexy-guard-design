@@ -194,58 +194,82 @@ function init() {
   `)
 
     // BIN
-    let bin_array = Object.entries(body.bin)
-    $('.bin-subgroups').html(
+    let bin_array = []
+    if (body.bin) bin_array = Object.entries(body.bin)
+    $('.bin-group').html(
       `
         ${bin_array
           .map((bin) => {
-            if (
-              bin[0] === 'in_country' ||
-              bin[0] === 'not_in_country' ||
-              bin[0] === 'not_in_ip_country' ||
-              bin[0] === 'in_ip_country'
-            ) {
+            if (bin[0] === 'in_country' || bin[0] === 'not_in_country') {
+              return `
+        <div class="row">
+          <div>
+            <div class="btn-with-heading">
+              <h6 class="body-large custom-heading">
+                ${bin[0] === 'in_country' ? 'In Country' : 'Not In Country'}
+              </h6>
+            </div>
+            <div class="bin-row">
+            <textarea
+              ${
+                bin[0] === 'in_country'
+                  ? 'id="bin-in-country"'
+                  : 'id="bin-not-in-country"'
+              }
+              class="form-control custom-textarea"
+            >
+              ${bin[1].map((country) => country.replace(/\s/g, '')).join('\n')}
+            </textarea>
+                <div class="js-bin-delete" style="margin-left: 20px;">
+                    <img src="../../assets/icons/delete_purple.svg" />
+                </div>
+            </div>
+          </div>
+        </div>
+      `
+            }
+          })
+          .filter((block) => block)
+          .join('')}
+  
+      `
+    )
+
+    // IP
+    let ip_array = []
+    if (body.ip) ip_array = Object.entries(body.ip)
+    $('.ip-group').html(
+      `
+        ${ip_array
+          .map((ip) => {
+            if (ip[0] === 'in_ip_country' || ip[0] === 'not_in_ip_country') {
               return `
         <div class="row">
           <div>
             <div class="btn-with-heading">
               <h6 class="body-large custom-heading">
                 ${
-                  bin[0] === 'in_country'
-                    ? 'In Country'
-                    : bin[0] === 'not_in_country'
-                    ? 'Not In Country'
-                    : bin[0] === 'not_in_ip_country'
-                    ? 'Not In IP Country'
-                    : 'In IP Country'
+                  ip[0] === 'in_ip_country'
+                    ? 'In IP Country'
+                    : 'Not In IP Country'
                 }
               </h6>
             </div>
             <div class="bin-row">
-              <textarea
+            <textarea
               ${
-                bin[0] === 'in_country'
-                  ? 'id="bin-in-country"'
-                  : bin[0] === 'not_in_country'
-                  ? 'id="bin-not-in-country"'
-                  : bin[0] === 'not_in_ip_country'
-                  ? 'id="ip-not-in-country"'
-                  : 'id="ip-in-country"'
-                }
-                class="form-control custom-textarea"
-                >
-                ${bin[1]
-                  .map((country) => country)
-                  .filter((c) => c)
-                  .join('\n')}
-              </textarea>
-              
+                ip[0] === 'in_ip_country'
+                  ? 'id="in-ip-country"'
+                  : 'id="not-in-ip-country"'
+              }
+              class="form-control custom-textarea"
+            >
+              ${ip[1].map((ip) => ip.replace(/\s/g, '')).join('\n')}
+            </textarea>
                 <div class="js-bin-delete" style="margin-left: 20px;">
                     <img src="../../assets/icons/delete_purple.svg" />
                 </div>
-           
             </div>
-            
           </div>
         </div>
       `
@@ -518,9 +542,15 @@ function init() {
     let newRule = rule
     let binName = $(this).parent().find('textarea').attr('id')
     binName.includes('bin-in-country') ? delete newRule.body.bin.in_country : ''
-    binName.includes('bin-not-in-country') ? delete newRule.body.bin.not_in_country : ''
-    binName.includes('ip-in-country') ? delete newRule.body.bin.in_ip_country : ''
-    binName.includes('ip-not-in-country') ? delete newRule.body.bin.not_in_ip_country : ''
+    binName.includes('bin-not-in-country')
+      ? delete newRule.body.bin.not_in_country
+      : ''
+    binName.includes('ip-in-country')
+      ? delete newRule.body.bin.in_ip_country
+      : ''
+    binName.includes('ip-not-in-country')
+      ? delete newRule.body.bin.not_in_ip_country
+      : ''
 
     createPage(newRule)
   })
