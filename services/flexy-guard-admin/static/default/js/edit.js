@@ -229,7 +229,6 @@ function init() {
       `
             }
           })
-          .filter((block) => block)
           .join('')}
   
       `
@@ -275,7 +274,6 @@ function init() {
       `
             }
           })
-          .filter((block) => block)
           .join('')}
   
       `
@@ -506,6 +504,9 @@ function init() {
     let selectedHeader = $('.header-select').find(':selected').val()
 
     let newRule = rule
+    if (!newRule.header) {
+      newRule.header = {}
+    }
     newRule.header[selectedHeader] = fieldName
     $('#header-modal').css('display', 'none')
     $('#parent-header-modal').css('display', 'none')
@@ -514,8 +515,10 @@ function init() {
 
   $('.js-add-bin').on('click', function () {
     let selectedBin = $('.bin-select').find(':selected').val()
-
     let newRule = rule
+    if (!newRule.body.bin) {
+      newRule.body.bin = {}
+    }
     newRule.body.bin[selectedBin] = []
     $('#bin-modal').css('display', 'none')
     $('#parent-bin-modal').css('display', 'none')
@@ -525,6 +528,9 @@ function init() {
   $('.js-add-amount').on('click', function () {
     let selectedAmount = $('.amount-select').find(':selected').val()
     let newRule = rule
+    if (!newRule.body.card.amount.sum) {
+      newRule.body.card.amount.sum = {}
+    }
     newRule.body.card.amount.sum[selectedAmount] = [0, 0]
     $('#amount-modal').css('display', 'none')
     $('#parent-amount-modal').css('display', 'none')
