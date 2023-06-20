@@ -1,316 +1,244 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styles/rules/edit.css') }}"
+/>
+
+<!-- AMOUNT MODAL -->
+<div
+  id="parent-amount-modal"
+  class="parent-amount-modal"
+>
+  <div id="amount-modal">
+    <p
+      class="close-icon js-close-modal"
+      class="fa"
+    >
+      <img src="{{ url_for('static', filename='assets/icons/close.svg') }}" />
+    </p>
+    <h2 class="heading-medium header-heading">Add Card Amount Field</h2>
+    <div class="row header-row">
+      <div class="col-sm-6 amount-field-box">
+        <label
+          class="amount-label"
+          for="amount-name"
+          >Type</label
+        >
+        <select
+          id="amount-field"
+          class="form-control amount-select"
+        >
+          <option value="">Select a type</option>
+          <option value="1">Daily Limit</option>
+          <option value="7">Weekly Limit</option>
+          <option value="30">Monthly Limit</option>
+          <option value="365">Yearly Limit</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-dialog js-add-amount">Add Field</button>
+  </div>
+</div>
+
+<!-- BIN MODAL -->
+<div
+  id="parent-bin-modal"
+  class="parent-bin-modal"
+>
+  <div id="bin-modal">
+    <p
+      class="close-icon js-close-modal"
+      class="fa"
+    >
+      <img src="{{ url_for('static', filename='assets/icons/close.svg') }}" />
+    </p>
+    <h2 class="heading-medium header-heading">Add Bin Field</h2>
+    <div class="row header-row">
+      <div class="col-sm-6 bin-field-box">
+        <label
+          class="bin-label"
+          for="bin-name"
+          >Type</label
+        >
+        <select
+          id="bin-field"
+          class="form-control bin-select"
+        >
+          <option value="">Select a type</option>
+          <option value="in_country">In Country</option>
+          <option value="not_in_country">Not In Country</option>
+          <option value="not_in_ip_country">Not In IP Country</option>
+          <option value="in_ip_country">In IP Country</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-dialog js-add-bin">Add Field</button>
+  </div>
+</div>
+
+<!-- HEADER MODAL -->
+<div
+  id="parent-header-modal"
+  class="parent-header-modal"
+>
+  <div id="header-modal">
+    <p
+      class="close-icon js-close-modal"
+      class="fa"
+    >
+      <img src="{{ url_for('static', filename='assets/icons/close.svg') }}" />
+    </p>
+    <h2 class="heading-medium header-heading">Add Header Field</h2>
+    <div class="row header-row">
+      <div class="col-sm-6 header-field-box">
+        <label
+          class="header-label"
+          for="header-name"
+          >Type</label
+        >
+        <select
+          id="header-field"
+          class="form-control header-select"
+        >
+          <option value="">Select type</option>
+          <option value="acq_alias">Acquirer Alias</option>
+          <option value="acq_id">Acquirer ID</option>
+          <option value="mid">Merchant ID</option>
+          <option value="gateway_currency">Gateway Currency</option>
+          <option value="currency">Currency</option>
+          <option value="card_brand">Card Brand</option>
+        </select>
+      </div>
+      <div class="col-sm-6 header-field-box">
+        <label
+          class="header-label"
+          for="header-name"
+          >Name</label
+        >
+        <input
+          type="text"
+          id="header-name"
+          class="form-control js-card-status-count-min"
+          value=""
+        />
+      </div>
+    </div>
+    <button class="btn btn-primary btn-dialog js-add-header">Add Field</button>
+  </div>
+</div>
+
+<!-- EDIT PAGE -->
 <div class="row">
   <div class="box">
-    <div class="box-header with-border">
-      <h3>Edit rule "{{ rule.Comment }}"</h3>
-    </div>
-
     <div class="box-body">
       <div class="mb-3">
         <div class="m-3">
-
-          <form>
-            <input type="hidden" value="{{ rule['Hash'] }}" id="hash">
-            <div class="row form-group">
-              <div class="col-sm-6">
-                <button class="btn btn-success js-item-save">Save</button>
-                <a href="/rules/advanced/{{ rule.Hash }}" class="btn btn-warning">Advanced</a>
-                <a href="/list" class="btn btn-primary">Return to list</a>
+          <form class="form-body">
+            <input
+              type="hidden"
+              value="{{ rule['Hash'] }}"
+              id="hash"
+            />
+            <div class="form-group row-top">
+              <div class="box-header">
+                <input
+                  name="comment"
+                  class="custom-edit-name"
+                  id="comment"
+                  placeholder=""
+                  value="{{ rule.Comment }}"
+                />
+              </div>
+              <div class="row-top-buttons">
+                <a
+                  href="/list"
+                  class="btn custom-discard"
+                  >Discard</a
+                >
+                <button class="btn custom-save js-item-save pull-right">
+                  Save Changes
+                </button>
               </div>
             </div>
-
-            <div class="row form-group">
-              <label class="col-form-label col-form-label-sm col-sm-1" for="comment">Name</label>
-              <div class="col-sm-4">
-                <input name="comment" class="form-control form-control-sm" id="comment" placeholder="" value="{{ rule.Comment }}">
-              </div>
-            </div>
-
-            <h3 class="box-title">Header settings</h3>
-
-            {% if rule.Header.mid %}
-              <div class="row form-group">
-                <label class="col-form-label col-form-label-sm col-sm-1" for="mid">Merchant&nbsp;ID</label>
-                <div class="col-sm-4">
-                  <input name="mid" list="mid_list" class="form-control form-control-sm" id="mid" placeholder="" value="{{ mid_list[rule.Header.mid] }}">
-                  <datalist id="mid_list">
-                    {% for item in const_list['mid'] %}
-                      <option value="{{ item }}">{{ item }}</option>
-                    {% endfor %}
-                  </datalist>
+            <div class="content-left-right">
+              <div class="left">
+                <h2 class="heading-medium">Body </h2>
+                <div class="card-settings">
+                  <h3
+                    class="heading-small"
+                    style="margin: 40px 0px 0px"
+                    >Card Settings
+                  </h3>
+                  <div class="card-subgroups"> </div>
                 </div>
-              </div>
-            {% endif %}
-
-            {% if rule.Header.acq_alias %}
-              <div class="row form-group">
-                <label class="col-form-label col-form-label-sm col-sm-1" for="acq-alias">Acquirer alias</label>
-                <div class="col-sm-4">
-                  <input name="acq_alias" class="form-control form-control-sm" id="acq-alias" placeholder="" value="{{ rule.Header.acq_alias }}">
-                </div>
-              </div>
-            {% endif %}
-
-            {% if rule.Header.acq_id %}
-            <div class="row form-group">
-              <label class="col-form-label col-form-label-sm col-sm-1" for="acq-alias">Acquirer ID</label>
-              <div class="col-sm-4">
-                <input name="acq_alias" class="form-control form-control-sm" id="acq-id" placeholder="" value="{{ rule.Header.acq_id }}">
-              </div>
-            </div>
-            {% endif %}
-
-            {% if rule.Header.gateway_currency %}
-              <div class="row form-group">
-                <label class="col-form-label col-form-label-sm col-sm-1" for="gateway-currency">Currency</label>
-                <div class="col-sm-4">
-                  <input name="gateway_currency" list="gw_currencies" class="form-control form-control-sm" id="gateway-currency" placeholder="" value="{{ rule.Header.gateway_currency }}">
-                  <datalist id="gw_currencies">
-                    {% for item in const_list['currency'] %}
-                      <option value="{{ item }}">{{ item }}</option>
-                    {% endfor %}
-                  </datalist>
-                </div>
-              </div>
-            {% endif %}
-
-            {% if rule.Header.currency %}
-            <div class="row form-group">
-              <label class="col-form-label col-form-label-sm col-sm-1" for="gateway-currency">Currency</label>
-              <div class="col-sm-4">
-                <input name="gateway_currency" list="currencies" class="form-control form-control-sm" id="currency" placeholder="" value="{{ rule.Header.currency }}">
-                <datalist id="currencies">
-                  {% for item in const_list['currency'] %}
-                  <option value="{{ item }}">{{ item }}</option>
-                  {% endfor %}
-                </datalist>
-              </div>
-            </div>
-            {% endif %}
-
-            {% if rule.Header.card_brand %}
-            <div class="row form-group">
-              <label class="col-form-label col-form-label-sm col-sm-1" for="card-brand">Card Brand</label>
-              <div class="col-sm-4">
-                <input name="card_brand" list="card_brands" class="form-control form-control-sm" id="card-brand" placeholder="" value="{{ rule.Header.card_brand }}">
-                <datalist id="card_brands">
-                  <option>MasterCard</option>
-                  <option>VISA</option>
-                </datalist>
-              </div>
-            </div>
-            {% endif %}
-
-            <!-- div class="row form-group">
-              <label class="col-form-label col-form-label-sm col-sm-1" for="description">Description</label>
-              <div class="col-sm-4">
-                <textarea name="description" class="form-control form-control-sm" id="description" placeholder="">{{ rule.Header.description }}</textarea>
-              </div>
-            </div -->
-
-            <hr>
-            <h3 class="box-title">Filter settings</h3>
-
-              <div class="form-group">
-                <h5>Card settings</h5>
-
-                  {% if card['status'][0] is not none and card['status'][1] is not none %}
-                  <h6>Card status count approved</h6>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <label for="card-approved-min">Min</label>
-                      <input type="text" id="card-approved-min" class="form-control js-card-status-count-min" value="{{ card['status'][0] }}">
-                    </div>
-                    <div class="col-sm-3">
-                      <label for="card-approved-max">Max</label>
-                      <input type="text" id="card-approved-max" class="form-control js-card-status-count-max" value="{{ card['status'][1] }}">
-                    </div>
+                <div class="bin">
+                  <h3
+                    class="heading-small"
+                    style="margin: 40px 0px 0px"
+                    >Bin
+                    <button
+                      id="add-field-btn"
+                      type="button"
+                      class="btn btn-primary js-open-modal-bin"
+                      >Add Field</button
+                    >
+                  </h3>
+                  <div class="bin-subgroups">
+                    <div class="bin-group"></div>
+                    <div class="ip-group"></div>
                   </div>
-                  {% endif %}
-
-                  {% if card['count'][0] is not none and card['count'][1] is not none %}
-                  <h6>Card count limits</h6>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <label for="card-count-min">Min</label>
-                      <input type="text" id="card-count-min" class="form-control" value="{{ card['count'][0] }}">
-                    </div>
-                    <div class="col-sm-3">
-                      <label for="card-count-max">Max</label>
-                      <input type="text" id="card-count-max" class="form-control" value="{{ card['count'][1] }}">
-                    </div>
-                  </div>
-                  {% endif %}
-
-                  {% if card['is_sum'] is not none %}
-                  <h6>Card turn-over, Card transaction amount</h6>
-                  {% endif %}
-                    {% if card['daily'][0] is not none and card['daily'][1] is not none %}
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <label for="card-amount-min">Daily limit</label>
-                      </div>
-                      <div class="col-sm-3">
-                        <input type="text" id="card-amount-daily-min" class="form-control" value="{{ card['daily'][0] }}">
-                      </div>
-                      <div class="col-sm-3">
-                        <input type="text" id="card-amount-daily-max" class="form-control" value="{{ card['daily'][1] }}">
-                      </div>
-                    </div>
-                    {% endif %}
-
-                {% if card['weekly'][0] is not none and card['weekly'][1] is not none %}
-                <div class="row">
-                      <div class="col-sm-12">
-                        <label for="card-amount-min">Weekly limit</label>
-                      </div>
-                      <div class="col-sm-3">
-                        <input type="text" id="card-amount-weekly-min" class="form-control" value="{{ card['weekly'][0] }}">
-                      </div>
-                      <div class="col-sm-3">
-                        <input type="text" id="card-amount-weekly-max" class="form-control" value="{{ card['weekly'][1] }}">
-                      </div>
-                    </div>
-                {% endif %}
-
-                {% if card['monthly'][0] is not none and card['monthly'][1] is not none %}
-                <div class="row">
-                      <div class="col-sm-12">
-                        <label for="card-amount-min">Monthly limit</label>
-                      </div>
-                      <div class="col-sm-3">
-                        <input type="text" id="card-amount-monthly-min" class="form-control" value="{{ card['monthly'][0] }}">
-                      </div>
-                      <div class="col-sm-3">
-                        <input type="text" id="card-amount-monthly-max" class="form-control" value="{{ card['monthly'][1] }}">
-                      </div>
-                    </div>
-                {% endif %}
-
-                {% if card['yearly'][0] is not none and card['yearly'][1] is not none %}
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <label for="card-amount-min">Yearly limit</label>
-                      </div>
-                      <div class="col-sm-3">
-                        <input type="text" id="card-amount-yearly-min" class="form-control" value="{{ card['yearly'][0] }}">
-                      </div>
-                      <div class="col-sm-3">
-                        <input type="text" id="card-amount-yearly-max" class="form-control" value="{{ card['yearly'][1] }}">
-                      </div>
-                    </div>
-                {% endif %}
-
-                    {% if card['amount'][0] is not none and card['amount'][1] is not none %}
-                    <h6>Value limits</h6>
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <label for="card-amount-min">Min</label>
-                        <input type="text" id="card-amount-min" class="form-control" value="{{ card['amount'][0] }}">
-                      </div>
-                      <div class="col-sm-3">
-                        <label for="card-amount-max">Max</label>
-                        <input type="text" id="card-amount-max" class="form-control" value="{{ card['amount'][1] }}">
-                      </div>
-                    </div>
-                    {% endif %}
-
-              </div>
-
-            {% if rule.Body.amount %}
-            <div class="form-group">
-              <h5>Transaction settings</h5>
-
-              <h6>Amount values</h6>
-              <div class="row">
-                <div class="col-sm-3">
-                  <label for="trx-amount-min">Min</label>
-                  <input type="text" id="trx-amount-min" class="form-control" value="{{ rule.Body.amount.value[0] }}">
                 </div>
-                <div class="col-sm-3">
-                  <label for="trx-amount-max">Max</label>
-                  <input type="text" id="trx-amount-max" class="form-control" value="{{ rule.Body.amount.value[1] }}">
+              </div>
+              <div class="right">
+                <div class="header">
+                  <h2 class="heading-medium"
+                    >Header
+                    <button
+                      id="add-field-btn"
+                      type="button"
+                      class="btn btn-primary js-open-modal"
+                      >Add Field</button
+                    >
+                  </h2>
+                  <div class="header-group"></div>
+                </div>
+                <div class="router">
+                  <h2 class="heading-medium">Router </h2>
+                  <div class="router-group"></div>
                 </div>
               </div>
             </div>
-            {% endif %}
-
-            {% if rule.Body.bin %}
-            <h6>Bin</h6>
-            {% if rule.Body.bin.not_in_country %}
-              <div class="row">
-                <div class="col-sm-6">
-                  <label for="bin-not-in-country">Not in country</label>
-                  <textarea id="bin-not-in-country" class="form-control">{{ '\n'.join(rule.Body.bin.not_in_country) }}</textarea>
-                </div>
-              </div>
-              {% endif %}
-              {% if rule.Body.bin.in_country %}
-              <div class="row">
-                <div class="col-sm-6">
-                  <label for="bin-in-country">In country</label>
-                  <textarea id="bin-in-country" class="form-control">{{ '\n'.join(rule.Body.bin.in_country) }}</textarea>
-                </div>
-              </div>
-              {% endif %}
-            {% endif %}
-
-            {% if rule.Body.ip %}
-            <h6>Ip</h6>
-              {% if rule.Body.ip.not_in_ip_country %}
-              <div class="row">
-                <div class="col-sm-6">
-                  <label for="ip-not-in-country">Ip not in country</label>
-                  <textarea id="ip-not-in-country" class="form-control">{{ '\n'.join(rule.Body.ip.not_in_ip_country) }}</textarea>
-                </div>
-              </div>
-              {% endif %}
-
-              {% if rule.Body.ip.in_ip_country %}
-              <div class="row">
-                <div class="col-sm-6">
-                  <label for="ip-in-country">Ip in country</label>
-                  <textarea id="ip-in-country" class="form-control">{{ '\n'.join(rule.Body.ip.in_ip_country) }}</textarea>
-                </div>
-              </div>
-              {% endif %}
-            {% endif %}
-
-            <h3 class="box-title">Routing settings</h3>
-            {% for route_item in available_routing %}
-              <div class="row js-route-row">
-                <div class="col-sm-3">
-                  <input type="text" value="{{ route_item }}" class="form-control js-route-item" readonly>
-                </div>
-                <div class="col-sm-3">
-                  <select class="form-control js-gw-item">
-                    <option value="">Select gateway alias</option>
-                    {% for gw_item in gateways %}
-                      {% if routing[route_item] == gw_item['Value'] %}
-                        <option value="{{ gw_item['Value'] }}" selected>{{ gw_item['Value'] }}</option>
-                      {% else %}
-                        <option value="{{ gw_item['Value'] }}">{{ gw_item['Value'] }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                    <br />
-                </div>
-              </div>
-              {% endfor %}
-
-            <hr>
-            <div class="form-group">
-              <button class="btn btn-success js-item-save">Save</button>
-              <a href="/rules/advanced/{{ rule.Hash }}" class="btn btn-warning">Advanced</a>
-              <a href="/list" class="btn btn-primary">Return to list</a>
+            <div class="form-group custom-form-group">
+              <a
+                href="/list"
+                class="btn custom-discard"
+                >Discard</a
+              >
+              <button
+                class="btn btn-primary custom-button js-item-save pull-right"
+              >
+                Save Changes
+              </button>
             </div>
-
           </form>
-
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  let rule = '{{ json|tojson }}'
+  let const_list = '{{ const_list|tojson }}'
+  let mid_list = '{{ mid_list|tojson }}'
+  let routing = '{{ routing|tojson }}'
+  let available_routing = '{{ available_routing|tojson }}'
+  let gateways_list = '{{ gateways_list|tojson }}'
+  rule = JSON.parse(rule)
+  const_list = JSON.parse(const_list)
+  mid_list = JSON.parse(mid_list)
+  routing = JSON.parse(routing)
+  available_routing = JSON.parse(available_routing)
+  gateways_list = JSON.parse(gateways_list)
+</script>
 {% endblock %}

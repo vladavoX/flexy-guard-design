@@ -1,0 +1,35 @@
+@import '../pages/layout/top-nav.css';
+@import '../pages/layout/side-nav.css';
+@import '../components/table.css';
+
+.content-wrapper {
+  margin-left: 300px !important;
+  padding: 30px !important;
+  background-image: var(--linear-gradient-background);
+}
+
+.content {
+  border-radius: 5px;
+}
+
+.box {
+  border-top: none;
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .sidebar-mini.sidebar-collapse .content-wrapper {
+    margin-left: 72px !important;
+  }
+}
+
+.custom-button {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-form-group {
+  display: flex;
+  justify-content: space-between;
+}

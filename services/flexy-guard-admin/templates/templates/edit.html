@@ -32,30 +32,58 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+            <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/templates/edit.css') }}"
+    />
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
 <div class="wrapper" style="height: auto; min-height: 100%;">
 
-  <header class="main-header">
+      <header class="main-header">
+        <!-- Logo -->
+        <a
+          href="#"
+          data-toggle="push-menu"
+          role="button"
+        >
+          <div class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini">
+              <img
+                src="{{ url_for('static', filename='assets/icons/Union.svg') }}"
+              />
+            </span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">
+              <img
+                src="{{ url_for('static', filename='assets/icons/Union.svg') }}"
+              />
+              <img
+                src="{{ url_for('static', filename='assets/icons/reactivepay.svg') }}"
+              />
+              <span>FlexyGuard</span>
+            </span>
+          </div>
+        </a>
 
-    <!-- Logo -->
-    <a href="/" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>F</b>GD</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Flexy</b>Guard</span>
-    </a>
-
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-
-    </nav>
-  </header>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+          <div class="user-panel">
+            <div class="image">
+              <img
+                src="{{ url_for('static', filename='adminlte/img/user2-160x160.jpg') }}"
+                class="img-circle"
+                alt="User Image"
+              />
+            </div>
+            <div class="info">
+              <p>Flexy guard admin</p>
+            </div>
+          </div>
+        </nav>
+      </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     {% include 'misc/menu.html' %}
@@ -64,32 +92,27 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Flexy Guard Rules
-        <small>Version 1.0</small>
-      </h1>
-    </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
         <section class="content-header">
           {% if edit is defined %}
-            <h3>Edit template: {{ edit['Comment'] }}</h3>
+            <h3 class="heading-largest">Edit template: {{ edit['Comment'] }}</h3>
           {% else %}
-            <h3>Add template</h3>
+            <h3 >Add template</h3>
           {% endif %}
+
         </section>
       </div>
 
-      <div class="row form-group col-sm-12">
-        <a href="/templates" class="btn btn-primary">Return to templates list</a>
-      </div>
+      
 
       <div class="row">
         <div class="col-md-12">
+          
           <div class="box">
+            
             {% if edit is defined %}
               <form id="form" action="/template" method="PATCH">
             {% else %}
@@ -103,12 +126,14 @@
                       <input readonly type="hidden" class="form-control" name="hash" id="hash" placeholder="Rule hash">
                     {% endif %}
                   </div>
-                  <div class="form-group">
+                  <div class="form-group custom-form-group">
                     {% if edit %}
                       <input type="text" class="form-control" name="comment" id="comment" value="{{ edit['Comment'] }}" placeholder="Comment">
                     {% else %}
                       <input type="text" class="form-control" name="comment" id="comment" placeholder="Comment">
                     {% endif %}
+                      <a href="/templates" class="btn btn-primary pull-right custom-button">Return to templates list</a>
+
                   </div>
                 </div>
                 <!-- /.box-body -->
@@ -120,7 +145,7 @@
                   <button type="button" id="delete-template" class="btn btn-block btn-danger" name="action" >Remove template</button>
                   <input type="hidden" id="template_json" name="template_json" value="{{ edit['Rule'] }}"/>
                   {% else %}
-                  <button type="button" id="add-template" class="btn btn-block btn-primary">Add  template</button>
+                  <button type="button" id="add-template" class="btn pull-right btn-primary custom-button">Add  template</button>
                   <input type="hidden" id="template_json" name="template_json" value="{{ default }}"/>
                   {% endif %}
                 </div>

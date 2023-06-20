@@ -1,0 +1,33 @@
+@import './components/table.css';
+@import './pages/layout/top-nav.css';
+@import './pages/layout/side-nav.css';
+
+.content-wrapper {
+  margin-left: 300px !important;
+  padding: 20px !important;
+  background-image: var(--linear-gradient-background);
+}
+
+.content-header {
+  padding-top: none !important;
+}
+
+.content {
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.box {
+  border-top: none;
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .sidebar-mini.sidebar-collapse .content-wrapper {
+    margin-left: 72px !important;
+  }
+}
+
+.custom-button {
+  height: 50px;
+}

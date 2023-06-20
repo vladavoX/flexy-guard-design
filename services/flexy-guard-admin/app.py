@@ -143,6 +143,12 @@ def edit_rule(id):
             mid_keys = mid_item.Value.split('-')
             mid_list[mid_keys[0].strip()] = mid_item.Value
 
+    gateways_list = {}
+    if gateways:
+        for gw_item in gateways:
+            gw_keys = gw_item.Value.split('-')
+            gateways_list[gw_keys[0].strip()] = gw_item.Value
+
     constants = model.get_all_constants()
     const_list = {}
 
@@ -152,14 +158,22 @@ def edit_rule(id):
 
         const_list[const.Type].append(const.Value)
 
+
+    json = {
+        'header': header,
+        'body': body
+    }
+
     return render_template(
         'rules/edit.html',
+        json=json,
         rule=rule,
         card=card,
         routing=routing,
         const_list=const_list,
         available_routing=available_routing,
         gateways=gateways,
+        gateways_list=gateways_list,
         mid_list=mid_list
     )
 
@@ -299,7 +313,14 @@ def new_constant(type, id = None):
 def get_constants(type):
     list = model.get_constants(type)
 
-    return render_template('constants.html', list=list, type=type)
+    types_list = {
+        'mid': 'Merchant ID',
+        'currency': 'Gateway Currency',
+        'gw_alias': 'Gateway Alias',
+        'gw_type': 'Gateway Type'
+    }
+
+    return render_template('constants.html', list=list, type=type, types_list=types_list)
 
 @app.route("/constants/<type>", methods=['POST'])
 def add_constant(type):
@@ -373,6 +394,10 @@ def history(text=''):
 @app.route("/history_search", methods=['POST'])
 def history_search():
     return redirect('/history/%s' % request.form['text'], code=302)
+
+@app.route("/dashboard", methods=['GET'])
+def dashboard():
+    return render_template('dashboard.html', dashboard=dashboard)
 
 def process_bin_countries(f):
         model.clear_bins()

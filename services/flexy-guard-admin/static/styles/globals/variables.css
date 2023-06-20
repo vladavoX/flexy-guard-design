@@ -1,0 +1,47 @@
+:root {
+  /*COLORS*/
+
+  --color-white-background: #fbf5fe;
+  --color-white-content: #ffffff;
+
+  --color-navbar: #fafafa;
+  --color-white-1: #fcfbff;
+  --color-white-2: #f3f3f3;
+  --color-white-3: #fefefe;
+  --color-white-purple: #f8f6ff;
+
+  --color-grey-lighter: #e6e6e6;
+  --color-grey-light: #c0c0c0;
+  --color-grey: #bbbbbb;
+  --color-grey-dark: #393a3d;
+  --color-grey-darker: #706a82;
+
+  --color-lilac: #e8e1ff;
+
+  --color-purple-lightest: #aba2c5;
+  --color-purple-lighter: #9881e6;
+  --color-purple-light: #7257cb;
+  --color-purple: #583bb9;
+  --color-purple-heading: #4c4563;
+  --color-purple-dark: #352e4a;
+  --color-purple-rgba: rgba(114, 87, 203, 0.5);
+  --color-purple-rgba-1: rgba(114, 87, 203, 0.75);
+
+  --color-red: #fd4e35;
+
+  --color-black: #000000;
+
+  /*GRADIENTS*/
+
+  --linear-gradient-purple: linear-gradient(90deg, #583bb9 0%, #7257cb 100%);
+  --linear-gradient-green: linear-gradient(90deg, #37b96b 0%, #62c584 100%);
+  --linear-gradient-red: linear-gradient(90deg, #fd4e35 0%, #f95c51 100%);
+  --linear-gradient-yellow: linear-gradient(90deg, #fcc931 0%, #fcd454 100%);
+  --linear-gradient-blue: linear-gradient(90deg, #43c7fc 0%, #7dd7fd 100%);
+  --linear-gradient-grey: linear-gradient(90deg, #e6e6e6 0%, #eeeeee 100%);
+  --linear-gradient-background: linear-gradient(
+    107.56deg,
+    rgba(248, 246, 255, 0.8) 0%,
+    #fff6fe 100%
+  );
+}
